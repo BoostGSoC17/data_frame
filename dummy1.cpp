@@ -1,3 +1,8 @@
+/**Version - 1.0 data_frame
+  *data stored as std::string
+  *datatypes supported for now: int, double, std::string;
+*/
+
 #include <boost/numeric/ublas/vector.hpp>
 #include <iostream>
 #include <string>
