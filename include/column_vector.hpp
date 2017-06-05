@@ -14,23 +14,32 @@ using namespace boost::numeric::ublas;
 
 class column_vector {
 public:
+
+	/* constructors */
+	/* default: no parameters */
 	column_vector() {}
+	
+	/* paramters: name, ublas::vector<int> */ 
 	column_vector(std::string name, vector <int> x) {
-		colname = name;
+		name = name;
 		column_data.resize(x.size());
 		for(size_t i = 0; i < x.size(); i++)
 			column_data(i) = boost::lexical_cast<std::string>(x(i));
 		type = "int";
 	}
+
+	/* paramters: name, ublas::vector<double> */
 	column_vector(std::string name, vector <double> x) {
-		colname = name;
+		name = name;
 		column_data.resize(x.size());
 		for(size_t i = 0; i < x.size(); i++)
 			column_data(i) = boost::lexical_cast<std::string>(x(i));
 		type = "double";	
 	}
+
+	/* paramters: name, ublas::vector<string> */
 	column_vector(std::string name, vector <std::string> x) {
-		colname = name;
+		name = name;
 		column_data.resize(x.size());
 		for(size_t i = 0; i < x.size(); i++)
 			column_data(i) = x(i);	
@@ -41,11 +50,11 @@ public:
 		return column_data.size();
 	}
 	std::string getname() {
-		return colname; 
+		return name; 
 	}
 
 	void print_info() {
-		std::cout << "Type: " << type << ' ' << "Name:" << colname << '\n';
+		std::cout << "Type: " << type << ' ' << "Name:" << name << '\n';
 		std::cout << "Vector Values:" << '\n';
 		for(auto x: column_data) std::cout << x << ' ';
 		std::cout << '\n';
@@ -53,7 +62,7 @@ public:
 	}
 
 private:
-	std::string type, colname;
+	std::string type, name;
 	vector <std::string> column_data;	
 
 };
