@@ -1,6 +1,6 @@
-/**Boost GsoC'17
-  *column_vector version 1.0
-  *typecast all data as std::string
+/**Boost GSoC '17
+  *column_vector version-1.0
+  *convert all data to std::string
 */
 
 #ifndef _COLUMN_VECTOR_HPP
@@ -46,7 +46,7 @@ public:
 		type = "string";
 	}
 
-	size_t getsize() {
+	size_t size() {
 		return column_data.size();
 	}
 	std::string getname() {
@@ -64,7 +64,6 @@ public:
 private:
 	std::string type, name;
 	vector <std::string> column_data;	
-
 };
 
 #endif
