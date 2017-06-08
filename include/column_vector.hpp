@@ -10,51 +10,71 @@
 #include <string>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/lexical_cast.hpp>
+#include <type_traits>
 using namespace boost::numeric::ublas;	
+
+/////////////////////////////	
+//   supported datatypes   //
+/////////////////////////////
+
+enum allowed_types {
+	/// \values: 0, 1, 2, 3
+	INT, SHORT_INT, LONG_INT, LONG_LONG_INT, 
+	/// \values: 4, 5, 6, 7
+	UNSIGNED_INT, UNSIGNED_SHORT_INT, UNSIGNED_LONG_INT, UNSIGNED_LONG_LONG_INT, 
+	/// \values: 8, 9
+	DOUBLE, LONG_DOUBLE,
+	/// \values: 10
+	FLOAT, 
+	/// \values: 11
+	CHAR, 
+	/// \values: 12
+	STRING,
+};
+
+/// \returns type of data stored
+template <class T>
+allowed_types Type() {
+	if (std::is_same<T, int>::value)return INT;
+	else if(std::is_same<T, short int>::value) return SHORT_INT;
+	else if(std::is_same<T, long int>::value) return LONG_INT;
+	else if(std::is_same<T, long long int>::value) return LONG_LONG_INT;
+	else if(std::is_same<T, unsigned int>::value) return LONG_LONG_INT;
+	else if(std::is_same<T, unsigned short int>::value) return SHORT_INT;
+	else if(std::is_same<T, unsigned long int>::value) return LONG_INT;
+	else if(std::is_same<T, unsigned long long int>::value) return LONG_LONG_INT;
+	else if(std::is_same<T, double>::value) return DOUBLE;
+	else if(std::is_same<T, long double>::value) return LONG_DOUBLE;
+	else if(std::is_same<T, float>::value) return FLOAT;
+	else if(std::is_same<T, char>::value) return CHAR;
+	else if(std::is_same<T, std::string>::value) return STRING;
+	else; /// figure out a way to return something invalid
+}
 
 class column_vector {
 public:
 
-	/* constructors */
-	/* default: no parameters */
+	/// \constructors
+	/// \default: no parameters
 	column_vector() {}
 	
-	/* paramters: name, ublas::vector<int> */ 
-	column_vector(std::string name, vector <int> x) {
-		name = name;
-		column_data.resize(x.size());
-		for(size_t i = 0; i < x.size(); i++)
-			column_data(i) = boost::lexical_cast<std::string>(x(i));
-		type = "int";
-	}
-
-	/* paramters: name, ublas::vector<double> */
-	column_vector(std::string name, vector <double> x) {
-		name = name;
-		column_data.resize(x.size());
-		for(size_t i = 0; i < x.size(); i++)
-			column_data(i) = boost::lexical_cast<std::string>(x(i));
-		type = "double";	
-	}
-
-	/* paramters: name, ublas::vector<string> */
-	column_vector(std::string name, vector <std::string> x) {
-		name = name;
-		column_data.resize(x.size());
-		for(size_t i = 0; i < x.size(); i++)
-			column_data(i) = x(i);	
-		type = "string";
+	/// \parameters: boost::numeric::ublas::vector<T>
+	/// \T should be in allowed types
+	template <class T>
+	column_vector(vector<T> data) {
+		type = Type<T>();
+		column_data.resize(data.size());
+		for(size_t i = 0; i < data.size(); i++) {
+			column_data(i) = boost::lexical_cast<std::string>(data(i));
+		}
 	}
 
 	size_t size() {
 		return column_data.size();
 	}
-	std::string getname() {
-		return name; 
-	}
 
 	void print_info() {
-		std::cout << "Type: " << type << ' ' << "Name:" << name << '\n';
+		std::cout << "Type: " << type << std::endl;
 		std::cout << "Vector Values:" << '\n';
 		for(auto x: column_data) std::cout << x << ' ';
 		std::cout << '\n';
@@ -62,7 +82,7 @@ public:
 	}
 
 private:
-	std::string type, name;
+	allowed_types type;
 	vector <std::string> column_data;	
 };
 

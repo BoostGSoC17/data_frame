@@ -44,31 +44,29 @@ public:
 			if (names.size() < Data.size()) {
 				throw insufficient_names();
 			}
-			rowcount = (colcount > 0) ? Data[0].size() : 0; 
-			/// \exception for unequal no. of rows in data_frame 
-			if (colcount) {
-				for(size_t i = 1; i < Data.size(); i++) {
-					if (Data[i].size() != rowcount) {
-						throw unequal_rows();
-					}
-				}	
-			}
-			/// \initialise the data members
-			for(size_t i = 0; i < names.size(); i++) {
-				if (i < Data.size()) {
-					column_names.push_back(names[i]);
-					data[names[i]] = Data[i];
-				}	
-				else {
-					data[names[i]];
-				}
-			}
 		}
 		catch(std::exception e) {
 			std::terminate();
 		}
-
-		// add error conditions for all the column_type having same sizes
+		rowcount = (colcount > 0) ? Data[0].size() : 0; 
+		/// \exception for unequal no. of rows in data_frame 
+		if (colcount) {
+			for(size_t i = 1; i < Data.size(); i++) {
+				if (Data[i].size() != rowcount) {
+					throw unequal_rows();
+				}
+			}	
+		}
+		/// \initialise the data members
+		for(size_t i = 0; i < names.size(); i++) {
+			if (i < Data.size()) {
+				column_names.push_back(names[i]);
+				data[names[i]] = Data[i];
+			}	
+			else {
+				data[names[i]];
+			}
+		}
 	}	
 
 	void print_info() {
