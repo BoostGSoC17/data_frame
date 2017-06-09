@@ -1,6 +1,5 @@
-
-#ifndef _DATA_FRAME_HPP
-#define _DATA_FRAME_HPP
+#ifndef _data__FRAME_HPP
+#define _data__FRAME_HPP
 
 #include <iostream>
 #include <vector>
@@ -13,7 +12,7 @@
 
 struct insufficient_names : public std::exception {
    const char * what () const throw () {
-      return "Insufficient names compared to the data_frame";
+      return "Insufficient names compared to the data__frame";
    }
 };
 struct unequal_rows : public std::exception {
@@ -21,10 +20,10 @@ struct unequal_rows : public std::exception {
       return "Unequal number of rows";
    }
 };
-/// \iski condition dalio abhi tak nahi dali
+/* iski condition dalio abhi tak nahi dali */
 struct same_names : public std::exception {
    const char * what () const throw () {
-      return "data_frame columns not allowed to have same name";
+      return "data__frame columns not allowed to have same name";
    }
 };
 struct invalid_index : public std::exception {
@@ -39,14 +38,12 @@ struct invalid_name : public std::exception {
 };
 
 
-
-
-template <class column_type>
 /** \Allowed column_type should be:
  * column_vector
  * column_matrix
- * Still to add conditions on allowed datatypes.
+ * Still to add conditions on allowed data_types.
 */
+template <class column_type>
 class data_frame {
 public:
 	
@@ -55,30 +52,30 @@ public:
 
 	/// \parameters: 
 	/// 	column names
-	/// 	data in the form of columns
-	data_frame(std::vector <std::string> names, std::vector <column_type> Data) {
+	/// 	data_ in the form of columns
+	data_frame(std::vector <std::string> names, std::vector <column_type> data) {
 		try {
-			/// \exception for lesser column labels than data_frame columns
-			if (names.size() < Data.size()) {
+			/// \exception for lesser column labels than data__frame columns
+			if (names.size() < data.size()) {
 				throw insufficient_names();
 			}
-			rowcount = (colcount > 0) ? Data[0].size() : 0; 
-			/// \exception for unequal no. of rows in data_frame 
+			rowcount = (colcount > 0) ? data[0].size() : 0; 
+			/// \exception for unequal no. of rows in data__frame 
 			if (colcount) {
-				for(size_t i = 1; i < Data.size(); i++) {
-					if (Data[i].size() != rowcount) {
+				for(size_t i = 1; i < data.size(); i++) {
+					if (data[i].size() != rowcount) {
 						throw unequal_rows();
 					}
 				}	
 			}
-			/// \initialise the data members
+			/// \initialise the data_ members
 			for(size_t i = 0; i < names.size(); i++) {
-				if (i < Data.size()) {
+				if (i < data_.size()) {
 					column_names.push_back(names[i]);
-					data[names[i]] = Data[i];
+					data_[names[i]] = data[i];
 				}	
 				else {
-					data[names[i]];
+					data_[names[i]];
 				}
 			}
 		}
@@ -89,6 +86,10 @@ public:
 
 	}	
 
+	// ------------ // 
+	// erase column //
+	// ------------ //
+
 	/// \erase column[$index]
 	/// 	0-based indexing
 	void erase_column(size_t index) {
@@ -97,24 +98,21 @@ public:
 				throw invalid_index();
 			}
 			/// \index is valid so delete the column[$index]
-			data.erase(column_names[index]);
+			data_.erase(column_names[index]);
 			column_names.erase(column_names.begin() + index);
 		}
 		catch(std::exception e){
 			std::terminate();
 		}
 	}
-
 	/// \erase column[$name]
 	void erase_column(std::string name) {
-		std::cout << "erase call hua" << std::endl;
 		try {
-			//std::cout << 11 << name << std::endl;
-			if (data.find(name) == data.end()) {
+			if (data_.find(name) == data_.end()) {
 				throw invalid_name();
 			}
 			/// \name is valid so delete the column[$name]
-			data.erase(name);
+			data_.erase(name);
 			column_names.erase(std::find(column_names.begin(), column_names.end(), name));
 		}
 		catch(std::exception e) {
@@ -122,31 +120,36 @@ public:
 		}
 	}
 
-	// /// \access operators
-	// column_type& operator[](std::string name) {
-	// 	/// \given column name already exists
-	// 	/// \return the particular column_type
-	// 	if(data.find(name) != data.end()) {
-	// 		return data[name];
-	// 	}
-	// }	
 
-	// column_type operator[](size_t index) {
-	// 	return data[column_names[index]];
-	// }
+	/// \access operators
+	const column_type operator[] (const std::string name) const {
+		return data_[name];
+	}	
+	column_type& operator[](const std::string name) {
+		/// \given column name already exists
+		/// \return the particular column_type
+		if(data_.find(name) != data_.end()) {
+			return data_[name];
+		}
+		return data_[name] = column_type();
+	}
 
+	const column_type operator[] (const size_t index) const {
+		return data_[column_names[index]];
+	}	
+	
 	void print_info() {
-		std::cout << "data.frame data: " << std::endl;
+		std::cout << "data.frame data_: " << std::endl;
 		for(size_t i = 0; i < column_names.size(); ++i) {
 			std::cout << column_names[i] << std::endl;
-			data[column_names[i]].print_info();
+			data_[column_names[i]].print_info();
 		}
 	}
 
 private:
 	size_t colcount, rowcount;
-	std::unordered_map < std::string, column_type > data;
-	std::vector<std::string> column_names;
+	std::unordered_map < std::string, column_type > data_;
+	std::vector< std::string > column_names;
 };
 
 #endif

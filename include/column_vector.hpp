@@ -1,7 +1,7 @@
-/**Boost GSoC '17
-  *column_vector version-1.0
-  *convert all data to std::string
-*/
+/* Boost GSoC '17
+ * column_vector version-1.0
+ * convert all data to std::string
+ */
 
 #ifndef _COLUMN_VECTOR_HPP
 #define _COLUMN_VECTOR_HPP
@@ -16,7 +16,6 @@ using namespace boost::numeric::ublas;
 //-------------------
 //supported datatypes
 //-------------------
-
 enum allowed_types {
 	/// \values: 0, 1, 2, 3
 	INT, SHORT_INT, LONG_INT, LONG_LONG_INT, 
@@ -62,45 +61,45 @@ public:
 	/// \T should be in allowed types
 	template <class T>
 	column_vector(const vector<T> &data) {
-		type = Type<T>();
-		column_data.resize(data.size());
+		type_ = Type<T>();
+		data_.resize(data.size());
 		for(size_t i = 0; i < data.size(); i++) {
-			column_data(i) = boost::lexical_cast<std::string>(data(i));
+			data_(i) = boost::lexical_cast<std::string>(data(i));
 		}
 	}
 
-	/// \class operators
+	/// \---------------------
+	/// \assignment operator--
+	/// \---------------------
+	
 	/* Make sure that no. of rows throughout the data_frame is preserved */
-	// haven't added check yet
-
-	// template <class T>
-	// column_vector &operator = (vector<T> &data) {
-		
-	// 	type = Type<T>();
-	// 	column_data.resize(data.size());
-	// 	for(size_t i = 0; i < data.size(); i++) {
-	// 		column_data(i) = boost::lexical_cast<std::string>(data(i));
-	// 	}
-	// 	return *this;			
-	// }
+	/* haven't added check yet */
+	template <class T>
+	column_vector &operator = (vector<T> &data) {
+		type_ = Type<T>();
+		data_.resize(data.size());
+		for(size_t i = 0; i < data.size(); i++) {
+			data_(i) = boost::lexical_cast<std::string>(data(i));
+		}
+		return *this;			
+	}
 
 	/// \returns the size of the ublas::vector
 	size_t size() {
-		return column_data.size();
+		return data_.size();
 	}
 
 	void print_info() {
-		std::cout << "Type: " << type << std::endl;
+		std::cout << "Type: " << type_ << std::endl;
 		std::cout << "Vector Values:" << '\n';
-		for(auto x: column_data) std::cout << x << ' ';
+		for(auto x: data_) std::cout << x << ' ';
 		std::cout << '\n';
 		return;
 	}
 
 private:
-	size_t rowcnt_;
-	allowed_types type;
-	vector <std::string> column_data;	
+	allowed_types type_;
+	vector <std::string> data_;	
 };
 
 #endif
