@@ -18,8 +18,12 @@ int main() {
 	S(0) = "rishabh";
 	S(1) = "mridul";
 	S(2) = "maa";
-	column_vector II("int", I), DD("double", D), SS("maa", S);
+	column_vector II(I), DD(D), SS(S);
 	data_frame<column_vector> df({"int", "double", "string"}, {II, DD, SS});
+	df.print_info();
+	std::cout << "1111" << std::endl;
+	df.erase_column(1);
+	std::cout << "2222" << std::endl;
 	df.print_info();
 	return 0;
 }

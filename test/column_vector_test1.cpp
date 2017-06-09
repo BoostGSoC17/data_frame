@@ -17,7 +17,7 @@ int main() {
 	S(0) = "rishabh";
 	S(1) = "mridul";
 	S(2) = "maa";
-	column_vector II("int", I), DD("double", D), SS("maa", S);
+	column_vector II(I), DD(D), SS(S);
 	II.print_info();
 	DD.print_info();
 	SS.print_info();

@@ -13,9 +13,9 @@
 #include <type_traits>
 using namespace boost::numeric::ublas;	
 
-/////////////////////////////	
-//   supported datatypes   //
-/////////////////////////////
+//-------------------
+//supported datatypes
+//-------------------
 
 enum allowed_types {
 	/// \values: 0, 1, 2, 3
@@ -32,7 +32,7 @@ enum allowed_types {
 	STRING,
 };
 
-/// \returns type of data stored
+/// \return types of data stored
 template <class T>
 allowed_types Type() {
 	if (std::is_same<T, int>::value)return INT;
@@ -61,7 +61,7 @@ public:
 	/// \parameters: boost::numeric::ublas::vector<T>
 	/// \T should be in allowed types
 	template <class T>
-	column_vector(vector<T> data) {
+	column_vector(const vector<T> &data) {
 		type = Type<T>();
 		column_data.resize(data.size());
 		for(size_t i = 0; i < data.size(); i++) {
@@ -69,6 +69,22 @@ public:
 		}
 	}
 
+	/// \class operators
+	/* Make sure that no. of rows throughout the data_frame is preserved */
+	// haven't added check yet
+
+	// template <class T>
+	// column_vector &operator = (vector<T> &data) {
+		
+	// 	type = Type<T>();
+	// 	column_data.resize(data.size());
+	// 	for(size_t i = 0; i < data.size(); i++) {
+	// 		column_data(i) = boost::lexical_cast<std::string>(data(i));
+	// 	}
+	// 	return *this;			
+	// }
+
+	/// \returns the size of the ublas::vector
 	size_t size() {
 		return column_data.size();
 	}
@@ -82,6 +98,7 @@ public:
 	}
 
 private:
+	size_t rowcnt_;
 	allowed_types type;
 	vector <std::string> column_data;	
 };
