@@ -11,11 +11,13 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/lexical_cast.hpp>
 #include <type_traits>
+#include <exception>
 using namespace boost::numeric::ublas;	
 
-//-------------------
-//supported datatypes
-//-------------------
+/// \------------------- ///
+/// \supported datatypes ///
+/// \------------------- ///
+
 enum allowed_types {
 	/// \values: 0, 1, 2, 3
 	INT, SHORT_INT, LONG_INT, LONG_LONG_INT, 
@@ -29,6 +31,14 @@ enum allowed_types {
 	CHAR, 
 	/// \values: 12
 	STRING,
+	
+	NOT_SUPPORTED = -1,
+};
+
+struct type_not_supported : public std::exception {
+   const char * what () const throw () {
+      return "type not supported";
+   }
 };
 
 /// \return types of data stored
@@ -47,7 +57,7 @@ allowed_types Type() {
 	else if(std::is_same<T, float>::value) return FLOAT;
 	else if(std::is_same<T, char>::value) return CHAR;
 	else if(std::is_same<T, std::string>::value) return STRING;
-	else; /// figure out a way to return something invalid
+	else return NOT_SUPPORTED; /// figure out a way to return something invalid
 }
 
 class column_vector {
@@ -61,27 +71,44 @@ public:
 	/// \T should be in allowed types
 	template <class T>
 	column_vector(const vector<T> &data) {
-		type_ = Type<T>();
-		data_.resize(data.size());
-		for(size_t i = 0; i < data.size(); i++) {
-			data_(i) = boost::lexical_cast<std::string>(data(i));
+		try {
+			type_ = Type<T>();
+			if (type_ == NOT_SUPPORTED) {
+				throw type_not_supported();
+			}
+			data_.resize(data.size());
+			for(size_t i = 0; i < data.size(); i++) {
+				data_(i) = boost::lexical_cast<std::string>(data(i));
+			}
+		}
+		catch (std::exception &e) {
+			std::terminate();
 		}
 	}
 
-	/// \---------------------
-	/// \assignment operator--
-	/// \---------------------
-	
+	/// \-------------------- ///
+	/// \-assignment operator ///
+ 	/// \-------------------- ///
+
 	/* Make sure that no. of rows throughout the data_frame is preserved */
 	/* haven't added check yet */
 	template <class T>
-	column_vector &operator = (vector<T> &data) {
-		type_ = Type<T>();
-		data_.resize(data.size());
-		for(size_t i = 0; i < data.size(); i++) {
-			data_(i) = boost::lexical_cast<std::string>(data(i));
+	column_vector &operator = (const vector<T> &data) {
+		try {
+			type_ = Type<T>();
+			if (type_ == NOT_SUPPORTED) {
+				throw type_not_supported();
+			}
+			
+			data_.resize(data.size());
+			for(size_t i = 0; i < data.size(); i++) {
+				data_(i) = boost::lexical_cast<std::string>(data(i));
+			}
+			return *this;
 		}
-		return *this;			
+		catch (std::exception &e) {
+			std::terminate();
+		}			
 	}
 
 	/// \returns the size of the ublas::vector
