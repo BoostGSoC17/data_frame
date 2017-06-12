@@ -80,12 +80,14 @@ public:
 	column_vector() {
 		size_ = 0;
 		type_ = NOT_SET;
+		is_data_frame_column_ = false;
 	}
 	/// \params: size of column_vector
 	column_vector(const size_t i) {
 		size_ = i;
 		data_.resize(i);
 		type_ = NOT_SET;
+		is_data_frame_column_ = false;
 	}
 	/// \params: boost::numeric::ublas::vector<T>
 	/// \T should be in allowed types
@@ -96,6 +98,7 @@ public:
 			if (type_ == NOT_SUPPORTED) {
 				throw type_not_supported();
 			}
+			is_data_frame_column_ = false;
 			size_ = data.size();
 			data_.resize(size_);
 			for(size_t i = 0; i < size_; ++i) {
@@ -112,7 +115,7 @@ public:
  	/// \-------------------- ///
 
 	template <class T>
-	column_vector &operator = (const vector<T> &data) {
+	column_vector& operator = (const vector<T> &data) {
 		try {
 			type_ = Type<T>();
 			if (type_ == NOT_SUPPORTED) {
