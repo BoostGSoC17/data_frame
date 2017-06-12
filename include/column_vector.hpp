@@ -32,12 +32,24 @@ enum allowed_types {
 	/// \values: 12
 	STRING,
 	
-	NOT_SUPPORTED = -1,
+	NOT_SET = -1, 
+
+	NOT_SUPPORTED = -2, 
 };
 
 struct type_not_supported : public std::exception {
    const char * what () const throw () {
       return "type not supported";
+   }
+};
+struct undefined_index : public std::exception {
+   const char * what () const throw () {
+      return "undefined column index";
+   }
+};
+struct differing_rows : public std::exception {
+   const char * what () const throw () {
+      return "differing number of rows";
    }
 };
 
@@ -64,10 +76,18 @@ class column_vector {
 public:
 
 	/// \constructors
-	/// \default: no parameters
-	column_vector() {}
-	
-	/// \parameters: boost::numeric::ublas::vector<T>
+	/// \default: no params
+	column_vector() {
+		size_ = 0;
+		type_ = NOT_SET;
+	}
+	/// \params: size of column_vector
+	column_vector(const size_t i) {
+		size_ = i;
+		data_.resize(i);
+		type_ = NOT_SET;
+	}
+	/// \params: boost::numeric::ublas::vector<T>
 	/// \T should be in allowed types
 	template <class T>
 	column_vector(const vector<T> &data) {
@@ -76,8 +96,9 @@ public:
 			if (type_ == NOT_SUPPORTED) {
 				throw type_not_supported();
 			}
-			data_.resize(data.size());
-			for(size_t i = 0; i < data.size(); i++) {
+			size_ = data.size();
+			data_.resize(size_);
+			for(size_t i = 0; i < size_; ++i) {
 				data_(i) = boost::lexical_cast<std::string>(data(i));
 			}
 		}
@@ -90,8 +111,6 @@ public:
 	/// \-assignment operator ///
  	/// \-------------------- ///
 
-	/* Make sure that no. of rows throughout the data_frame is preserved */
-	/* haven't added check yet */
 	template <class T>
 	column_vector &operator = (const vector<T> &data) {
 		try {
@@ -99,9 +118,17 @@ public:
 			if (type_ == NOT_SUPPORTED) {
 				throw type_not_supported();
 			}
-			
-			data_.resize(data.size());
-			for(size_t i = 0; i < data.size(); i++) {
+			if (is_data_frame_column_) {
+				if (data.size() != size_) {
+					throw differing_rows();
+				}
+			}
+			else {
+				size_ = data.size();
+				data_.resize(size_);
+			}
+
+			for(size_t i = 0; i < size_; ++i) {
 				data_(i) = boost::lexical_cast<std::string>(data(i));
 			}
 			return *this;
@@ -111,9 +138,29 @@ public:
 		}			
 	}
 
+	/// \access operator
+	/// \returns the string version of the actual data for now.
+	/// \add to it later.
+	const std::string operator[] (const size_t i) const {
+		try {
+			if ( (i >= size_) || (i < 0) ) {
+				throw undefined_index();
+			}
+			return data_(i);
+		}
+		catch (std::exception &e) {
+			//std::terminate();
+		}
+	}	
+	
+
 	/// \returns the size of the ublas::vector
-	size_t size() {
-		return data_.size();
+	const size_t size() {
+		return size_;
+	}
+	/// \ checks if the given column is a part of the data_frame
+	void set_data_frame_column() {
+		is_data_frame_column_ = true;
 	}
 
 	void print_info() {
@@ -127,6 +174,8 @@ public:
 private:
 	allowed_types type_;
 	vector <std::string> data_;	
+	size_t size_;
+	bool is_data_frame_column_;
 };
 
 #endif
