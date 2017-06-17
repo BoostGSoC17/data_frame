@@ -61,7 +61,7 @@ public:
 	/// \params: 	
 	/// 	column header
 	/// 	data_ in the form of columns
-	data_frame(const std::vector <std::string> header, const std::vector <T> data) {
+	data_frame(const std::vector <std::string> header, std::vector <T> data) {
 		try {
 			/// \exception for lesser column headers than columns
 			if (header.size() != data.size()) {
@@ -88,13 +88,15 @@ public:
 					throw same_header();
 				}	
 				data_[header[i]] = data[i];
-				data_.set_data_frame_column();	
+				data_[header[i]].set_data_frame_column();	
 			}
 		}
 
 		catch(std::exception &e) {
 			/// \incorrect instantiation leads to termination of the program
 			//std::terminate();
+			std::cout << e.what() << std::endl;
+			std::terminate();
 		}
 	}	
 
@@ -115,6 +117,7 @@ public:
 			--col_;
 		}
 		catch(std::exception &e){
+			std::cout << e.what() << std::endl;
 			//std::terminate();
 		}
 	}
@@ -130,6 +133,7 @@ public:
 			--col_;
 		}
 		catch(std::exception &e) {
+			std::cout << e.what() << std::endl;
 			//std::terminate();
 		}
 	}
@@ -146,6 +150,7 @@ public:
 			return data_[name];
 		} 
 		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
 			//std::terminate();
 		}
 	}	
@@ -170,6 +175,7 @@ public:
 			return data_[header_[i]];
 		}
 		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
 			//std::terminate();
 		}
 	}	
@@ -191,6 +197,7 @@ public:
 			return data_[header_[i]];
 		}
 		catch(std::exception &e) {
+			std::cout << e.what() << std::endl;
 			//std::terminate();
 		}
 	}

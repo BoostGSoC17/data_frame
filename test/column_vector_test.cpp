@@ -54,4 +54,6 @@ BOOST_AUTO_TEST_CASE(access_operator) {
 		std::cout << x(i) << ' ' << c[i] << std::endl;
 		BOOST_CHECK(c[i] == boost::lexical_cast<std::string>(x(i)));
 	}
+
+	std::cout << x(120) << std::endl;
 }

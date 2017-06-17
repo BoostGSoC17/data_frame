@@ -106,7 +106,8 @@ public:
 			}
 		}
 		catch (std::exception &e) {
-			std::terminate();
+			std::cout << e.what() << std::endl;
+			//std::terminate();
 		}
 	}
 
@@ -121,7 +122,7 @@ public:
 			if (type_ == NOT_SUPPORTED) {
 				throw type_not_supported();
 			}
-			if (is_data_frame_column_) {
+			else if (is_data_frame_column_) {
 				if (data.size() != size_) {
 					throw differing_rows();
 				}
@@ -137,7 +138,8 @@ public:
 			return *this;
 		}
 		catch (std::exception &e) {
-			std::terminate();
+			std::cout << e.what() << std::endl;
+			//std::terminate();
 		}			
 	}
 
@@ -152,7 +154,8 @@ public:
 			return data_(i);
 		}
 		catch (std::exception &e) {
-			//std::terminate();
+			std::cout << e.what() << std::endl;
+			////std::terminate();
 		}
 	}	
 	
