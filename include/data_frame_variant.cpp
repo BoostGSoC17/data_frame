@@ -6,7 +6,7 @@
 using namespace boost::numeric::ublas;
 
 // supports 3 data types for now
-#define cumulative_type std::variant<vector<int>, vector<double>, vector<std::string> >
+#define cumulative_type std::variant<std::monostate, vector<int>, vector<double>, vector<std::string> >
 
 enum allowed_types {
 	INT, 
@@ -43,16 +43,17 @@ public:
 		return std::get< vector < T > >(data_[header]);
 	}
 
-	// not working :( : Same thing worked for string version. Fix it fast!!!!
-	const cumulative_type& operator[] (std::string header) const {
-		return data_[header];
-	}
+	// // not working :( : Same thing worked for string version. Fix it fast!!!!
+	// const cumulative_type& operator[] (const std::string header) {
+	// 	return data_[header];
+	// }
 
-	cumulative_type& operator[] (std::string header) {
-		if (data_.find(header) != data_.end()) {
-			return data_[header];
-		}
-		data_[header];
+	cumulative_type& operator[] (const std::string header) {
+		// if (data_.find(header) != data_.end()) {
+		// 	return data_[header];
+		// }
+		// data_[header];
+		data_[header] = cumulative_type();
 		return data_[header];
 	}
 private:
@@ -72,7 +73,9 @@ int main() {
 
 	cumulative_type X = x, Y = y; 
 	data_frame df({"x", "y"}, {X, Y});
-	vector<double> a = df.f<double>("y");
+	df["z"] = y;
+	cumulative_type A = df["z"];
+	vector<double> a = std::get<vector<double> >(A);
 	for(int i = 0; i < (int)a.size(); i++) std::cout << a(i) << ' ';
 	return 0;
 }
