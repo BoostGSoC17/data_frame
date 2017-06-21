@@ -6,7 +6,7 @@
 using namespace boost::numeric::ublas;
 
 // supports 3 data types for now
-#define cumulative_type std::variant<std::monostate, vector<int>, vector<double>, vector<std::string> >
+#define cumulative_type std::variant<vector<int>, vector<double>, vector<std::string> >
 
 enum allowed_types {
 	INT, 
@@ -39,23 +39,22 @@ public:
 	}
 
 	template <class T>
-	const vector<T>& f(std::string header) {
+	const vector<T>& column(std::string header) {
 		return std::get< vector < T > >(data_[header]);
 	}
 
-	// // not working :( : Same thing worked for string version. Fix it fast!!!!
-	// const cumulative_type& operator[] (const std::string header) {
-	// 	return data_[header];
+	// not working :( : Same thing worked for string version. Fix it fast!!!!
+	// const cumulative_type operator[] (const std::string header) const {
+	// 	return (const cumulative_type&) data_[header];
 	// }
-
 	cumulative_type& operator[] (const std::string header) {
-		// if (data_.find(header) != data_.end()) {
-		// 	return data_[header];
-		// }
-		// data_[header];
+		if (data_.find(header) != data_.end()) {
+			return (cumulative_type&) data_[header];
+		}
 		data_[header] = cumulative_type();
-		return data_[header];
+		return (cumulative_type&)data_[header];
 	}
+
 private:
 	size_t col_, row_;
 	std::unordered_map < std::string, cumulative_type > data_;
@@ -71,11 +70,15 @@ int main() {
 	y(0) = 1.1;
 	y(1) = 2.1;
 
-	cumulative_type X = x, Y = y; 
-	data_frame df({"x", "y"}, {X, Y});
-	df["z"] = y;
-	cumulative_type A = df["z"];
-	vector<double> a = std::get<vector<double> >(A);
-	for(int i = 0; i < (int)a.size(); i++) std::cout << a(i) << ' ';
+	// cumulative_type X = x, Y = y; 
+	// data_frame df({"x", "y"}, {X, Y});
+	// df["z"] = y;
+	// cumulative_type A = df["z"];
+	// vector<double> a = std::get<vector<double> >(A);
+	// for(int i = 0; i < (int)a.size(); i++) std::cout << a(i) << ' ';
+	const cumulative_type &t = x;
+	std::cout << t.index() << std::endl;
+	std::variant<int, char> a = 1, b = 2, c;
+	c = a + b;
 	return 0;
 }
