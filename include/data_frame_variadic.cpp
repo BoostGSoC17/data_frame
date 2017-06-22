@@ -6,18 +6,18 @@ using namespace boost::numeric::ublas;
 
 template <class T = void, class ... TArgs>
 class data_frame {
-
 public:
 	data_frame() {}
 
-	// add the required conditions.
 	template <class F1, class F2, class ... FArgs>
 	data_frame(F1 header, vector<F2> col, FArgs ... fargs) : 
 		header_(header), col_(col), data_(fargs...) {}
 
-	// works now!!!! :))))
-	template <class T1> 
-	vector<T1>& column(const std::string header = "") {
+	data_frame(data_frame<T, TArgs...>& df) :
+		col_(df.col_), header_(df.header_), data_(df.data_) {}
+
+	template < class T1 > 
+	const vector<T1>& column(const std::string header) {
 		if (header == header_) {	
 			if (std::is_same<T, T1>::value) {
 				return (vector<T1>&)col_;
@@ -27,64 +27,45 @@ public:
 		return data_.template column <T1> (header);
 	}
 	
-	template < class T2, class T1, class ... TArgs1 > 
-	void copy_data_frame (	data_frame <T1, TArgs1 ... >& df1, 
-						 	data_frame <T1, TArgs1 ... , T2>& df2,
-						 	const std::string& header, 
-						 	const vector<T2>& col) {
-		std::cout << df1.header_ << std::endl;
-		df2.header_ = df1.header_;
-		df2.col_ = df1.col_;
-		copy_data_frame(df1.data_, df2.data_, header, col);
-		return; 
-	}
-
-	template < class T2 >
-	void copy_data_frame (	data_frame <>& df1, 
-						 	data_frame <T2>& df2,
-						 	const std::string& header, 
-						 	const vector<T2>& col) {
-		std::cout << header << std::endl;
-		df2.header_ = header;	
-		df2.col_ = col;
-		return; 
-	}
-	
-	// '=' operator works when used without add_column and add_column presumably works perfect. FIX IT!
 	data_frame<T, TArgs...>& operator = (data_frame<T, TArgs...>& df) {
-		//std::cout << df.header_ << std::endl;
-		col_ ;//= df.col_;
-		header_;// = df.header_;
-		(*this).data_ = df.data_;
+		col_ = df.col();
+		header_ = df.header();
+		data_ = df.data();
 		return *this;
 	}
 
-	template <class T1>
-	data_frame <T, TArgs..., T1>& add_column(const std::string new_header, const vector<T1>& new_col) {
-		data_frame <T, TArgs..., T1> df;
-		// is_end is called with false for now but later it will be set on the basis of no. of columns.
-		copy_data_frame(*this, df, new_header, new_col);
-		return df;
+	template < class T1 >
+	void add_column(data_frame<T, TArgs..., T1>& df, const std::string& header, const vector<T1>& col) {
+		df.col() = col_;
+		df.header() = header_;
+		data_.add_column(df.data(), header, col);
+		return;
 	}
-
-	// it should work, compiler error: incorrect deduction of return type but return type 
-	// is only deduced when header == header_ and then remains the same throughout back-tracking 
-	// of the recursion! FIX IT :( 
-	// ok, it doesn't work because all the return statements should have the same type 
-	// so till now, no way to overload [] operator to return ublas::vector<T>
-	/*
-	auto operator[] (std::string header) {
-		if (header == header_) {
-			return (vector<T>&)col_;
-		}
-		return data_[header];
-	}
-	*/
 
 	const bool end() const {
 		return false;
 	}
 
+	vector<T>& col() {
+		return col_;
+	}
+	const vector<T>& col() const {
+		return col_;
+	}
+	data_frame<TArgs...>& data() {
+		return data_;
+	}
+	const vector<T>& data() const {
+		return data_;
+	}
+	std::string& header() {
+		return header_;
+	}
+	const std::string header() const {
+		return header_;
+	}
+
+private:
 	std::string header_;
 	vector<T> col_;
 	data_frame<TArgs...> data_;
@@ -92,19 +73,27 @@ public:
 
 template <>
 class data_frame<> {
+
 public: 
 	data_frame() {}
 	
+	template < class T1 > 
+	void add_column(data_frame<T1>& df, const std::string header, const vector<T1>& col) {
+		df.header() = header;
+		df.col() = col;
+		return;
+	}
+
 	data_frame<>& operator = (data_frame<>& df) {
-		std::cout << "end" << std::endl;
 		return *this;
 	}
+
 	template <class T1> 
-	vector<T1>& column(std::string header = "") {
+	const vector<T1>& column(const std::string header) {
 		std::terminate();
 	}
 
-	const bool end() {
+	const bool end() const {
 		return true;
 	}
 };
@@ -125,9 +114,14 @@ int main() {
 	
 	data_frame<int> df1("a", a);
 	//data_frame<int, float, char> df2;
-	data_frame<int, float>df2;
-	df2 = (data_frame<int, float>&)df1.add_column("b", b);
+	data_frame<int, float> df2;
+	df1.add_column(df2, "b", b);
 
-	//vector<float> x = df.column<float>("b");
+	vector<float> x = df2.column<float>("b");
+	for(int i = 0; i < x.size(); i++) std::cout << x(i) << ' ';
+	std::cout << std::endl;
+	vector<int> y = df2.column<int>("a");
+	for(int i = 0; i < y.size(); i++) std::cout << y(i) << ' ';
+	std::cout << std::endl;
 	return 0;	
 }
