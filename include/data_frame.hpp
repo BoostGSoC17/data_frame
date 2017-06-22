@@ -12,27 +12,6 @@
 #include <algorithm>
 #include "./column_vector.hpp"
 
-struct inconsistent_arguments : public std::exception {
-   const char * what () const throw () {
-      return "inconsistent constructor arguments";
-   }
-};
-struct same_header : public std::exception {
-   const char * what () const throw () {
-      return "data_frame columns not allowed to have same header";
-   }
-};
-struct undefined_name : public std::exception {
-   const char * what () const throw () {
-      return "undefined column name";
-   }
-};
-struct holes : public std::exception {
-   const char * what () const throw () {
-      return "new columns will leave holes after existing columns";
-   }
-};
-
 /** \Allowed T should be:
  * column_vector
  * column_matrix

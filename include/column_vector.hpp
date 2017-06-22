@@ -11,7 +11,8 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/lexical_cast.hpp>
 #include <type_traits>
-#include <exception>
+#include "./data_frame_exceptions.hpp"
+
 using namespace boost::numeric::ublas;	
 
 /// \------------------- ///
@@ -35,22 +36,6 @@ enum allowed_types {
 	NOT_SET = -1, 
 
 	NOT_SUPPORTED = -2, 
-};
-
-struct type_not_supported : public std::exception {
-   const char * what () const throw () {
-      return "type not supported";
-   }
-};
-struct undefined_index : public std::exception {
-   const char * what () const throw () {
-      return "undefined column index";
-   }
-};
-struct differing_rows : public std::exception {
-   const char * what () const throw () {
-      return "differing number of rows";
-   }
 };
 
 /// \return types of data stored

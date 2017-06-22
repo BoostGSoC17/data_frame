@@ -2,20 +2,30 @@
 #include <string>
 #include <boost/numeric/ublas/vector.hpp>
 #include <type_traits> 
+#include "./data_frame_exceptions.hpp"
+
 using namespace boost::numeric::ublas;
 
+// T - the current ublas::vector<T> under consideration.
+// TArgs... - rest of the data_frame arguments
 template <class T = void, class ... TArgs>
 class data_frame {
 public:
+	/// \default constructor: 
+	/// \params: {}
 	data_frame() {}
 
+	/// \params: {column_name, ublas::vector<T>}*
+	/// \recursive function: calls on inner arguments.
 	template <class F1, class F2, class ... FArgs>
 	data_frame(F1 header, vector<F2> col, FArgs ... fargs) : 
 		header_(header), col_(col), data_(fargs...) {}
 
+	/// \params: data_frame with exact same params. 
 	data_frame(data_frame<T, TArgs...>& df) :
 		col_(df.col_), header_(df.header_), data_(df.data_) {}
 
+	/// \brief: returns the ublas::vector<T> on the basis of header.
 	template < class T1 > 
 	const vector<T1>& column(const std::string header) {
 		if (header == header_) {	
