@@ -13,11 +13,11 @@ public:
 	// add the required conditions.
 	template <class F1, class F2, class ... FArgs>
 	data_frame(F1 header, vector<F2> col, FArgs ... fargs) : 
-		header_(header), col_(col), data_(fargs...) {}	
+		header_(header), col_(col), data_(fargs...) {}
 
 	// works now!!!! :))))
 	template <class T1> 
-	vector<T1>& column(std::string header = "") {
+	vector<T1>& column(const std::string header = "") {
 		if (header == header_) {	
 			if (std::is_same<T, T1>::value) {
 				return (vector<T1>&)col_;
@@ -27,24 +27,36 @@ public:
 		return data_.template column <T1> (header);
 	}
 	
-	// mostly done: SMALL FIX NEEDED.
-	template < class T2, class T1 = void, class ... TArgs1> 
+	template < class T2, class T1, class ... TArgs1 > 
 	void copy_data_frame (	data_frame <T1, TArgs1 ... >& df1, 
 						 	data_frame <T1, TArgs1 ... , T2>& df2,
 						 	const std::string& header, 
 						 	const vector<T2>& col) {
+		std::cout << df1.header_ << std::endl;
+		df2.header_ = df1.header_;
+		df2.col_ = df1.col_;
+		copy_data_frame(df1.data_, df2.data_, header, col);
+		return; 
+	}
 
-			if (df1.end()) {
-				// df2.header_ = header;	
-				// df2.col_ = col;
-				//df2.data_(data_frame<>());
-				return;
-			}
-			
-			df2.header_ = (df1.header_);
-			df2.col_ = (df1.col_);
-			copy_data_frame(df1.data_, df2.data_, header, col);
-			return; 
+	template < class T2 >
+	void copy_data_frame (	data_frame <>& df1, 
+						 	data_frame <T2>& df2,
+						 	const std::string& header, 
+						 	const vector<T2>& col) {
+		std::cout << header << std::endl;
+		df2.header_ = header;	
+		df2.col_ = col;
+		return; 
+	}
+	
+	// '=' operator works when used without add_column and add_column presumably works perfect. FIX IT!
+	data_frame<T, TArgs...>& operator = (data_frame<T, TArgs...>& df) {
+		//std::cout << df.header_ << std::endl;
+		col_ ;//= df.col_;
+		header_;// = df.header_;
+		(*this).data_ = df.data_;
+		return *this;
 	}
 
 	template <class T1>
@@ -69,7 +81,7 @@ public:
 	}
 	*/
 
-	bool end() {
+	const bool end() const {
 		return false;
 	}
 
@@ -82,13 +94,17 @@ template <>
 class data_frame<> {
 public: 
 	data_frame() {}
-		
+	
+	data_frame<>& operator = (data_frame<>& df) {
+		std::cout << "end" << std::endl;
+		return *this;
+	}
 	template <class T1> 
 	vector<T1>& column(std::string header = "") {
 		std::terminate();
 	}
 
-	bool end() {
+	const bool end() {
 		return true;
 	}
 };
@@ -104,12 +120,14 @@ int main() {
 	c(0) = 'a';
 	c(1) = 'b';
 	vector<std::string> d(2);
-	d(0) = "rishabh";
+	d(0)= "rishabh";
 	d(1) = "mridul";
 	
-	data_frame<int, float> df1("a", a, "b", b);
+	data_frame<int> df1("a", a);
 	//data_frame<int, float, char> df2;
-	df1.add_column("c",c);
-	//df["a"];
+	data_frame<int, float>df2;
+	df2 = (data_frame<int, float>&)df1.add_column("b", b);
+
+	//vector<float> x = df.column<float>("b");
 	return 0;	
 }
