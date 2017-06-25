@@ -17,9 +17,9 @@ struct same_header : public std::exception {
       return "data_frame columns not allowed to have same header";
    }
 };
-struct undefined_name : public std::exception {
+struct undefined_column_header : public std::exception {
    const char * what () const throw () {
-      return "undefined column name";
+      return "";
    }
 };
 struct holes : public std::exception {
@@ -42,5 +42,14 @@ struct differing_rows : public std::exception {
       return "differing number of rows";
    }
 };
-
+struct bad_header_type : public std::exception {
+   const char * what () const throw () {
+      return "invalid column header type";
+   }
+};
+struct column_type_mismatch : public std::exception {
+   const char * what () const throw () {
+      return "";
+   }
+};
 #endif
