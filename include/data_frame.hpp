@@ -145,7 +145,7 @@ public:
 		data_[name] = column_type(row_);
 		data_[name].set_data_frame_column();
 		return data_[name];
-	}
+	}	
 	const_reference operator[] (const size_t i) const {
 		try {
 			if ( (i >= col_) || (i < 0) ) {
