@@ -120,9 +120,12 @@ namespace boost {
 					return *this;
 				}
 
+				/// \brief: returns the size of the df_column
 				const size_t size() const {
 					return size_;
 				}
+
+				/// \brief: return the type of the ublas::vector(of the df_column data)
 				const allowed_inner_types type() const {
 					return type_;
 				}
@@ -142,7 +145,7 @@ namespace boost {
 				data_frame () { 
 					ncol_ = 0;
 					nrow_ = 0;
-					std::map<std::string, df_column>();
+					base();
 				}
 
 				/// \params: 	
@@ -221,7 +224,7 @@ namespace boost {
 				/// ------------- ///
 				/// row accessors ///
 				/// ------------- ///
-
+				
 				std::vector < boost::variant < the_list > > operator () (const size_t row) {
 					std::vector < boost::variant < the_list > > ret;
 					for(size_t i = 0; i < ncol_; ++i) {
@@ -279,9 +282,51 @@ namespace boost {
 					return ret;
 				}
 
+				// ------------ //
+				// erase column //
+				// ------------ //
+
+				/// \erase column[$i]
+				/// 	0-based indexing
+				void erase_column(const size_t i) {
+					try {
+						if ( (i >= column_headers_.size()) || (i < 0)) {
+							throw undefined_index();
+						}
+						
+						/// \i is valid so delete the column[$i]
+						base::erase(column_headers_[i]);
+						column_headers_.erase(column_headers_.begin() + i);
+						--ncol_;
+					}
+					catch(std::exception &e){
+						std::terminate();
+					}
+				}
+				/// \erase column[$name]
+				void erase_column(const std::string& header) {
+					try {
+						if (base::find(header) == base::end()) {
+							//throw undefined_name();
+						}
+						/// \name is valid so delete the column[$name]
+						base::erase(header);
+						column_headers_.erase(std::find(column_headers_.begin(), column_headers_.end(), header));
+						--ncol_;
+					}
+					catch(std::exception &e) {
+						std::terminate();
+					}
+				}
+
+
 				void print() {
 					for(size_t i = 0; i < ncol_; ++i) {
 						std::cout << "[" << column_headers_[i] << "]" << ": ";
+						int type = base::operator[](column_headers_[i]).type();
+						//print_column < BOOST_PP_SEQ_ELEM(type, INNER_TYPE) >(i);
+						//print_column <boost::numeric::ublas::BOOST_PP_SEQ_ELEM(base::operator[](column_headers_[i]).type(), INNER_TYPE)>(i)
+						
 						switch(base::operator[](column_headers_[i]).type()) {
 							case BOOL: 	
 								print_column<bool>(i);
@@ -335,6 +380,15 @@ namespace boost {
 					}
 				}
 
+				template < class T >
+				void print_column(size_t col) {
+					for(size_t i = 0; i < nrow_; i++) {
+						std::cout << elem<T>(col, i) << ' '; 
+					}
+					std::cout << std::endl;
+					return;
+				}
+
 			private:
 				typedef std::map<std::string, df_column> base;
 				
@@ -347,37 +401,42 @@ namespace boost {
 					return ("Col-" + boost::lexical_cast<std::string>(i));
 				}
 
-
 				template < class T >
 				T elem (size_t i, size_t row) {
-					return (boost::get<boost::numeric::ublas::vector<T>>( base::operator[](column_headers_[i])) )(row);
-				}
-
-				template < class T >
-				void print_column(size_t col) {
-					for(size_t i = 0; i < nrow_; i++) {
-						std::cout << elem<T>(col, i) << ' '; 
-					}
-					std::cout << std::endl;
-					return;
+					return (boost::get< boost::numeric::ublas::vector< T > >(base::operator[](column_headers_[i]))) (row);
 				}
 				
 			};
-}}}
+		}
+	}
+}
 
 int main() {
 
 	using namespace boost::numeric::ublas;
 
-	vector < int > X(1);
-	X(0) = 1;
-	vector < char > Y(1);
+	vector < int > X(2);
+	X(0) = 0;
+	X(1) = 1;
+
+	vector < char > Y(2);
 	Y(0) = 'a';
+	Y(1) = 'b';
 
 	df_column x(X), y(Y);
 	data_frame df({"x", "y"}, {x, y});
 	df_column t = df["x"];
-	df(0);
+	for(int i = 0; i < 2; i++) {
+		std::cout << boost::get < vector < int > >(t)(i) << ' ';
+	}
+	df["y"] = t;
 	df.print();
+	df["z"] = t;
+	df.print();
+	df["a"] = y;
+	df.print();
+	df.erase_column("x");
+	df.print();
+	
 	return 0;
 }
