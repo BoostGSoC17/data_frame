@@ -52,4 +52,9 @@ struct column_type_mismatch : public std::exception {
       return "";
    }
 };
+struct undefined_column_name : public std::exception {
+   const char * what () const throw () {
+      return "";
+   }
+};
 #endif
