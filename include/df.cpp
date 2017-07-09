@@ -148,8 +148,8 @@ namespace boost { namespace numeric { namespace ublas {
 			type_ = std::move(Type<T>());
 		}
 
-		BOOST_UBLAS_INLINE 
-		~df_column() {}
+		// BOOST_UBLAS_INLINE 
+		// ~df_column();
 
 		//* Add constructors and assignment operators for vector_expression*//!!!
 
@@ -266,6 +266,9 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		// BOOST_UBLAS_INLINE
+		// ~data_frame();
+
 		/// ---------------- ///
 		/// column accessors ///
 		/// ---------------- ///
@@ -285,7 +288,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 		
 		BOOST_UBLAS_INLINE 
-		df_column& operator[] (const size_t i) {
+		df_column& operator[] (const size_t& i) {
 			try {
 				/// \given column name already exists
 				/// \return the particular column
@@ -306,6 +309,15 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		template < class T > 
+		vector<T>& column(const std::string& header) {
+			return boost::get(vector<T>(base_::operator[](header)));
+		}
+		template < class T > 
+		vector<T>& column(const size_t& i) {
+			return boost::get(vector<T>(base_::operator[](column_headers_(i))));
+		}
+		
 		/// ------------- ///
 		/// row accessors ///
 		/// ------------- ///
