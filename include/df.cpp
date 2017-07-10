@@ -1,5 +1,3 @@
-
-
 #include <string>
 #include <map>
 #include <vector>
@@ -9,9 +7,8 @@
 #include <boost/preprocessor/seq/enum.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/lexical_cast.hpp>
-#include "./data_frame_exceptions.hpp"
 #include <boost/numeric/ublas/vector_proxy.hpp>
-
+#include "./data_frame_exceptions.hpp"
 
 /// -----------------
 /// ALLOWED TYPES YET
@@ -487,6 +484,11 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		BOOST_UBLAS_INLINE
+		ublas::vector<std::string>& headers() {
+			return column_headers_;
+		}
+
 		BOOST_UBLAS_INLINE 
 		template < class T >
 		void print_column(size_t col) {
@@ -495,9 +497,7 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 			std::cout << std::endl;
 			return;
-		}	
-
-
+		}
 
 	private:
 		typedef std::map<std::string, df_column> base_;
@@ -513,30 +513,38 @@ namespace boost { namespace numeric { namespace ublas {
 
 		template < class T >
 		BOOST_UBLAS_INLINE 
-		T elem (size_t i, size_t row) {
+		T& elem (size_t i, size_t row) {
 			return (boost::get< ublas::vector< T > >(base_::operator[](column_headers_(i)))) (row);
 		}
 	};
 
-	// class data_frame_range {
+	class data_frame_range {
 
-	// public:
+	public:
+		typedef ublas::vector<std::string>::size_type size_type;
+		typedef ublas::vector<std::string>::difference_type difference_type;
+		typedef ublas::basic_range<size_type, difference_type> range_type;
 
-	// 	/// T = basic_range <> ;
-	// 	template < class T >
-	// 	data_frame_range (data_frame& df, const T& range) :
-	// 		df_ (&df), 
-	// 		column_headers_ (df.headers(), range) {}
+		data_frame_range();
 
-	// 	data_frame DataFrame() {
-	// 		// make a vector 
-	// 		return data_frame(df.headers(), );
-	// 	}
+		data_frame_range (data_frame* df, const range_type range): column_headers_(df->headers(), range) {
+			df_ = df;
+		}
 
-	// private:
-	// 	ublas::data_frame &df_;
-	// 	ublas::vector_range < ublas::vector <std::string> > column_headers_;
-	// };
+		ublas::data_frame DataFrame () {
+			ublas::vector<std::string> v1(column_headers_.size());
+			ublas::vector<ublas::df_column> v2(column_headers_.size());
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				v1(i) = column_headers_(i);
+				v2(i) = (*df_)[i];
+			}
+			return ublas::data_frame(v1, v2);
+		} 
+
+	private:
+		ublas::data_frame *df_;
+		ublas::vector_range < ublas::vector <std::string> > column_headers_;
+	};
 }}}
 
 int main() {
@@ -570,5 +578,12 @@ int main() {
 	std::cout << boost::get<int>(df(0)(0)) << std::endl;
 	std::cout << boost::get<int>(df(0)(1)) << std::endl;
 	std::cout << df(0)(2) << std::endl;
+	basic_range <vector<std::string>::size_type, vector<std::string>::difference_type> R(1, 4); 
+	vector < std::string > h;
+	vector_range < vector <std::string> > column_headers_(h, R);
+	
+	data_frame_range dfr(&df, R);
+	data_frame df2 = dfr.DataFrame();
+	df2.print();
 	return 0;
 }
