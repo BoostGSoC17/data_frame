@@ -427,9 +427,8 @@ namespace boost { namespace numeric { namespace ublas {
 		void print() {
 			for(size_t i = 0; i < ncol_; ++i) {
 				std::cout << "[" << column_headers_(i) << "]" << ": ";
-				//base_::operator[](column_headers_[i]).type();
-				//print_column <BOOST_PP_SEQ_ELEM(type, INNER_TYPE) >(i);
-				//print_column <ublas::BOOST_PP_SEQ_ELEM(base_::operator[](column_headers_[i]).type(), 1, INNER_TYPE)>(i)
+				// int type = base_::operator[](column_headers_[i]).type();
+				// print_column <BOOST_PP_SEQ_ELEM(type, INNER_TYPE) >(i);
 				
 				 switch(base_::operator[](column_headers_(i)).type()) {
 					case BOOL: 	
@@ -527,8 +526,9 @@ namespace boost { namespace numeric { namespace ublas {
 
 		data_frame_range();
 
-		data_frame_range (data_frame* df, const range_type range): column_headers_(df->headers(), range) {
-			df_ = df;
+		data_frame_range (data_frame* df, const range_type range): 
+			column_headers_(df->headers(), range) {
+				df_ = df;
 		}
 
 		ublas::data_frame DataFrame () {
