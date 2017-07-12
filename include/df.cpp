@@ -65,6 +65,7 @@ vector_range
 vector_slice
 */
 
+/// \PreProcessing for the inner and outer types
 // Expand macro
 #define VMACRO(r, product) (ublas::BOOST_PP_SEQ_ELEM(0, product)<BOOST_PP_SEQ_ELEM(1, product)>)
 // Make a sequence of all types
@@ -427,9 +428,6 @@ namespace boost { namespace numeric { namespace ublas {
 		void print() {
 			for(size_t i = 0; i < ncol_; ++i) {
 				std::cout << "[" << column_headers_(i) << "]" << ": ";
-				// int type = base_::operator[](column_headers_[i]).type();
-				// print_column <BOOST_PP_SEQ_ELEM(type, INNER_TYPE) >(i);
-				
 				 switch(base_::operator[](column_headers_(i)).type()) {
 					case BOOL: 	
 						print_column <BOOST_PP_SEQ_ELEM(0, INNER_TYPE) >(i);
@@ -504,6 +502,14 @@ namespace boost { namespace numeric { namespace ublas {
 		size_t ncol_, nrow_;
 		ublas::vector<std::string> column_headers_;
 
+
+		// using fptr = void(*)(size_t);
+
+		// fptr printers[] = { 
+		// 	print_column<int>, 
+		// 	print_column<float>,
+		// };
+
 		/// \returns the default column name
 		/// \used when the column name is not set by the user
 		std::string default_name(size_t i) {
@@ -518,7 +524,6 @@ namespace boost { namespace numeric { namespace ublas {
 	};
 
 	class data_frame_range {
-
 	public:
 		typedef ublas::vector<std::string>::size_type size_type;
 		typedef ublas::vector<std::string>::difference_type difference_type;
@@ -526,25 +531,128 @@ namespace boost { namespace numeric { namespace ublas {
 
 		data_frame_range();
 
-		data_frame_range (data_frame* df, const range_type range): 
+		data_frame_range (data_frame* df, const range_type& range): 
 			column_headers_(df->headers(), range) {
 				df_ = df;
 		}
 
-		ublas::data_frame DataFrame () {
+		data_frame DataFrame () {
 			ublas::vector<std::string> v1(column_headers_.size());
 			ublas::vector<ublas::df_column> v2(column_headers_.size());
 			for(size_t i = 0; i < column_headers_.size(); ++i) {
 				v1(i) = column_headers_(i);
-				v2(i) = (*df_)[i];
+				v2(i) = (*df_)[v1(i)];
 			}
-			return ublas::data_frame(v1, v2);
+			return data_frame(v1, v2);
+		} 
+
+		df_column& operator [] (const std::string& header) {
+			/// \check if the string is included in the given range.
+			return (*df_)[header];
+		}
+
+		/// here the index is the index in the vector_range
+		df_column& operator [] (const size_t& i) {
+			/// \check if the index is valid.
+			return (*df_)[column_headers_[i]];
+		}
+
+		const size_t size() const {
+			return column_headers_.size();
 		} 
 
 	private:
-		ublas::data_frame *df_;
+		data_frame *df_;
 		ublas::vector_range < ublas::vector <std::string> > column_headers_;
 	};
+
+	class data_frame_slice {
+	public:
+		typedef ublas::vector<std::string>::size_type size_type;
+		typedef ublas::vector<std::string>::difference_type difference_type;
+		typedef ublas::basic_slice<size_type, difference_type> slice_type;
+
+		data_frame_slice ();
+
+		data_frame_slice (data_frame* df, const slice_type& slice): 
+			column_headers_(df->headers(), slice) {
+				df_ = df;
+		}
+
+		data_frame DataFrame () {
+			ublas::vector<std::string> v1(column_headers_.size());
+			ublas::vector<ublas::df_column> v2(column_headers_.size());
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				v1(i) = column_headers_(i);
+				v2(i) = (*df_)[v1(i)];
+			}
+			return data_frame(v1, v2);
+		} 
+
+		df_column& operator [] (const std::string& header) {
+			/// \check if the string is included in the given range.
+			return (*df_)[header];
+		}
+
+		/// here the index is the index in the vector_range
+		df_column& operator [] (const size_t& i) {
+			/// \check if the index is valid.
+			return (*df_)[column_headers_[i]];
+		}
+
+		const size_t size() const {
+			return column_headers_.size();
+		} 
+
+	private:
+		data_frame *df_;
+		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
+	};
+
+	class data_frame_indirect {
+	public:
+		typedef ublas::vector<std::string>::size_type size_type;
+		typedef ublas::vector<std::string>::difference_type difference_type;
+		typedef ublas::basic_slice<size_type, difference_type> slice_type;
+
+		data_frame_slice ();
+
+		data_frame_slice (data_frame* df, const slice_type& slice): 
+			column_headers_(df->headers(), slice) {
+				df_ = df;
+		}
+
+		data_frame DataFrame () {
+			ublas::vector<std::string> v1(column_headers_.size());
+			ublas::vector<ublas::df_column> v2(column_headers_.size());
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				v1(i) = column_headers_(i);
+				v2(i) = (*df_)[v1(i)];
+			}
+			return data_frame(v1, v2);
+		} 
+
+		df_column& operator [] (const std::string& header) {
+			/// \check if the string is included in the given range.
+			return (*df_)[header];
+		}
+
+		/// here the index is the index in the vector_range
+		df_column& operator [] (const size_t& i) {
+			/// \check if the index is valid.
+			return (*df_)[column_headers_[i]];
+		}
+
+		const size_t size() const {
+			return column_headers_.size();
+		} 
+
+	private:
+		data_frame *df_;
+		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
+	};
+	
+	
 }}}
 
 int main() {
@@ -574,16 +682,26 @@ int main() {
 	df["a"] = y;
 	df.print();
 	df.print();
+	df["b"] = y;
 	ublas::vector < boost::variant < COLUMN_DATA_TYPES > > r = df(0);
 	std::cout << boost::get<int>(df(0)(0)) << std::endl;
 	std::cout << boost::get<int>(df(0)(1)) << std::endl;
 	std::cout << df(0)(2) << std::endl;
-	basic_range <vector<std::string>::size_type, vector<std::string>::difference_type> R(1, 4); 
+	basic_range <vector<std::string>::size_type, vector<std::string>::difference_type> 
+	R(1, 3); 
 	vector < std::string > h;
 	vector_range < vector <std::string> > column_headers_(h, R);
-	
+		
 	data_frame_range dfr(&df, R);
 	data_frame df2 = dfr.DataFrame();
 	df2.print();
+	basic_slice < vector < std::string>::size_type, vector < std::string>::difference_type> 
+	S(1, 2, 2);
+	data_frame_slice dfs(&df, S);
+	std::cout << '\n';
+	df.print();
+	std::cout << '\n';
+	data_frame df3 = dfs.DataFrame();
+	df3.print();
 	return 0;
 }
