@@ -213,45 +213,45 @@ namespace boost { namespace numeric { namespace ublas {
 			return boost::get<ublas::vector<T>>(*this); 
 		}
 
-		template < class T > 
+		template < class T1, class T2 > 
 		BOOST_UBLAS_INLINE 
-		T Min () {
-			T Minimum = get<T>()(0);
+		T2 Min () {
+			T2 Minimum = get<T1>()(0);
 			for(size_t i = 1; i < size_; ++i) {
-				if (get<T>()(i) < Minimum) {
-					Minimum = get<T>()(i);
+				if (get<T1>()(i) < Minimum) {
+					Minimum = (T2) get<T1>()(i);
 				}
 			}	
 			return Minimum;
 		}
 
-		template < class T > 
+		template < class T1, class T2> 
 		BOOST_UBLAS_INLINE 
-		T Max () {
-			T Maximum = get<T>()(0);
+		T2 Max () {
+			T2 Maximum = get<T1>()(0);
 			for(size_t i = 1; i < size_; ++i) {
-				if (get<T>()(i) > Maximum) {
-					Maximum = get<T>()(i);
+				if (get<T1>()(i) > Maximum) {
+					Maximum = (T2) get<T1>()(i);
 				}
 			}	
 			return Maximum;
 		}
 
-		template < class T >
+		template < class T1, class T2 >
 		BOOST_UBLAS_INLINE
-		T Mean() {
-			T sum = 0;
+		T2 Mean() {
+			T2 sum = 0;
 			for(size_t i = 0; i < size_; ++i) {
-				sum += get<T>()(i);
+				sum += (T2) get<T1>()(i);
 			}
-			return (sum / size_);
+			return (T2) (sum / size_);
 		}
 
-		template <class T>
+		template <class T1, class T2>
 		void summary() {
-			std::cout << "Min. : " << Min<T>()  << ", ";
-			std::cout << "Max. : " << Max<T>()  << ", ";
-			std::cout << "Mean.: " << Mean<T>() << "  ";
+			std::cout << "Min. : " << Min<T1, T2>()  << ", ";
+			std::cout << "Max. : " << Max<T1, T2>()  << ", ";
+			std::cout << "Mean : " << Mean<T1, T2>() << "  ";
 			std::cout << std::endl;	 
 		}
 	private:
@@ -522,33 +522,33 @@ namespace boost { namespace numeric { namespace ublas {
 				std::cout << "[" << column_headers_(i) << "]" << ": ";
 				 switch(base_::operator[](column_headers_(i)).type()) {
 					case BOOL: 	
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(0, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(0, INNER_TYPE), long double >(); break;
 					// case CHAR: 	
 					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(1, INNER_TYPE) >(); break;
 					// case UNSIGNED_CHAR: 
 					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(2, INNER_TYPE) >(); break;
 					case SHORT: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(3, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(3, INNER_TYPE), long double >(); break;
 					case UNSIGNED_SHORT: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(4, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(4, INNER_TYPE), long double >(); break;
 					case INT: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(5, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(5, INNER_TYPE), long double >(); break;
 					case UNSIGNED_INT: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(6, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(6, INNER_TYPE), long double >(); break;
 					case LONG: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(7, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(7, INNER_TYPE), long double >(); break;
 					case UNSIGNED_LONG: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(8, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(8, INNER_TYPE), long double >(); break;
 					case LONG_LONG: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(9, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(9, INNER_TYPE), long double >(); break;
 					case UNSIGNED_LONG_LONG: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(10, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(10, INNER_TYPE), long double >(); break;
 					case FLOAT: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(11, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(11, INNER_TYPE), long double >(); break;
 					case DOUBLE: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(12, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(12, INNER_TYPE), long double >(); break;
 					case LONG_DOUBLE: 
-						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(13, INNER_TYPE) >(); break;
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(13, INNER_TYPE), long double >(); break;
 					// case STRING: 
 					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(14, INNER_TYPE) >(); break;
 					// case STRING_STAR: 
@@ -744,9 +744,6 @@ int main() {
 	std::cout << '\n';
 	data_frame df3 = dfs.DataFrame();
 	df3.print();
-	std::cout << y.Min<int>() << std::endl;
-	//std::cout << y.Max<int>() << std::endl;
-	std::cout << y.Mean<int>() << std::endl;	
 	std::cout << std::endl;
 	df.print();
 	std::cout << std::endl;
