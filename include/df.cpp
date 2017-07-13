@@ -99,6 +99,7 @@ allowed_inner_types Type() {
 
 /// \To simplify the code...
 namespace ublas = boost::numeric::ublas;
+using fptr = void(*)(size_t);
 
 template < class T > 
 BOOST_UBLAS_INLINE
@@ -206,9 +207,56 @@ namespace boost { namespace numeric { namespace ublas {
 			return type_;
 		}
 
+		template < class T >
+		BOOST_UBLAS_INLINE 
+		ublas::vector<T>& get() {
+			return boost::get<ublas::vector<T>>(*this); 
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		T Min () {
+			T Minimum = get<T>()(0);
+			for(size_t i = 1; i < size_; ++i) {
+				if (get<T>()(i) < Minimum) {
+					Minimum = get<T>()(i);
+				}
+			}	
+			return Minimum;
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		T Max () {
+			T Maximum = get<T>()(0);
+			for(size_t i = 1; i < size_; ++i) {
+				if (get<T>()(i) > Maximum) {
+					Maximum = get<T>()(i);
+				}
+			}	
+			return Maximum;
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		T Mean() {
+			T sum = 0;
+			for(size_t i = 0; i < size_; ++i) {
+				sum += get<T>()(i);
+			}
+			return (sum / size_);
+		}
+
+		template <class T>
+		void summary() {
+			std::cout << "Min. : " << Min<T>()  << ", ";
+			std::cout << "Max. : " << Max<T>()  << ", ";
+			std::cout << "Mean.: " << Mean<T>() << "  ";
+			std::cout << std::endl;	 
+		}
 	private:
 		typedef boost::variant<COLUMN_TYPES> base_;
-			 
+	
 		size_t size_;
 		allowed_inner_types type_;
 	};
@@ -258,6 +306,7 @@ namespace boost { namespace numeric { namespace ublas {
 					}	
 					base_::insert({headers(i), data(i)});
 				}
+
 			}
 			catch (std::exception &e) {
 				std::terminate();
@@ -308,12 +357,14 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 
 		template < class T > 
-		vector<T>& column(const std::string& header) {
-			return boost::get(vector<T>(base_::operator[](header)));
+		BOOST_UBLAS_INLINE
+		ublas::vector<T>& column(const std::string& header) {
+			return (base_::operator[](header)).get<T>();
 		}
 		template < class T > 
-		vector<T>& column(const size_t& i) {
-			return boost::get(vector<T>(base_::operator[](column_headers_(i))));
+		BOOST_UBLAS_INLINE
+		ublas::vector<T>& column(const size_t& i) {
+			return (base_::operator[](column_headers_(i))).get<T>();
 		}
 		
 		/// ------------- ///
@@ -430,53 +481,78 @@ namespace boost { namespace numeric { namespace ublas {
 				std::cout << "[" << column_headers_(i) << "]" << ": ";
 				 switch(base_::operator[](column_headers_(i)).type()) {
 					case BOOL: 	
-						print_column <BOOST_PP_SEQ_ELEM(0, INNER_TYPE) >(i);
-						break;
-					case CHAR:
-						print_column<char>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(0, INNER_TYPE) >(i); break;
+					case CHAR: 	
+						print_column <BOOST_PP_SEQ_ELEM(1, INNER_TYPE) >(i); break;
 					case UNSIGNED_CHAR: 
-						print_column<unsigned char>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(2, INNER_TYPE) >(i); break;
 					case SHORT: 
-						print_column<short>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(3, INNER_TYPE) >(i); break;
 					case UNSIGNED_SHORT: 
-						print_column<unsigned short>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(4, INNER_TYPE) >(i); break;
 					case INT: 
-						print_column<int>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(5, INNER_TYPE) >(i); break;
 					case UNSIGNED_INT: 
-						print_column<unsigned int>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(6, INNER_TYPE) >(i); break;
 					case LONG: 
-						print_column<long>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(7, INNER_TYPE) >(i); break;
 					case UNSIGNED_LONG: 
-						print_column<unsigned long>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(8, INNER_TYPE) >(i); break;
 					case LONG_LONG: 
-						print_column<long long>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(9, INNER_TYPE) >(i); break;
 					case UNSIGNED_LONG_LONG: 
-						print_column<unsigned long long>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(10, INNER_TYPE) >(i); break;
 					case FLOAT: 
-						print_column<float>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(11, INNER_TYPE) >(i); break;
 					case DOUBLE: 
-						print_column<double>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(12, INNER_TYPE) >(i); break;
 					case LONG_DOUBLE: 
-						print_column<long double>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(13, INNER_TYPE) >(i); break;
 					case STRING: 
-						print_column<std::string>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(14, INNER_TYPE) >(i); break;
 					case STRING_STAR: 
-						print_column<std::string*>(i);
-						break;
+						print_column <BOOST_PP_SEQ_ELEM(15, INNER_TYPE) >(i); break;
+				} 
+			}
+		}
+
+		BOOST_UBLAS_INLINE
+		void summary() {
+			for(size_t i = 0; i < ncol_; ++i) {
+				std::cout << "[" << column_headers_(i) << "]" << ": ";
+				 switch(base_::operator[](column_headers_(i)).type()) {
+					case BOOL: 	
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(0, INNER_TYPE) >(); break;
+					// case CHAR: 	
+					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(1, INNER_TYPE) >(); break;
+					// case UNSIGNED_CHAR: 
+					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(2, INNER_TYPE) >(); break;
+					case SHORT: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(3, INNER_TYPE) >(); break;
+					case UNSIGNED_SHORT: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(4, INNER_TYPE) >(); break;
+					case INT: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(5, INNER_TYPE) >(); break;
+					case UNSIGNED_INT: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(6, INNER_TYPE) >(); break;
+					case LONG: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(7, INNER_TYPE) >(); break;
+					case UNSIGNED_LONG: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(8, INNER_TYPE) >(); break;
+					case LONG_LONG: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(9, INNER_TYPE) >(); break;
+					case UNSIGNED_LONG_LONG: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(10, INNER_TYPE) >(); break;
+					case FLOAT: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(11, INNER_TYPE) >(); break;
+					case DOUBLE: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(12, INNER_TYPE) >(); break;
+					case LONG_DOUBLE: 
+						(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(13, INNER_TYPE) >(); break;
+					// case STRING: 
+					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(14, INNER_TYPE) >(); break;
+					// case STRING_STAR: 
+					// 	(base_::operator[](column_headers_(i))).summary <BOOST_PP_SEQ_ELEM(15, INNER_TYPE) >(); break;
 				} 
 			}
 		}
@@ -501,17 +577,15 @@ namespace boost { namespace numeric { namespace ublas {
 		
 		size_t ncol_, nrow_;
 		ublas::vector<std::string> column_headers_;
-
-
-		// using fptr = void(*)(size_t);
-
+		
 		// fptr printers[] = { 
 		// 	print_column<int>, 
-		// 	print_column<float>,
+		// 	print_column<float>
 		// };
 
 		/// \returns the default column name
 		/// \used when the column name is not set by the user
+		BOOST_UBLAS_INLINE
 		std::string default_name(size_t i) {
 			return ("Col-" + boost::lexical_cast<std::string>(i));
 		}
@@ -523,19 +597,23 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	};
 
+	/// \ The current proxies are for columns of a data_frame.
 	class data_frame_range {
 	public:
 		typedef ublas::vector<std::string>::size_type size_type;
 		typedef ublas::vector<std::string>::difference_type difference_type;
 		typedef ublas::basic_range<size_type, difference_type> range_type;
 
+		BOOST_UBLAS_INLINE
 		data_frame_range();
 
+		BOOST_UBLAS_INLINE
 		data_frame_range (data_frame* df, const range_type& range): 
 			column_headers_(df->headers(), range) {
 				df_ = df;
 		}
 
+		BOOST_UBLAS_INLINE
 		data_frame DataFrame () {
 			ublas::vector<std::string> v1(column_headers_.size());
 			ublas::vector<ublas::df_column> v2(column_headers_.size());
@@ -546,17 +624,20 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_frame(v1, v2);
 		} 
 
+		BOOST_UBLAS_INLINE
 		df_column& operator [] (const std::string& header) {
 			/// \check if the string is included in the given range.
 			return (*df_)[header];
 		}
 
 		/// here the index is the index in the vector_range
+		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
 			/// \check if the index is valid.
 			return (*df_)[column_headers_[i]];
 		}
 
+		BOOST_UBLAS_INLINE
 		const size_t size() const {
 			return column_headers_.size();
 		} 
@@ -572,13 +653,16 @@ namespace boost { namespace numeric { namespace ublas {
 		typedef ublas::vector<std::string>::difference_type difference_type;
 		typedef ublas::basic_slice<size_type, difference_type> slice_type;
 
+		BOOST_UBLAS_INLINE
 		data_frame_slice ();
 
+		BOOST_UBLAS_INLINE
 		data_frame_slice (data_frame* df, const slice_type& slice): 
 			column_headers_(df->headers(), slice) {
 				df_ = df;
 		}
 
+		BOOST_UBLAS_INLINE
 		data_frame DataFrame () {
 			ublas::vector<std::string> v1(column_headers_.size());
 			ublas::vector<ublas::df_column> v2(column_headers_.size());
@@ -589,12 +673,14 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_frame(v1, v2);
 		} 
 
+		BOOST_UBLAS_INLINE
 		df_column& operator [] (const std::string& header) {
 			/// \check if the string is included in the given range.
 			return (*df_)[header];
 		}
 
 		/// here the index is the index in the vector_range
+		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
 			/// \check if the index is valid.
 			return (*df_)[column_headers_[i]];
@@ -608,51 +694,6 @@ namespace boost { namespace numeric { namespace ublas {
 		data_frame *df_;
 		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
 	};
-
-	class data_frame_indirect {
-	public:
-		typedef ublas::vector<std::string>::size_type size_type;
-		typedef ublas::vector<std::string>::difference_type difference_type;
-		typedef ublas::basic_slice<size_type, difference_type> slice_type;
-
-		data_frame_slice ();
-
-		data_frame_slice (data_frame* df, const slice_type& slice): 
-			column_headers_(df->headers(), slice) {
-				df_ = df;
-		}
-
-		data_frame DataFrame () {
-			ublas::vector<std::string> v1(column_headers_.size());
-			ublas::vector<ublas::df_column> v2(column_headers_.size());
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				v1(i) = column_headers_(i);
-				v2(i) = (*df_)[v1(i)];
-			}
-			return data_frame(v1, v2);
-		} 
-
-		df_column& operator [] (const std::string& header) {
-			/// \check if the string is included in the given range.
-			return (*df_)[header];
-		}
-
-		/// here the index is the index in the vector_range
-		df_column& operator [] (const size_t& i) {
-			/// \check if the index is valid.
-			return (*df_)[column_headers_[i]];
-		}
-
-		const size_t size() const {
-			return column_headers_.size();
-		} 
-
-	private:
-		data_frame *df_;
-		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
-	};
-	
-	
 }}}
 
 int main() {
@@ -703,5 +744,12 @@ int main() {
 	std::cout << '\n';
 	data_frame df3 = dfs.DataFrame();
 	df3.print();
+	std::cout << y.Min<int>() << std::endl;
+	//std::cout << y.Max<int>() << std::endl;
+	std::cout << y.Mean<int>() << std::endl;	
+	std::cout << std::endl;
+	df.print();
+	std::cout << std::endl;
+	df.summary();
 	return 0;
 }
