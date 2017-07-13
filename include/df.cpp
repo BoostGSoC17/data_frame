@@ -8,6 +8,7 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/ublas/vector_proxy.hpp>
+#include <algorithm>
 #include "./data_frame_exceptions.hpp"
 
 /// -----------------
@@ -247,11 +248,25 @@ namespace boost { namespace numeric { namespace ublas {
 			return (T2) (sum / size_);
 		}
 
+		template < class T1, class T2 >
+		BOOST_UBLAS_INLINE
+		T2 Median() {
+			ublas::vector<T1> v = get<T1>();
+			std::sort(v.begin(), v.end());
+			if (v.size() & 1) {
+				return (T2)v[v.size()/2];
+			}
+			else {
+				return ((T2)(v[v.size()/2-1] + v[v.size()/2]) / 2);
+			}
+		}
+
 		template <class T1, class T2>
 		void summary() {
 			std::cout << "Min. : " << Min<T1, T2>()  << ", ";
 			std::cout << "Max. : " << Max<T1, T2>()  << ", ";
-			std::cout << "Mean : " << Mean<T1, T2>() << "  ";
+			std::cout << "Mean : " << Mean<T1, T2>() << ", ";
+			std::cout << "Median : " << Median<T1, T2>() << "  ";
 			std::cout << std::endl;	 
 		}
 	private:
