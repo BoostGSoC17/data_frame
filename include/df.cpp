@@ -114,7 +114,7 @@ void remove(ublas::vector<T>& v, size_t idx) {
 
 namespace boost { namespace numeric { namespace ublas {
 
-	/** \brief: Representation of column in a data_frame
+	/**\brief: Representation of column in a data_frame
 	 * type: boost::variant < ublas::vector<int>, ublas::vector<char> ..... etc >    
 	 */
 	class df_column : public boost::variant<COLUMN_TYPES> {
@@ -269,6 +269,7 @@ namespace boost { namespace numeric { namespace ublas {
 			std::cout << "Median : " << Median<T1, T2>() << "  ";
 			std::cout << std::endl;	 
 		}
+
 	private:
 		typedef boost::variant<COLUMN_TYPES> base_;
 	
@@ -449,7 +450,7 @@ namespace boost { namespace numeric { namespace ublas {
 		// ------------ //
 
 		/// \erase column[$i]
-		/// 	0-base_d indexing
+		/// 	0-based indexing
 
 		BOOST_UBLAS_INLINE 
 		void erase_column(const size_t i) {
