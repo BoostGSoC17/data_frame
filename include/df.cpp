@@ -10,6 +10,7 @@
 #include <boost/numeric/ublas/vector_proxy.hpp>
 #include <algorithm>
 #include "./data_frame_exceptions.hpp"
+#include "./vector_proxy.cpp"
 
 /// -----------------
 /// ALLOWED TYPES YET
@@ -65,16 +66,22 @@ vector_of_vector
 vector_range
 vector_slice
 */
-
 /// \PreProcessing for the inner and outer types
 // Expand macro
 #define VMACRO(r, product) (ublas::BOOST_PP_SEQ_ELEM(0, product)<BOOST_PP_SEQ_ELEM(1, product)>)
+
+
 // Make a sequence of all types
 #define ALL_VARIANT_TYPES BOOST_PP_SEQ_FOR_EACH_PRODUCT(VMACRO, (VECTOR_TYPE) (INNER_TYPE))
 // Variant of column types
 #define COLUMN_TYPES BOOST_PP_SEQ_ENUM(ALL_VARIANT_TYPES)
 // Variant of the inner types
 #define COLUMN_DATA_TYPES BOOST_PP_SEQ_ENUM(INNER_TYPE)
+
+
+#define VECTOR_RANGE_TYPE (vector_range)
+#define ALL_RANGE_TYPES BOOST_PP_SEQ_FOR_EACH_PRODUCT(VMACRO, (VECTOR_RANGE_TYPE) (ALL_VARIANT_TYPES))
+#define RANGE BOOST_PP_SEQ_ENUM(ALL_RANGE_TYPES)
 
 /// \brief: returns the enum value that corresponds to the given type
 template <class T>
@@ -100,7 +107,6 @@ allowed_inner_types Type() {
 
 /// \To simplify the code...
 namespace ublas = boost::numeric::ublas;
-using fptr = void(*)(size_t);
 
 template < class T > 
 BOOST_UBLAS_INLINE
@@ -148,10 +154,8 @@ namespace boost { namespace numeric { namespace ublas {
 			type_ = std::move(Type<T>());
 		}
 
-		// BOOST_UBLAS_INLINE 
-		// ~df_column();
-
-		//* Add constructors and assignment operators for vector_expression*//!!!
+		BOOST_UBLAS_INLINE 
+		~df_column() {}
 
 		/// \brief: copies the ublas::vector<T> into self.
 		/// \param: const ublas::vector<T>
@@ -217,10 +221,10 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T1, class T2 > 
 		BOOST_UBLAS_INLINE 
 		T2 Min () {
-			T2 Minimum = get<T1>()(0);
+			T2 Minimum = get<T1> ()(0);
 			for(size_t i = 1; i < size_; ++i) {
-				if (get<T1>()(i) < Minimum) {
-					Minimum = (T2) get<T1>()(i);
+				if (get <T1> ()(i) < Minimum) {
+					Minimum = (T2)get<T1>()(i);
 				}
 			}	
 			return Minimum;
@@ -263,10 +267,10 @@ namespace boost { namespace numeric { namespace ublas {
 
 		template <class T1, class T2>
 		void summary() {
-			std::cout << "Min. : " << Min<T1, T2>()  << ", ";
-			std::cout << "Max. : " << Max<T1, T2>()  << ", ";
-			std::cout << "Mean : " << Mean<T1, T2>() << ", ";
-			std::cout << "Median : " << Median<T1, T2>() << "  ";
+			std::cout << "Min. : " << Min <T1, T2>()  << ", ";
+			std::cout << "Max. : " << Max <T1, T2>()  << ", ";
+			std::cout << "Mean : " << Mean <T1, T2>() << ", ";
+			std::cout << "Median : " << Median <T1, T2>() << "  ";
 			std::cout << std::endl;	 
 		}
 
@@ -329,8 +333,8 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
-		// BOOST_UBLAS_INLINE
-		// ~data_frame();
+		BOOST_UBLAS_INLINE
+		~data_frame() {}
 
 		/// ---------------- ///
 		/// column accessors ///
@@ -588,6 +592,16 @@ namespace boost { namespace numeric { namespace ublas {
 			return;
 		}
 
+		BOOST_UBLAS_INLINE
+		const size_t ncol() const {
+			return ncol_;
+		}
+
+		BOOST_UBLAS_INLINE
+		const size_t nrow() const {
+			return nrow_;
+		}
+
 	private:
 		typedef std::map<std::string, df_column> base_;
 		
@@ -710,6 +724,43 @@ namespace boost { namespace numeric { namespace ublas {
 		data_frame *df_;
 		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
 	};
+
+	// // T1 will be boost :: variant < (vector_range / vector_slice / vector_indirect) < vector < int, char.... > >
+	// // T2 can be  ( vector_range / vector_slice / vector_indirect ) < std::string > 
+	// template < class T1 = df_column, class T2 = vector<std::string> > 
+	// class data_frame_proxy {
+	// public: 
+	// 	data_frame_proxy() {
+	// 	}
+	// private: 
+	// 	T1 row_proxy_;
+	// 	T2 column_proxy_;
+	// };
+
+	
+	class data_frame_range_range {
+	public:
+		#define vr ublas::vector_range 
+		data_frame_range_range (data_frame* df, size_t start, size_t end) {
+			std::cout << df->ncol() << std::endl;
+			rowrange_ .resize(2);
+			for(size_t i = 0; i < df->ncol(); ++i) {
+				std::cout << "hello" << std::endl;
+				allowed_inner_types type = (*df)[i].type();
+				switch (type) {
+					case 5:
+						typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::size_type size_type;
+						typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::difference_type difference_type;	
+						typedef ublas::basic_range < size_type, difference_type> range_type;
+						rowrange_ (i) = vr < vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE)> > ( (*df).column < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > (i), range_type(start, end) );
+					break;
+				}
+			}
+		}
+	private:
+		ublas::vector< boost::variant <RANGE> > rowrange_;
+		data_frame* df_;
+	};
 }}}
 
 int main() {
@@ -764,5 +815,19 @@ int main() {
 	df.print();
 	std::cout << std::endl;
 	df.summary();
+
+	vector_range < vector < int > > q (X, range(0, 2)); 
+	boost::variant < RANGE > d(q);
+
+
+	vector<int> z(2);
+	z(0) = 10;
+	z(1) = 9;
+	df_column Z(z);
+	Z.summary<int, double>();
+	vector_range < vector < int > > vz(Z.get<int>(), range(0, 1));
+	vz[0] += 2;
+	Z.summary<int, double>();
+	data_frame_range_range DFRR(&df, 1, 2);
 	return 0;
 }

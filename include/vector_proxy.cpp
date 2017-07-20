@@ -21,8 +21,8 @@ namespace boost { namespace numeric { namespace ublas {
 		BOOST_UBLAS_INLINE
 		vector_proxy(const T& proxy): 
 			proxy_ (proxy) {}
-
-		BOOST_UBLAS_INLINE
+           
+ 		BOOST_UBLAS_INLINE
 		~vector_proxy() {}
 
 		
@@ -58,16 +58,5 @@ namespace boost { namespace numeric { namespace ublas {
 	private:	
 		T proxy_;
 	};
+
 }}}
-
-int main() {
-
-	using namespace boost::numeric::ublas;
-
-	vector <int> v(2);
-	v(0) = 0, v(1) = 1;
-	vector_range < vector < int > > r(v, range(0, 2));
-	vector_proxy< vector_range < vector < int > > > vr(r);
-	std::cout << vr(1) << std::endl;
-	return 0;
-}
