@@ -1,6 +1,5 @@
 #include <string>
 #include <map>
-#include <vector>
 #include <boost/variant.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/for_each_product.hpp>
@@ -162,9 +161,12 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T >
 		BOOST_UBLAS_INLINE
 		df_column& operator = (const ublas::vector<T>& data) {
+			std::cout << "copy" << std::endl;
 			base_::operator = (data);
+			std::cout << "copy1" << std::endl;
 			size_ = data.size();		
 			type_ = Type<T>();
+			std::cout << "copy3" << std::endl;
 			return *this;
 		}	
 		
@@ -173,6 +175,7 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T >
 		BOOST_UBLAS_INLINE
 		df_column& operator = (ublas::vector<T>&& data) {
+			std::cout << "move" << std::endl;
 			base_::operator = (std::move(data));
 			size_ = data.size();		
 			type_ = Type<T>();
@@ -281,6 +284,104 @@ namespace boost { namespace numeric { namespace ublas {
 		allowed_inner_types type_;
 	};
 
+	df_column& operator + (df_column a, df_column b) {
+		try {
+			if (a.type() != b.type()) {
+				// throw something.
+			}
+
+			vector < bool > A0;
+			vector < char > A1;
+			vector < unsigned char > A2;
+			vector < short > A3;
+			vector < unsigned short > A4;
+			vector < int > A5;
+			vector < unsigned int > A6;
+			vector < long > A7;
+			vector < unsigned long > A8;
+			vector < long long > A9;
+			vector < unsigned long long > A10;
+			vector < float > A11;
+			vector < double > A12;
+			vector < long double > A13;
+			vector < std::string > A14;
+			vector < std::string* > A15;
+			df_column X;
+			// gives seg fault
+			switch (a.type()) {
+				case BOOL: 
+					A0 = a.get<bool>() + b.get<bool>();
+					X = A0;
+					return X;
+				// case CHAR: 
+				// 	A1 = a.get<char>() + b.get<char>();
+				// 	X = A1;
+				// 	break;
+				// case UNSIGNED_CHAR: 
+				// 	A2 = a.get<unsigned char>() + b.get<unsigned char>();
+				// 	X = A2;
+				// 	break;
+				case SHORT: 
+					A3 = a.get<short>() + b.get<short>();
+					X = A3;
+					return X;
+				case UNSIGNED_SHORT: 
+					A4 = a.get<unsigned short>() + b.get<unsigned short>();
+					X = A4;
+					return X;
+				case INT: 
+					std::cout << "rishabh" << std::endl;
+					A5 = a.get<int>() + b.get<int>();
+					std::cout << "arora" << std::endl;
+					X = A5;
+					return X;
+				case UNSIGNED_INT: 
+					A6 = a.get<unsigned int>() + b.get<unsigned int>();
+					X = A6;
+					return X;
+				case LONG: 
+					A7 = a.get<long>() + b.get<long>();
+					X = A7;
+					return X;
+				case UNSIGNED_LONG: 
+					A8 = a.get<unsigned long>() + b.get<unsigned long>();
+					X = A8;
+					return X;
+				case LONG_LONG: 
+					A9 = a.get<long long>() + b.get<long long>();
+					X = A9;
+					return X;
+				case UNSIGNED_LONG_LONG: 
+					A10 = a.get<unsigned long long>() + b.get<unsigned long long>();
+					X = A10;
+					return X;
+				case FLOAT: 
+					A11 = a.get<float>() + b.get<float>();
+					X = A11;
+					return X;
+				case DOUBLE: 
+					A12 = a.get<double>() + b.get<double>();
+					X = A12;
+					return X;
+				case LONG_DOUBLE: 
+					A13 = a.get<long double>() + b.get<long double>();
+					X = A13;
+					return X;
+				// case STRING: 
+				// 	A14 = a.get<std::string>() + b.get<std::string*>();
+				// 	X = A14;
+				// 	break;
+				// case STRING_STAR: 
+				// 	A15 = a.get<std::string*>() + b.get<std::string*>();
+				// 	X = A15;
+				// 	break;
+			}
+			return X;
+		}
+		catch (std::exception& e) {
+			std::terminate();
+		}
+	}
 	class data_frame : public std::map<std::string,df_column> {
 
 	public:
@@ -738,29 +839,29 @@ namespace boost { namespace numeric { namespace ublas {
 	// };
 
 	
-	class data_frame_range_range {
-	public:
-		#define vr ublas::vector_range 
-		data_frame_range_range (data_frame* df, size_t start, size_t end) {
-			std::cout << df->ncol() << std::endl;
-			rowrange_ .resize(2);
-			for(size_t i = 0; i < df->ncol(); ++i) {
-				std::cout << "hello" << std::endl;
-				allowed_inner_types type = (*df)[i].type();
-				switch (type) {
-					case 5:
-						typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::size_type size_type;
-						typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::difference_type difference_type;	
-						typedef ublas::basic_range < size_type, difference_type> range_type;
-						rowrange_ (i) = vr < vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE)> > ( (*df).column < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > (i), range_type(start, end) );
-					break;
-				}
-			}
-		}
-	private:
-		ublas::vector< boost::variant <RANGE> > rowrange_;
-		data_frame* df_;
-	};
+	// class data_frame_range_range {
+	// public:
+	// 	#define vr ublas::vector_range 
+	// 	data_frame_range_range (data_frame* df, size_t start, size_t end) {
+	// 		std::cout << df->ncol() << std::endl;
+	// 		rowrange_ .resize(2);
+	// 		for(size_t i = 0; i < df->ncol(); ++i) {
+	// 			std::cout << "hello" << std::endl;
+	// 			allowed_inner_types type = (*df)[i].type();
+	// 			switch (type) {
+	// 				case 5:
+	// 					typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::size_type size_type;
+	// 					typedef vr < ublas::vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > >::difference_type difference_type;	
+	// 					typedef ublas::basic_range < size_type, difference_type> range_type;
+	// 					rowrange_ (i) = vr < vector < BOOST_PP_SEQ_ELEM(5, INNER_TYPE)> > ( (*df).column < BOOST_PP_SEQ_ELEM(5, INNER_TYPE) > (i), range_type(start, end) );
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
+	// private:
+	// 	ublas::vector< boost::variant <RANGE> > rowrange_;
+	// 	data_frame* df_;
+	// };
 }}}
 
 int main() {
@@ -828,6 +929,14 @@ int main() {
 	vector_range < vector < int > > vz(Z.get<int>(), range(0, 1));
 	vz[0] += 2;
 	Z.summary<int, double>();
-	data_frame_range_range DFRR(&df, 1, 2);
+	//data_frame_range_range DFRR(&df, 1, 2);
+	vector < int > m(2), n(2);
+	m(0) = 10, m(1) = 11;
+	n(0) = 20, n(1) = 21;
+	df_column M(m), N(n), Q;
+	Q = M + N;
+	M.summary<int, double>();
+	N.summary<int, double>();
+	//Q.summary<int, double>();
 	return 0;
 }
