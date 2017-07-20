@@ -161,12 +161,9 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T >
 		BOOST_UBLAS_INLINE
 		df_column& operator = (const ublas::vector<T>& data) {
-			std::cout << "copy" << std::endl;
 			base_::operator = (data);
-			std::cout << "copy1" << std::endl;
 			size_ = data.size();		
 			type_ = Type<T>();
-			std::cout << "copy3" << std::endl;
 			return *this;
 		}	
 		
@@ -284,7 +281,7 @@ namespace boost { namespace numeric { namespace ublas {
 		allowed_inner_types type_;
 	};
 
-	df_column& operator + (df_column a, df_column b) {
+	df_column operator + (df_column a, df_column b) {
 		try {
 			if (a.type() != b.type()) {
 				// throw something.
@@ -307,7 +304,6 @@ namespace boost { namespace numeric { namespace ublas {
 			vector < std::string > A14;
 			vector < std::string* > A15;
 			df_column X;
-			// gives seg fault
 			switch (a.type()) {
 				case BOOL: 
 					A0 = a.get<bool>() + b.get<bool>();
@@ -330,9 +326,7 @@ namespace boost { namespace numeric { namespace ublas {
 					X = A4;
 					return X;
 				case INT: 
-					std::cout << "rishabh" << std::endl;
 					A5 = a.get<int>() + b.get<int>();
-					std::cout << "arora" << std::endl;
 					X = A5;
 					return X;
 				case UNSIGNED_INT: 
@@ -933,10 +927,12 @@ int main() {
 	vector < int > m(2), n(2);
 	m(0) = 10, m(1) = 11;
 	n(0) = 20, n(1) = 21;
+	df_column P = m;
+	P.summary<int, double>();
 	df_column M(m), N(n), Q;
-	Q = M + N;
+	 Q = M + N;
 	M.summary<int, double>();
 	N.summary<int, double>();
-	//Q.summary<int, double>();
+	Q.summary<int, double>();
 	return 0;
 }
