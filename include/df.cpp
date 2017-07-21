@@ -705,6 +705,10 @@ namespace boost { namespace numeric { namespace ublas {
 			return nrow_;
 		}
 
+		BOOST_UBLAS_INLINE
+		const std::string colname(const size_t& i) {
+			return column_headers_(i);
+		}
 	private:
 		typedef std::map<std::string, df_column> base_;
 		
@@ -729,6 +733,30 @@ namespace boost { namespace numeric { namespace ublas {
 			return (boost::get< ublas::vector< T > >(base_::operator[](column_headers_(i)))) (row);
 		}
 	};
+
+	data_frame operator + (data_frame a, data_frame b) {
+		try {
+			if (a.ncol() != b.ncol()) {
+				// throw something
+			}
+			else if (a.nrow() != b.nrow()) {
+				// throw something
+			}
+			ublas::vector<std::string> header(a.ncol());
+			ublas::vector<df_column> col(a.ncol());
+			for(size_t i = 0; i < a.ncol(); ++i) {
+				if (a.colname(i) != b.colname(i)) {
+					// throw something
+				}
+				header(i) = a.colname(i);
+				col(i) = a[i] + b[i];
+			}
+			return data_frame(header, col);
+		}
+		catch (std::exception& e) {
+			std::terminate();
+		}
+	}
 
 	/// \ The current proxies are for columns of a data_frame.
 	class data_frame_range {
