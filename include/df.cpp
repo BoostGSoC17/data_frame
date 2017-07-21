@@ -388,6 +388,7 @@ namespace boost { namespace numeric { namespace ublas {
 
 	public:
 
+		friend data_frame operator + (data_frame a, data_frame b);
 		// construction and destruction
 		
 		/// \default constructor
@@ -598,6 +599,9 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		data_frame operator += (data_frame a){
+			return (*this) = (*this) + a;
+		} 
 		BOOST_UBLAS_INLINE 
 		void print() {
 			for(size_t i = 0; i < ncol_; ++i) {
