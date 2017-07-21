@@ -122,10 +122,13 @@ namespace boost { namespace numeric { namespace ublas {
 	/**\brief: Representation of column in a data_frame
 	 * type: boost::variant < ublas::vector<int>, ublas::vector<char> ..... etc >    
 	 */
+
+
 	class df_column : public boost::variant<COLUMN_TYPES> {
 
 	public:
 		
+		friend df_column operator + (df_column a, df_column b);
 		// Construction and destruction
 		
 		/// \brief: default constructor
@@ -200,6 +203,11 @@ namespace boost { namespace numeric { namespace ublas {
 		// 	size_ = std::move(col.size());
 		// 	return *this;
 		// }
+
+		BOOST_UBLAS_INLINE
+		df_column operator += (df_column col_) {
+			return (*this) = (*this) + col_;
+		}
 
 		/// \brief: returns the size of the df_column
 		BOOST_UBLAS_INLINE
@@ -470,7 +478,7 @@ namespace boost { namespace numeric { namespace ublas {
 				std::terminate();
 			}
 		}
-
+		
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		ublas::vector<T>& column(const std::string& header) {
@@ -930,9 +938,9 @@ int main() {
 	df_column P = m;
 	P.summary<int, double>();
 	df_column M(m), N(n), Q;
-	 Q = M + N;
 	M.summary<int, double>();
 	N.summary<int, double>();
-	Q.summary<int, double>();
+	M += N;
+	M.summary<int, double>();
 	return 0;
 }
