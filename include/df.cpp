@@ -129,6 +129,8 @@ namespace boost { namespace numeric { namespace ublas {
 	public:
 		
 		friend df_column operator + (df_column a, df_column b);
+		template < class T >
+		friend df_column operator * (const T& x);
 		// Construction and destruction
 		
 		/// \brief: default constructor
@@ -289,28 +291,19 @@ namespace boost { namespace numeric { namespace ublas {
 		allowed_inner_types type_;
 	};
 
+	// temporary vectors to be used by binary operators.
+	vector < bool > A0; vector < char > A1; vector < unsigned char > A2;
+	vector < short > A3; vector < unsigned short > A4; vector < int > A5; vector < unsigned int > A6;
+	vector < long > A7; vector < unsigned long > A8; vector < long long > A9; vector < unsigned long long > A10;
+	vector < float > A11; vector < double > A12; vector < long double > A13;
+	vector < std::string > A14; vector < std::string* > A15;
+	
 	df_column operator + (df_column a, df_column b) {
 		try {
 			if (a.type() != b.type()) {
 				// throw something.
 			}
 
-			vector < bool > A0;
-			vector < char > A1;
-			vector < unsigned char > A2;
-			vector < short > A3;
-			vector < unsigned short > A4;
-			vector < int > A5;
-			vector < unsigned int > A6;
-			vector < long > A7;
-			vector < unsigned long > A8;
-			vector < long long > A9;
-			vector < unsigned long long > A10;
-			vector < float > A11;
-			vector < double > A12;
-			vector < long double > A13;
-			vector < std::string > A14;
-			vector < std::string* > A15;
 			df_column X;
 			switch (a.type()) {
 				case BOOL: 
@@ -384,6 +377,89 @@ namespace boost { namespace numeric { namespace ublas {
 			std::terminate();
 		}
 	}
+
+	template < class T >
+	df_column operator * (df_column a, const T& x) {
+		try {
+			df_column X;
+			switch (a.type()) {
+				case BOOL: 
+					A0 = x * a.get<bool>();
+					X = A0;
+					return X;
+				// case CHAR: 
+				// 	A1 = a.get<char>() + b.get<char>();
+				// 	X = A1;
+				// 	break;
+				// case UNSIGNED_CHAR: 
+				// 	A2 = a.get<unsigned char>() + b.get<unsigned char>();
+				// 	X = A2;
+				// 	break;
+				case SHORT: 
+					A3 = x * a.get<short>();
+					X = A3;
+					return X;
+				case UNSIGNED_SHORT: 
+					A4 = x * a.get<unsigned short>();
+					X = A4;
+					return X;
+				case INT: 
+					A5 = x * a.get<int>();
+					X = A5;
+					return X;
+				case UNSIGNED_INT: 
+					A6 = x * a.get<unsigned int>();
+					X = A6;
+					return X;
+				case LONG: 
+					A7 = x * a.get<long>();
+					X = A7;
+					return X;
+				case UNSIGNED_LONG: 
+					A8 = x * a.get<unsigned long>();
+					X = A8;
+					return X;
+				case LONG_LONG: 
+					A9 = x * a.get<long long>();
+					X = A9;
+					return X;
+				case UNSIGNED_LONG_LONG: 
+					A10 = x * a.get<unsigned long long>();
+					X = A10;
+					return X;
+				case FLOAT: 
+					A11 = x * a.get<float>();
+					X = A11;
+					return X;
+				case DOUBLE: 
+					A12 = x * a.get<double>();
+					X = A12;
+					return X;
+				case LONG_DOUBLE: 
+					A13 = x * a.get<long double>();
+					X = A13;
+					return X;
+				// case STRING: 
+				// 	A14 = a.get<std::string>() + b.get<std::string*>();
+				// 	X = A14;
+				// 	break;
+				// case STRING_STAR: 
+				// 	A15 = a.get<std::string*>() + b.get<std::string*>();
+				// 	X = A15;
+				// 	break;
+			}
+			return X;
+		}
+		catch (std::exception& e) {
+			std::terminate();
+		}
+	}
+
+	template < class T >
+	df_column operator * (const T& x, df_column a) {
+		return a * x;
+	}
+	
 	class data_frame : public std::map<std::string,df_column> {
 
 	public:
@@ -971,8 +1047,8 @@ int main() {
 	P.summary<int, double>();
 	df_column M(m), N(n), Q;
 	M.summary<int, double>();
-	N.summary<int, double>();
-	M += N;
+	M = 2 * N;
 	M.summary<int, double>();
+	N.summary<int, double>();
 	return 0;
 }
