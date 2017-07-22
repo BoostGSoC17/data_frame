@@ -211,6 +211,12 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this) = (*this) + col_;
 		}
 
+		BOOST_UBLAS_INLINE
+		template < class T >
+		df_column operator *= (const T& x) {
+			return (*this) = (*this) * x;
+		}
+
 		/// \brief: returns the size of the df_column
 		BOOST_UBLAS_INLINE
 		const size_t size() const {
@@ -459,7 +465,7 @@ namespace boost { namespace numeric { namespace ublas {
 	df_column operator * (const T& x, df_column a) {
 		return a * x;
 	}
-	
+
 	class data_frame : public std::map<std::string,df_column> {
 
 	public:
