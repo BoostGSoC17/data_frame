@@ -119,12 +119,41 @@ void remove(ublas::vector<T>& v, size_t idx) {
 
 namespace boost { namespace numeric { namespace ublas {
 
+	// possible expression templates for binary operations
+	template <class subType>
+	class Expression {
+	public:
+		// returns const reference of the actual type of this expression 
+		inline const subType &self(void) const {
+			return *static_cast<const subType*>(this);
+		} 
+	};
+
+	template <class OP, class E1, class E2>
+	class BinaryOP: public Expression < BinaryOP < OP, E1, E2 > > {
+	public:
+	  	const E1& l;
+	  	const E2& r;
+
+	 	 BinaryOP(const E1& l, const E2& r): l(l), r(r) {}
+	 
+	 	template < class T > 
+	  	inline T eval(const std::size_t& i) const {
+	    	return OP::op(l.template eval<T>(), r.template eval<T>());
+	  	}
+	};
+
+	// temporary vectors to be used by binary operators.
+	vector < bool > A0; vector < char > A1; vector < unsigned char > A2;
+	vector < short > A3; vector < unsigned short > A4; vector < int > A5; vector < unsigned int > A6;
+	vector < long > A7; vector < unsigned long > A8; vector < long long > A9; vector < unsigned long long > A10;
+	vector < float > A11; vector < double > A12; vector < long double > A13;
+	vector < std::string > A14; vector < std::string* > A15;
+	
 	/**\brief: Representation of column in a data_frame
 	 * type: boost::variant < ublas::vector<int>, ublas::vector<char> ..... etc >    
 	 */
-
-
-	class df_column : public boost::variant<COLUMN_TYPES> {
+	class df_column : public boost::variant<COLUMN_TYPES>, public Expression < df_column >  {
 
 	public:
 		
@@ -161,39 +190,94 @@ namespace boost { namespace numeric { namespace ublas {
 		BOOST_UBLAS_INLINE 
 		~df_column() {}
 
-		/// \brief: copies the ublas::vector<T> into self.
-		/// \param: const ublas::vector<T>
-		template < class T >
-		BOOST_UBLAS_INLINE
-		df_column& operator = (const ublas::vector<T>& data) {
-			base_::operator = (data);
-			size_ = data.size();		
-			type_ = Type<T>();
-			return *this;
-		}	
+		// /// \brief: copies the ublas::vector<T> into self.
+		// /// \param: const ublas::vector<T>
+		// template < class T >
+		// BOOST_UBLAS_INLINE
+		// df_column& operator = (const ublas::vector<T>& data) {
+		// 	base_::operator = (data);
+		// 	size_ = data.size();		
+		// 	type_ = Type<T>();
+		// 	return *this;
+		// }	
 		
-		/// \brief: moves the ublas::vector<T> into self.
-		/// \param: const ublas::vector<T>
+		// /// \brief: moves the ublas::vector<T> into self.
+		// /// \param: const ublas::vector<T>
+		// template < class T >
+		// BOOST_UBLAS_INLINE
+		// df_column& operator = (ublas::vector<T>&& data) {
+		// 	base_::operator = (std::move(data));
+		// 	size_ = data.size();		
+		// 	type_ = Type<T>();
+		// 	return *this;
+		// }
+
+		// /// \brief: copies the col(df_column) into self.
+		// /// \param: df_column
+		// BOOST_UBLAS_INLINE
+		// df_column& operator = (const df_column& col) {
+		// 	base_::operator = (col);
+		// 	type_ = col.type();
+		// 	size_ = col.size();
+		// 	return *this;
+		// }
+
+		BOOST_UBLAS_INLINE
 		template < class T >
-		BOOST_UBLAS_INLINE
-		df_column& operator = (ublas::vector<T>&& data) {
-			std::cout << "move" << std::endl;
-			base_::operator = (std::move(data));
-			size_ = data.size();		
-			type_ = Type<T>();
-			return *this;
-		}
+		df_column& operator = (const Expression<T>& _x) {
+			const T& x = _x.self();
+			for(int i = 0; i < size_; ++i) {
+				switch (type_) {
+					case BOOL: 
+						A0(i) = x.template eval<bool>();
+						break;
+					// add error codes for non addable types.
+					case SHORT: 
+						A3(i) = x.template eval<short>();
+						break;
 
-		/// \brief: copies the col(df_column) into self.
-		/// \param: df_column
-		BOOST_UBLAS_INLINE
-		df_column& operator = (const df_column& col) {
-			base_::operator = (col);
-			type_ = col.type();
-			size_ = col.size();
-			return *this;
+					case UNSIGNED_SHORT: 
+						A4(i) =  x.template eval<unsigned short>();
+						break;
+					case INT: 
+						A5(i) =  x.template eval<int>();
+						break;
+					case UNSIGNED_INT: 
+						A6(i) =  x.template eval<unsigned int>();
+						break;
+					case LONG: 
+						A7(i) =  x.template eval<long>();						
+						break;
+					case UNSIGNED_LONG: 
+						A8(i) =  x.template eval<unsigned long>();
+						break;
+					case LONG_LONG: 
+						A9(i) =  x.template eval<long long>();
+						break;
+					case UNSIGNED_LONG_LONG: 
+						A10(i) = x.template eval<unsigned long long>();
+						break;
+					case FLOAT: 
+						A11(i) = x.template eval<float>();
+						break;
+					case DOUBLE: 
+						A12(i) = x.template eval<double>();						
+						break;
+					case LONG_DOUBLE: 
+						A13(i) = x.template eval<long double>();
+						break;
+					// case STRING: 
+					// 	A14 = a.get<std::string>() + b.get<std::string*>();
+					// 	X = A14;
+					// 	break;
+					// case STRING_STAR: 
+					// 	A15 = a.get<std::string*>() + b.get<std::string*>();
+					// 	X = A15;
+					// 	break;
+				}
+			}
+			return (*this);
 		}
-
 
 		/// \brief: moves the col(df_column) into self.
 		/// \param: df_column
@@ -290,6 +374,11 @@ namespace boost { namespace numeric { namespace ublas {
 			std::cout << std::endl;	 
 		}
 
+		template < class T > 
+		T eval(const size_t& i) {
+			return get<T>(i);
+		}
+
 	private:
 		typedef boost::variant<COLUMN_TYPES> base_;
 	
@@ -297,92 +386,107 @@ namespace boost { namespace numeric { namespace ublas {
 		allowed_inner_types type_;
 	};
 
-	// temporary vectors to be used by binary operators.
-	vector < bool > A0; vector < char > A1; vector < unsigned char > A2;
-	vector < short > A3; vector < unsigned short > A4; vector < int > A5; vector < unsigned int > A6;
-	vector < long > A7; vector < unsigned long > A8; vector < long long > A9; vector < unsigned long long > A10;
-	vector < float > A11; vector < double > A12; vector < long double > A13;
-	vector < std::string > A14; vector < std::string* > A15;
-	
-	df_column operator + (df_column a, df_column b) {
-		try {
-			if (a.type() != b.type()) {
-				// throw something.
-			}
+	class add{
+	public: 
+  		template < class T>
+  		BOOST_UBLAS_INLINE
+  		T op(const T& a, const T&b) {
+    		return a + b;
+   		}
+	};
 
-			df_column X;
-			switch (a.type()) {
-				case BOOL: 
-					A0 = a.get<bool>() + b.get<bool>();
-					X = A0;
-					return X;
-				// case CHAR: 
-				// 	A1 = a.get<char>() + b.get<char>();
-				// 	X = A1;
-				// 	break;
-				// case UNSIGNED_CHAR: 
-				// 	A2 = a.get<unsigned char>() + b.get<unsigned char>();
-				// 	X = A2;
-				// 	break;
-				case SHORT: 
-					A3 = a.get<short>() + b.get<short>();
-					X = A3;
-					return X;
-				case UNSIGNED_SHORT: 
-					A4 = a.get<unsigned short>() + b.get<unsigned short>();
-					X = A4;
-					return X;
-				case INT: 
-					A5 = a.get<int>() + b.get<int>();
-					X = A5;
-					return X;
-				case UNSIGNED_INT: 
-					A6 = a.get<unsigned int>() + b.get<unsigned int>();
-					X = A6;
-					return X;
-				case LONG: 
-					A7 = a.get<long>() + b.get<long>();
-					X = A7;
-					return X;
-				case UNSIGNED_LONG: 
-					A8 = a.get<unsigned long>() + b.get<unsigned long>();
-					X = A8;
-					return X;
-				case LONG_LONG: 
-					A9 = a.get<long long>() + b.get<long long>();
-					X = A9;
-					return X;
-				case UNSIGNED_LONG_LONG: 
-					A10 = a.get<unsigned long long>() + b.get<unsigned long long>();
-					X = A10;
-					return X;
-				case FLOAT: 
-					A11 = a.get<float>() + b.get<float>();
-					X = A11;
-					return X;
-				case DOUBLE: 
-					A12 = a.get<double>() + b.get<double>();
-					X = A12;
-					return X;
-				case LONG_DOUBLE: 
-					A13 = a.get<long double>() + b.get<long double>();
-					X = A13;
-					return X;
-				// case STRING: 
-				// 	A14 = a.get<std::string>() + b.get<std::string*>();
-				// 	X = A14;
-				// 	break;
-				// case STRING_STAR: 
-				// 	A15 = a.get<std::string*>() + b.get<std::string*>();
-				// 	X = A15;
-				// 	break;
-			}
-			return X;
-		}
-		catch (std::exception& e) {
-			std::terminate();
-		}
+	/* operations on the matrix class */
+	/* temporary class to generate the expression template for operation OP */
+	template <class OP, class E1, class E2 >
+	inline BinaryOP<OP, E1, E2> operate(const Expression<E1>& l, const Expression<E2>& r) {
+	  	return BinaryOP<OP, E1, E2>(l.self(), r.self());
 	}
+
+	/* Addition operation overload */
+	template < class E1, class E2 >
+	inline BinaryOP<add, E1, E2> operator + (const Expression<E1>& l, const Expression<E2>& r) {
+	 	return operate<add>(l, r);
+	}
+
+	// df_column operator + (df_column a, df_column b) {
+	// 	try {
+	// 		if (a.type() != b.type()) {
+	// 			// throw something.
+	// 		}
+
+	// 		df_column X;
+	// 		switch (a.type()) {
+	// 			case BOOL: 
+	// 				A0 = a.get<bool>() + b.get<bool>();
+	// 				X = A0;
+	// 				return X;
+	// 			// case CHAR: 
+	// 			// 	A1 = a.get<char>() + b.get<char>();
+	// 			// 	X = A1;
+	// 			// 	break;
+	// 			// case UNSIGNED_CHAR: 
+	// 			// 	A2 = a.get<unsigned char>() + b.get<unsigned char>();
+	// 			// 	X = A2;
+	// 			// 	break;
+	// 			case SHORT: 
+	// 				A3 = a.get<short>() + b.get<short>();
+	// 				X = A3;
+	// 				return X;
+	// 			case UNSIGNED_SHORT: 
+	// 				A4 = a.get<unsigned short>() + b.get<unsigned short>();
+	// 				X = A4;
+	// 				return X;
+	// 			case INT: 
+	// 				A5 = a.get<int>() + b.get<int>();
+	// 				X = A5;
+	// 				return X;
+	// 			case UNSIGNED_INT: 
+	// 				A6 = a.get<unsigned int>() + b.get<unsigned int>();
+	// 				X = A6;
+	// 				return X;
+	// 			case LONG: 
+	// 				A7 = a.get<long>() + b.get<long>();
+	// 				X = A7;
+	// 				return X;
+	// 			case UNSIGNED_LONG: 
+	// 				A8 = a.get<unsigned long>() + b.get<unsigned long>();
+	// 				X = A8;
+	// 				return X;
+	// 			case LONG_LONG: 
+	// 				A9 = a.get<long long>() + b.get<long long>();
+	// 				X = A9;
+	// 				return X;
+	// 			case UNSIGNED_LONG_LONG: 
+	// 				A10 = a.get<unsigned long long>() + b.get<unsigned long long>();
+	// 				X = A10;
+	// 				return X;
+	// 			case FLOAT: 
+	// 				A11 = a.get<float>() + b.get<float>();
+	// 				X = A11;
+	// 				return X;
+	// 			case DOUBLE: 
+	// 				A12 = a.get<double>() + b.get<double>();
+	// 				X = A12;
+	// 				return X;
+	// 			case LONG_DOUBLE: 
+	// 				A13 = a.get<long double>() + b.get<long double>();
+	// 				X = A13;
+	// 				return X;
+	// 			// case STRING: 
+	// 			// 	A14 = a.get<std::string>() + b.get<std::string*>();
+	// 			// 	X = A14;
+	// 			// 	break;
+	// 			// case STRING_STAR: 
+	// 			// 	A15 = a.get<std::string*>() + b.get<std::string*>();
+	// 			// 	X = A15;
+	// 			// 	break;
+	// 		}
+	// 		return X;
+	// 	}
+	// 	catch (std::exception& e) {
+	// 		std::terminate();
+	// 	}
+	// }
 
 	template < class T >
 	df_column operator * (df_column a, const T& x) {
