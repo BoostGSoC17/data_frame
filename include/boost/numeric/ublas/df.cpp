@@ -139,7 +139,7 @@ namespace boost { namespace numeric { namespace ublas {
 	 
 	 	template < class T > 
 	  	inline T eval(const std::size_t& i) const {
-	    	return OP::op(l.template eval<T>(), r.template eval<T>());
+	    	return OP::op(l.template eval<T>(i), r.template eval<T>(i));
 	  	}
 	};
 
@@ -153,7 +153,7 @@ namespace boost { namespace numeric { namespace ublas {
 	/**\brief: Representation of column in a data_frame
 	 * type: boost::variant < ublas::vector<int>, ublas::vector<char> ..... etc >    
 	 */
-	class df_column : public boost::variant<COLUMN_TYPES>, public Expression < df_column >  {
+	class df_column : public boost::variant<COLUMN_TYPES> {
 
 	public:
 		
@@ -375,7 +375,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 
 		template < class T > 
-		T eval(const size_t& i) {
+		const T eval(const size_t& i) const {
 			return get<T>(i);
 		}
 
@@ -390,7 +390,7 @@ namespace boost { namespace numeric { namespace ublas {
 	public: 
   		template < class T>
   		BOOST_UBLAS_INLINE
-  		T op(const T& a, const T&b) {
+  		T op(const T& a, const T& b) {
     		return a + b;
    		}
 	};
@@ -926,22 +926,23 @@ namespace boost { namespace numeric { namespace ublas {
 
 	data_frame operator + (data_frame a, data_frame b) {
 		try {
-			if (a.ncol() != b.ncol()) {
-				// throw something
-			}
-			else if (a.nrow() != b.nrow()) {
-				// throw something
-			}
-			ublas::vector<std::string> header(a.ncol());
-			ublas::vector<df_column> col(a.ncol());
-			for(size_t i = 0; i < a.ncol(); ++i) {
-				if (a.colname(i) != b.colname(i)) {
-					// throw something
-				}
-				header(i) = a.colname(i);
-				col(i) = a[i] + b[i];
-			}
-			return data_frame(header, col);
+			// if (a.ncol() != b.ncol()) {
+			// 	// throw something
+			// }
+			// else if (a.nrow() != b.nrow()) {
+			// 	// throw something
+			// }
+			// ublas::vector<std::string> header(a.ncol());
+			// ublas::vector<df_column> col(a.ncol());
+			// for(size_t i = 0; i < a.ncol(); ++i) {
+			// 	if (a.colname(i) != b.colname(i)) {
+			// 		// throw something
+			// 	}
+			// 	header(i) = a.colname(i);
+			// 	col(i) = a[i] + b[i];
+			// }
+			//return data_frame(header, col);
+			return data_frame();
 		}
 		catch (std::exception& e) {
 			std::terminate();
@@ -1160,5 +1161,7 @@ int main() {
 	M = 2 * N;
 	M.summary<int, double>();
 	N.summary<int, double>();
+	Q = M + N;
+	Q.summary<int, double>();
 	return 0;
 }
