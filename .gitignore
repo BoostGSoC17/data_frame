@@ -51,5 +51,6 @@
 
 # some more files
 *.out
+temp.cpp
 
 # End of https://www.gitignore.io/api/linux,c++

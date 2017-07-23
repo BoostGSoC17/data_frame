@@ -1,3 +1,7 @@
+
+#ifndef _BOOST_UBLAS_DATA_FRAME_
+#define _BOOST_UBLAS_DATA_FRAME_
+
 #include <string>
 #include <map>
 #include <boost/variant.hpp>
@@ -1085,83 +1089,4 @@ namespace boost { namespace numeric { namespace ublas {
 	// };
 }}}
 
-int main() {
-
-	using namespace ublas;
-
-	vector < int > X(2);
-	X(0) = 0;
-	X(1) = 1;
-
-	vector < int > Y(2);
-	Y(0) = 2;
-	Y(1) = 3;
-	df_column x(X), y(Y);
-
-	vector < std::string> v(2);
-	v(0) = "x", v(1) = "y";
-	vector < df_column > V(2);
-	V(0) = x, V(1) = y;
-	data_frame df(v, V);
-	df.print();
-	df_column t = df["x"];
-	df["y"] = t;
-	df.print();
-	df["z"] = t;
-	df.print();
-	df["a"] = y;
-	df.print();
-	df.print();
-	df["b"] = y;
-	ublas::vector < boost::variant < COLUMN_DATA_TYPES > > r = df(0);
-	std::cout << boost::get<int>(df(0)(0)) << std::endl;
-	std::cout << boost::get<int>(df(0)(1)) << std::endl;
-	std::cout << df(0)(2) << std::endl;
-	basic_range <vector<std::string>::size_type, vector<std::string>::difference_type> 
-	R(1, 3); 
-	vector < std::string > h;
-	vector_range < vector <std::string> > column_headers_(h, R);
-		
-	data_frame_range dfr(&df, R);
-	data_frame df2 = dfr.DataFrame();
-	df2.print();
-	basic_slice < vector < std::string>::size_type, vector < std::string>::difference_type> 
-	S(1, 2, 2);
-	data_frame_slice dfs(&df, S);
-	std::cout << '\n';
-	df.print();
-	std::cout << '\n';
-	data_frame df3 = dfs.DataFrame();
-	df3.print();
-	std::cout << std::endl;
-	df.print();
-	std::cout << std::endl;
-	df.summary();
-
-	vector_range < vector < int > > q (X, range(0, 2)); 
-	boost::variant < RANGE > d(q);
-
-
-	vector<int> z(2);
-	z(0) = 10;
-	z(1) = 9;
-	df_column Z(z);
-	Z.summary<int, double>();
-	vector_range < vector < int > > vz(Z.get<int>(), range(0, 1));
-	vz[0] += 2;
-	Z.summary<int, double>();
-	//data_frame_range_range DFRR(&df, 1, 2);
-	vector < int > m(2), n(2);
-	m(0) = 10, m(1) = 11;
-	n(0) = 20, n(1) = 21;
-	df_column P = m;
-	P.summary<int, double>();
-	df_column M(m), N(n), Q;
-	M.summary<int, double>();
-	M = 2 * N;
-	M.summary<int, double>();
-	N.summary<int, double>();
-	Q = M + N;
-	Q.summary<int, double>();
-	return 0;
-}
+#endif
