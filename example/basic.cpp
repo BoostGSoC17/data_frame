@@ -1,14 +1,15 @@
 
+#include "../include/boost/numeric/ublas/df.hpp"
 
 // instantiation, assignment and printing.
-
 int main() {
 
 	using namespace boost::numeric::ublas;
 	
-	vector <int> a(2), b(2);
+	vector <int> a(2);
+	vector <char> b(2); 
 	a(0) = 1, a(1) = 2;
-	b(0) = 2, b(1) = 10;
+	b(0) = 'a', b(1) = 'b';
 	df_column data(2);
 	data(0) = a;
 	data(1) = b;
