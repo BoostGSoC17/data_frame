@@ -157,12 +157,13 @@ namespace boost { namespace numeric { namespace ublas {
 	/**\brief: Representation of column in a data_frame
 	 * type: boost::variant < ublas::vector<int>, ublas::vector<char> ..... etc >    
 	 */
-	class df_column : public boost::variant<COLUMN_TYPES> {
+	class df_column :  public Expression <df_column>, boost::variant<COLUMN_TYPES> {
 
 	public:
 		
-		friend df_column operator + (df_column a, df_column b);
-		template < class T >
+		// template < class E1, class E2 >
+		// inline BinaryOP<add, E1, E2> operator + (const Expression<E1>& l, const Expression<E2>& r)template < class T >
+		template < class T > 
 		friend df_column operator * (const T& x);
 		// Construction and destruction
 		
@@ -177,9 +178,9 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		df_column (const ublas::vector<T>& data) :
-			base_(data), 
-			size_(data.size()), 
-			type_(Type<T>()) {}	
+			base_ (data), 
+			size_ (data.size()), 
+			type_ (Type<T>()) {}	
 		
 		/// \brief: moves the ublas::vector<T> into a df_column.
 		/// \param: const ublas::vector<T>
@@ -233,42 +234,42 @@ namespace boost { namespace numeric { namespace ublas {
 			for(int i = 0; i < size_; ++i) {
 				switch (type_) {
 					case BOOL: 
-						A0(i) = x.template eval<bool>();
+						A0(i) = x.template eval<bool>(i);
 						break;
 					// add error codes for non addable types.
 					case SHORT: 
-						A3(i) = x.template eval<short>();
+						A3(i) = x.template eval<short>(i);
 						break;
 
 					case UNSIGNED_SHORT: 
-						A4(i) =  x.template eval<unsigned short>();
+						A4(i) =  x.template eval<unsigned short>(i);
 						break;
 					case INT: 
-						A5(i) =  x.template eval<int>();
+						A5(i) =  x.template eval<int>(i);
 						break;
 					case UNSIGNED_INT: 
-						A6(i) =  x.template eval<unsigned int>();
+						A6(i) =  x.template eval<unsigned int>(i);
 						break;
 					case LONG: 
-						A7(i) =  x.template eval<long>();						
+						A7(i) =  x.template eval<long>(i);						
 						break;
 					case UNSIGNED_LONG: 
-						A8(i) =  x.template eval<unsigned long>();
+						A8(i) =  x.template eval<unsigned long>(i);
 						break;
 					case LONG_LONG: 
-						A9(i) =  x.template eval<long long>();
+						A9(i) =  x.template eval<long long>(i);
 						break;
 					case UNSIGNED_LONG_LONG: 
-						A10(i) = x.template eval<unsigned long long>();
+						A10(i) = x.template eval<unsigned long long>(i);
 						break;
 					case FLOAT: 
-						A11(i) = x.template eval<float>();
+						A11(i) = x.template eval<float>(i);
 						break;
 					case DOUBLE: 
-						A12(i) = x.template eval<double>();						
+						A12(i) = x.template eval<double>(i);						
 						break;
 					case LONG_DOUBLE: 
-						A13(i) = x.template eval<long double>();
+						A13(i) = x.template eval<long double>(i);
 						break;
 					// case STRING: 
 					// 	A14 = a.get<std::string>() + b.get<std::string*>();
@@ -294,10 +295,10 @@ namespace boost { namespace numeric { namespace ublas {
 		// 	return *this;
 		// }
 
-		BOOST_UBLAS_INLINE
-		df_column operator += (df_column col_) {
-			return (*this) = (*this) + col_;
-		}
+		// BOOST_UBLAS_INLINE
+		// df_column operator += (df_column col_) {
+		// 	return (*this) = (*this) + col_;
+		// }
 
 		BOOST_UBLAS_INLINE
 		template < class T >
