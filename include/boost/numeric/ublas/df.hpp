@@ -85,11 +85,6 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	};
 
-	template < class T > 
-	vector < T >& add_column(const vector<T>& a, const vector<T>& b) {
-		return (a + b);
-	}
-
 	class df_column {
 	public:
 		friend df_column operator + (df_column& a, df_column& b);
@@ -172,7 +167,6 @@ namespace boost { namespace numeric { namespace ublas {
 		df_column operator *= (const T& val) {
 			return (*this) = (*this) * val;
 		}
-		
 
 		/// Storage Accessors
 		const size_t size() const {
@@ -523,6 +517,88 @@ namespace boost { namespace numeric { namespace ublas {
 		return a * val;
 	}
 
+	bool operator == (df_column& y, df_column& x) {
+		if (y.type() != x.type()) {
+			return false;
+		}
+		else if(y.size() != x.size()) {
+			return false;
+		}
+		for(size_t i = 0; i < x.size(); ++i) {
+			switch (y.type()) {
+				case 0: if(!(y.get<bool>()(i) != x.get<bool>()(i)) ) {
+					return false;
+				}
+				break;
+				case 1: if(!(y.get<char>()(i) != x.get<char>()(i)) ) {
+					return false;
+				}
+				break;
+				case 2: if(!(y.get<unsigned char>()(i) != x.get<unsigned char>()(i)) ) {
+					return false;
+				}
+				break;
+				case 3: if(!(y.get<short>()(i) != x.get<short>()(i)) ) {
+					return false;
+				}
+				break;
+				case 4: if(!(y.get<unsigned short>()(i) != x.get<unsigned short>()(i)) ) {
+					return false;
+				}
+				break;
+				case 5: if(!(y.get<int>()(i) != x.get<int>()(i)) ) {
+					return false;
+				}
+				break;
+				case 6: if(!(y.get<unsigned int>()(i) != x.get<unsigned int>()(i)) ) {
+					return false;
+				}
+				break;
+				case 7: if(!(y.get<long>()(i) != x.get<long>()(i)) ) {
+					return false;
+				}
+				break;
+				case 8: if(!(y.get<unsigned long>()(i) != x.get<unsigned long>()(i)) ) {
+					return false;
+				}
+				break;
+				case 9: if(!(y.get<long long>()(i) != x.get<long long>()(i)) ) {
+					return false;
+				}
+				break;
+				case 10: if(!(y.get<unsigned long long>()(i) != x.get<unsigned long long>()(i)) ) {
+					return false;
+				}
+				break;
+				case 11: if(!(y.get<float>()(i) != x.get<float>()(i)) ) {
+					return false;
+				}
+				break;
+				case 12: if(!(y.get<double>()(i) != x.get<double>()(i)) ) {
+					return false;
+				}
+				break;
+				case 13: if(!(y.get<long double>()(i) != x.get<long double>()(i)) ) {
+					return false;
+				}
+				break;
+				case 14: if(!(y.get<std::string>()(i) != x.get<std::string>()(i)) ) {
+					return false;
+				}
+				break;
+				case 15: if(!(y.get<std::string*>()(i) != x.get<std::string*>()(i)) ) {
+					return false;
+				}
+				break;
+			}
+		}
+		return true;
+	}
+
+	bool operator != (df_column& y, df_column& x) {
+		return !(x == y);
+	}
+
 	class data_frame {
 	public:
 		// construction and destruction
@@ -805,6 +881,27 @@ namespace boost { namespace numeric { namespace ublas {
 		return a * val;
 	}
 
+	bool operator == (data_frame& a, data_frame& b) {
+		if (a.ncol() != b.ncol()) {
+			return false;
+		}
+		else if(a.nrow() != b.nrow()) {
+			return false;
+		}
+		for(size_t i = 0; i < a.ncol(); ++i) {
+			if (a.headers()(i) != b.headers()(i)) {
+				return false;
+			}
+			else if(a[i] != b[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool operator != (data_frame& a, data_frame& b) {
+		return !(a == b);
+	}
 	/// \ The current proxies are for columns of a data_frame.
 	class data_frame_range {
 	public:
@@ -854,6 +951,8 @@ namespace boost { namespace numeric { namespace ublas {
 		data_frame *df_;
 		ublas::vector_range < ublas::vector <std::string> > column_headers_;
 	};
+
+
 	class data_frame_slice {
 	public:
 		typedef ublas::vector<std::string>::size_type size_type;

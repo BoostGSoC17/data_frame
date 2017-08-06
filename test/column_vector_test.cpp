@@ -6,28 +6,24 @@
 #define BOOST_TEST_MODULE  TEST_COLV1
 
 #include <boost/test/unit_test.hpp>
-#include <iostream>
-#include "../include/column_vector.hpp"
-#include <string>
-#include <boost/numeric/ublas/vector.hpp>
+#include "include/boost/numeric/ublas/df.hpp"
 using namespace boost::numeric::ublas; 
 
+BOOST_AUTO_TEST_CASE (equality_check_operator) {
 
-BOOST_AUTO_TEST_CASE(Constructors) {
+}
+
+BOOST_AUTO_TEST_CASE (Constructors) {
 	///\ default constructor
-	column_vector c1;
+	df_column
 	BOOST_CHECK(c1.size() == 0);
 
-	column_vector c2(10);
-	BOOST_CHECK(c2.size() == 10);
-	
 	vector <int> I(100);
 	for(size_t i = 0; i < 100; i++) I(i) = i+2;
-	column_vector II(I);
+	df_column II(I);
 	BOOST_CHECK(II.size() == 100);
-
 	for(size_t i = 0; i < 100; i++) { 
-		BOOST_CHECK(II[i] == boost::lexical_cast<std::string>(I(i)));
+		BOOST_CHECK(II[i] == II.get<int>(I(i)));
 	}	
 }
 
