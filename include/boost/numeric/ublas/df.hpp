@@ -193,19 +193,11 @@ namespace boost { namespace numeric { namespace ublas {
 		void print() {
 			boost::apply_visitor (print_data_frame_column{}, data_);
 		}
+		
 	private:
 		boost::variant < COLUMN_TYPES > data_;
 		size_t size_;
 	};
-
-	BOOST_UBLAS_INLINE
-	void remove (vector<std::string>& v, size_t idx) {
-	    for (size_t i = idx; i < v.size() - 1; i++) {
-	        v(i) = v(i + 1);
-	    }
-	    v.resize(v.size() - 1);
-	    return;
-	}
 
 	df_column operator - (df_column& a) {
 		try {	
@@ -512,6 +504,7 @@ namespace boost { namespace numeric { namespace ublas {
 			std::terminate();
 		}
 	}
+	
 	template < class T > 
 	df_column operator * (const T& val, df_column& a) {
 		return a * val;
@@ -526,67 +519,67 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 		for(size_t i = 0; i < x.size(); ++i) {
 			switch (y.type()) {
-				case 0: if(!(y.get<bool>()(i) != x.get<bool>()(i)) ) {
+				case 0: if((y.get<bool>()(i) != x.get<bool>()(i)) ) {
 					return false;
 				}
 				break;
-				case 1: if(!(y.get<char>()(i) != x.get<char>()(i)) ) {
+				case 1: if((y.get<char>()(i) != x.get<char>()(i)) ) {
 					return false;
 				}
 				break;
-				case 2: if(!(y.get<unsigned char>()(i) != x.get<unsigned char>()(i)) ) {
+				case 2: if((y.get<unsigned char>()(i) != x.get<unsigned char>()(i)) ) {
 					return false;
 				}
 				break;
-				case 3: if(!(y.get<short>()(i) != x.get<short>()(i)) ) {
+				case 3: if((y.get<short>()(i) != x.get<short>()(i)) ) {
 					return false;
 				}
 				break;
-				case 4: if(!(y.get<unsigned short>()(i) != x.get<unsigned short>()(i)) ) {
+				case 4: if((y.get<unsigned short>()(i) != x.get<unsigned short>()(i)) ) {
 					return false;
 				}
 				break;
-				case 5: if(!(y.get<int>()(i) != x.get<int>()(i)) ) {
+				case 5: if((y.get<int>()(i) != x.get<int>()(i)) ) {
 					return false;
 				}
 				break;
-				case 6: if(!(y.get<unsigned int>()(i) != x.get<unsigned int>()(i)) ) {
+				case 6: if((y.get<unsigned int>()(i) != x.get<unsigned int>()(i)) ) {
 					return false;
 				}
 				break;
-				case 7: if(!(y.get<long>()(i) != x.get<long>()(i)) ) {
+				case 7: if((y.get<long>()(i) != x.get<long>()(i)) ) {
 					return false;
 				}
 				break;
-				case 8: if(!(y.get<unsigned long>()(i) != x.get<unsigned long>()(i)) ) {
+				case 8: if((y.get<unsigned long>()(i) != x.get<unsigned long>()(i)) ) {
 					return false;
 				}
 				break;
-				case 9: if(!(y.get<long long>()(i) != x.get<long long>()(i)) ) {
+				case 9: if((y.get<long long>()(i) != x.get<long long>()(i)) ) {
 					return false;
 				}
 				break;
-				case 10: if(!(y.get<unsigned long long>()(i) != x.get<unsigned long long>()(i)) ) {
+				case 10: if((y.get<unsigned long long>()(i) != x.get<unsigned long long>()(i)) ) {
 					return false;
 				}
 				break;
-				case 11: if(!(y.get<float>()(i) != x.get<float>()(i)) ) {
+				case 11: if((y.get<float>()(i) != x.get<float>()(i)) ) {
 					return false;
 				}
 				break;
-				case 12: if(!(y.get<double>()(i) != x.get<double>()(i)) ) {
+				case 12: if((y.get<double>()(i) != x.get<double>()(i)) ) {
 					return false;
 				}
 				break;
-				case 13: if(!(y.get<long double>()(i) != x.get<long double>()(i)) ) {
+				case 13: if((y.get<long double>()(i) != x.get<long double>()(i)) ) {
 					return false;
 				}
 				break;
-				case 14: if(!(y.get<std::string>()(i) != x.get<std::string>()(i)) ) {
+				case 14: if((y.get<std::string>()(i) != x.get<std::string>()(i)) ) {
 					return false;
 				}
 				break;
-				case 15: if(!(y.get<std::string*>()(i) != x.get<std::string*>()(i)) ) {
+				case 15: if((y.get<std::string*>()(i) != x.get<std::string*>()(i)) ) {
 					return false;
 				}
 				break;
@@ -597,6 +590,16 @@ namespace boost { namespace numeric { namespace ublas {
 
 	bool operator != (df_column& y, df_column& x) {
 		return !(x == y);
+	}
+
+
+	BOOST_UBLAS_INLINE
+	void remove (vector<std::string>& v, size_t idx) {
+	    for (size_t i = idx; i < v.size() - 1; i++) {
+	        v(i) = v(i + 1);
+	    }
+	    v.resize(v.size() - 1);
+	    return;
 	}
 
 	class data_frame {

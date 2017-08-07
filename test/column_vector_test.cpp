@@ -6,50 +6,109 @@
 #define BOOST_TEST_MODULE  TEST_COLV1
 
 #include <boost/test/unit_test.hpp>
-#include "include/boost/numeric/ublas/df.hpp"
+#include "../include/boost/numeric/ublas/df.hpp"
 using namespace boost::numeric::ublas; 
-
-BOOST_AUTO_TEST_CASE (equality_check_operator) {
-
-}
 
 BOOST_AUTO_TEST_CASE (Constructors) {
 	///\ default constructor
-	df_column
+	df_column c1;
 	BOOST_CHECK(c1.size() == 0);
 
+	// copy constructor with params: vector<T>
 	vector <int> I(100);
 	for(size_t i = 0; i < 100; i++) I(i) = i+2;
 	df_column II(I);
 	BOOST_CHECK(II.size() == 100);
 	for(size_t i = 0; i < 100; i++) { 
-		BOOST_CHECK(II[i] == II.get<int>(I(i)));
+		BOOST_CHECK(I(i) == II.get<int>()(i));
 	}	
-}
 
-BOOST_AUTO_TEST_CASE(assignment) {
-	column_vector c1;
-	vector < double> d(120);
-	for(size_t i = 0; i < 120; i++) d(i) = 1.0*i + 10.1231;
-	c1 = d;
-	BOOST_CHECK(c1.size() == 120);
-	for(size_t i = 0; i < 120; i++) { 
-		BOOST_CHECK(c1[i] == boost::lexical_cast<std::string>(d(i)));
-	}	
-}
-
-// also covered in the above test cases
-BOOST_AUTO_TEST_CASE(access_operator) {
-	vector < std::string > x(11);
-	for(size_t i = 0; i < 11; i++) {
-		x(i) = "test" + boost::lexical_cast<std::string>(i);
-	}
-	column_vector c(x);
-
-	for(size_t i = 0; i < 11; i++) {
-		std::cout << x(i) << ' ' << c[i] << std::endl;
-		BOOST_CHECK(c[i] == boost::lexical_cast<std::string>(x(i)));
+	// copy constructor with params: df_column
+	df_column III(II);
+	BOOST_CHECK(II.size() == III.size());
+	for(size_t i = 0; i < 100; ++i) {
+		BOOST_CHECK(II.get<int>()(i) == III.get<int>()(i));
 	}
 
-	std::cout << x(120) << std::endl;
+	df_column IV(II + III);
+	BOOST_CHECK(IV.size() == II.size());
+	for(size_t i = 0; i < 100; ++i) {
+		BOOST_CHECK(II.get<int>()(i) + III.get<int>()(i) == IV.get<int>()(i));
+	}
 }
+
+BOOST_AUTO_TEST_CASE (Assignment) {
+	vector < std::string > x(2);
+	x(0) = "rishabh";
+	x(1) = "arora";
+
+	df_column X = x;
+	BOOST_CHECK(X.size() == x.size());
+	for(size_t i = 0; i < X.size(); ++i) {
+		BOOST_CHECK(X.get<std::string>()(i) == x(i));
+	}
+
+	df_column Y = X;
+	BOOST_CHECK(X.size() == Y.size());
+	for(size_t i = 0; i < X.size(); ++i) {
+		BOOST_CHECK(X.get<std::string>()(i) == Y.get<std::string>()(i));
+	}
+}
+
+BOOST_AUTO_TEST_CASE (Equality_Check_Operators) {
+	vector < double > a(3);
+	a(0) = 1.1;
+	a(1) = 1.2;
+	a(2) = 1.32;
+	vector < char > b(2);
+	b(0) = 'a';
+	b(1) = 'b';
+	
+	// should fail
+	df_column A(a), B(b);
+	BOOST_CHECK(A == B);
+	// should pass
+	BOOST_CHECK(A != B);
+
+	df_column C(A);	
+	// should pass 
+	BOOST_CHECK(A == C);
+
+	// should fail
+	BOOST_CHECK(A != C);
+
+	vector < char > d(2);
+	d(0) = 'c';
+	d(1) = 'd';
+	df_column D(d);
+
+	// should fail
+	BOOST_CHECK(B == D);
+	// should pass 
+	BOOST_CHECK(B != D);
+}
+
+BOOST_AUTO_TEST_CASE (Unary_Operator) {
+	// unary - operator
+	vector < int > z(3);
+	z(0) = 15;
+	z(1) = 12;
+	z(2) = 13;
+	df_column Z(z);
+	// move assignment :)
+	df_column T = -Z;
+
+	BOOST_CHECK(T.size() == Z.size());
+	for(size_t i = 0; i < T.size(); ++i) {
+		BOOST_CHECK(T.get<int>()(i) == -Z.get<int>()(i));
+	}
+}
+
+BOOST_AUTO_TEST_CASE (Binary_Operators) {
+	
+}
+
+BOOST_AUTO_TEST_CASE (Statistical_Summaries) {
+
+}
+

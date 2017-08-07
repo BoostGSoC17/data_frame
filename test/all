@@ -1,0 +1,4 @@
+Running 5 test cases...
+column_vector_test.cpp(69): error: in "Equality_Check_Operators": check A == B has failed
+column_vector_test.cpp(79): error: in "Equality_Check_Operators": check A != C has failed
+column_vector_test.cpp(87): error: in "Equality_Check_Operators": check B == D has failed
