@@ -382,55 +382,141 @@ namespace boost { namespace numeric { namespace ublas {
 	df_column operator + (df_column& a, const T& val) {
 		try {
 			df_column X;
-			switch (a.type()) {
-				case 0: 
-					A0 = a.get<bool>() + val;
-					X = A0;
-					return X;
-				case 3: 
-					A3 = a.get<short>() + val;
-					X = A3;
-					return X;
-				case 4: 
-					A4 = a.get<unsigned short>() + val;
-					X = A4;
-					return X;
-				case 5: 
-					A5 = a.get<int>() + val;
-					X = A5;
-					return X;
-				case 6: 
-					A6 = a.get<unsigned int>() + val;
-					X = A6;
-					return X;
-				case 7: 
-					A7 = a.get<long>() + val;
-					X = A7;
-					return X;
-				case 8: 
-					A8 = a.get<unsigned long>() + val;
-					X = A8;
-					return X;
-				case 9: 
-					A9 = a.get<long long>() + val;
-					X = A9;
-					return X;
-				case 10: 
-					A10 = a.get<unsigned long long>() + val;
-					X = A10;
-					return X;
-				case 11: 
-					A11 = a.get<float>() + val;
-					X = A11;
-					return X;
-				case 12: 
-					A12 = a.get<double>() + val;
-					X = A12;
-					return X;
-				case 13: 
-					A13 = a.get<long double>() + val;
-					X = A13;
-					return X;
+			for(size_t i = 0; i < a.size(); ++i) {
+				switch (a.type()) {
+					case 0: 
+						if (i == 0) {
+							A0.resize(a.size());
+						}
+						A0(i) = a.get<bool>()(i) + val;
+						if (i == a.size()-1) {
+							X = A0;
+							A0.resize(0);
+							return X;
+						}
+					break;
+					case 3:
+						if (i == 0) {
+							A3.resize(a.size());
+						} 
+						A3(i) = a.get<short>()(i) + val;
+						if (i == a.size()-1) {
+							X = A3;
+							A3.resize(0);
+							return X;
+						}
+					break;
+					case 4: 
+						if (i == 0) {
+							A4.resize(a.size());
+						}
+						A4(i) = a.get<unsigned short>()(i) + val;
+						if (i == a.size()-1) {
+							X = A4;
+							A4.resize(0);
+							return X;
+						}
+					break;
+					case 5: 
+						if (i == 0) {
+							A5.resize(a.size());
+						}
+						A5(i) = a.get<int>()(i) + val;
+						if (i == a.size()-1) {
+							X = A5;
+							A5.resize(0);
+							return X;
+						}
+					break;
+					case 6:
+						if (i == 0) {
+							A6.resize(a.size());
+						} 
+						A6(i) = a.get<unsigned int>()(i) + val;
+						if (i == a.size()-1) {
+							X = A6;
+							A6.resize(0);
+							return X;
+						}
+					break;
+					case 7:
+						if (i == 0) {
+							A7.resize(a.size());
+						} 
+						A7(i) = a.get<long>()(i) + val;
+						if (i == a.size()-1) {
+							X = A7;
+							A7.resize(0);
+							return X;
+						}
+					break;
+					case 8: 
+						if (i == 0) {
+							A8.resize(a.size());
+						}
+						A8(i) = a.get<unsigned long>()(i) + val;
+						if (i == a.size()-1) {
+							X = A8;
+							A8.resize(0);
+							return X;
+						}
+					break;
+					case 9:
+						if (i == 0) {
+							A9.resize(a.size());
+						} 
+						A9(i) = a.get<long long>()(i) + val;
+						if (i == a.size()-1) {
+							X = A9;
+							A9.resize(0);
+							return X;
+						}
+					break;
+					case 10:
+						if (i == 0) {
+							A10.resize(a.size());
+						} 
+						A10(i) = a.get<unsigned long long>()(i) + val;
+						if (i == a.size()-1) {
+							X = A10;
+							A10.resize(0);
+							return X;
+						}
+					break;
+					case 11:
+						if (i == 0) {
+							A11.resize(a.size());
+						} 
+						A11(i) = a.get<float>()(i) + val;
+						if (i == a.size()-1) {
+							X = A11;
+							A11.resize(0);
+							return X;
+						}
+					break;
+					case 12:
+						if (i == 0) {
+							A12.resize(a.size());
+						} 
+						A12(i) = a.get<double>()(i) + val;
+						if (i == a.size()-1) {
+							X = A12;
+							A12.resize(0);
+							return X;
+						}
+					break;
+					case 13:
+						if (i == 0) {
+							A13.resize(a.size());
+						} 
+						A13(i) = a.get<long double>()(i) + val;
+						if (i == a.size()-1) {
+							X = A13;
+							A13.resize(0);
+							return X;
+						}
+					break;
+				}
 			}
 		}
 		catch(std::exception& e) {
@@ -504,7 +590,7 @@ namespace boost { namespace numeric { namespace ublas {
 			std::terminate();
 		}
 	}
-	
+
 	template < class T > 
 	df_column operator * (const T& val, df_column& a) {
 		return a * val;

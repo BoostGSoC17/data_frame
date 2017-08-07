@@ -105,7 +105,45 @@ BOOST_AUTO_TEST_CASE (Unary_Operator) {
 }
 
 BOOST_AUTO_TEST_CASE (Binary_Operators) {
-	
+	vector < int > z(3);
+	z(0) = 15;
+	z(1) = 12;
+	z(2) = 13;
+	df_column Z(z);
+	df_column Y(2*Z);
+	BOOST_CHECK(Z.size() == Y.size());
+	for(size_t i = 0; i < Y.size(); ++i) {
+		BOOST_CHECK(2 * Z.get<int>()(i) == Y.get<int>()(i));
+	}	
+
+	Z *= 2;
+	for(size_t i = 0; i < Y.size(); ++i) {
+		BOOST_CHECK(Z.get<int>()(i) == Y.get<int>()(i));
+	}
+
+	df_column X = Z + 3;
+	BOOST_CHECK(X.size() == Z.size());
+	for(size_t i = 0; i < Z.size(); ++i) {
+		BOOST_CHECK(X.get <int>()(i) == Z.get<int>()(i) + 3);
+	}
+	X += 3;
+	for(size_t i = 0; i < Z.size(); ++i) {
+		BOOST_CHECK(X.get <int>()(i) == Z.get<int>()(i) + 6);
+	}
+	X -= 3;
+	for(size_t i = 0; i < Z.size(); ++i) {
+		BOOST_CHECK(X.get <int>()(i) == Z.get<int>()(i) + 3);
+	}
+
+	df_column A = X + Z;
+	BOOST_CHECK(A.size() == X.size() && A.size() == Z.size());
+	for(size_t i = 0; i < Z.size(); ++i) {
+		BOOST_CHECK(A.get<int>()(i) == X.get <int>()(i) + Z.get<int>()(i));
+	}
+	A -= X;
+	for(size_t i = 0; i < Z.size(); ++i) {
+		BOOST_CHECK(A.get<int>()(i) == Z.get<int>()(i));
+	}
 }
 
 BOOST_AUTO_TEST_CASE (Statistical_Summaries) {
