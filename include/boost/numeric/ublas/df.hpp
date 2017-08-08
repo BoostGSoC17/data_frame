@@ -780,6 +780,7 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 		
+		
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		vector<T>& column (const std::string& header) {
@@ -790,6 +791,8 @@ namespace boost { namespace numeric { namespace ublas {
 		vector<T>& column(const size_t& i) {
 			return data_[column_headers_ (i)].get<T>();
 		}
+
+		/* Add row accessors */ 
 
 		// ------------ //
 		// erase column //
