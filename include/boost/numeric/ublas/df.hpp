@@ -704,6 +704,7 @@ namespace boost { namespace numeric { namespace ublas {
 		BOOST_UBLAS_INLINE 
 		data_frame (const vector<std::string>& headers, const vector<df_column>& data) {
 			try {
+				// std::cout << "hello" << std::endl;
 				/// \exception for unequal headers and columns
 				if (headers.size() != data.size()) {
 					throw inconsistent_arguments();
