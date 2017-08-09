@@ -39,7 +39,8 @@ BOOST_AUTO_TEST_CASE (Constructors) {
 	}
 }
 
-BOOST_AUTO_TEST_CASE (Column_Accessors) {
+BOOST_AUTO_TEST_CASE (Column_Accessors_Manipulators) {
+	// Column Retrieval
 	vector < std::string > names(3);
 	names(0) = "x";
 	names(1) = "y";
@@ -83,4 +84,74 @@ BOOST_AUTO_TEST_CASE (Column_Accessors) {
 		BOOST_CHECK(z(i) == df.column<std::string>("z")(i));
 		BOOST_CHECK(z(i) == df.column<std::string>(2)(i));	
 	}
+
+	/// Column Accessors + Updating
+	// via string
+	df["x"] = y;
+	BOOST_CHECK(df["x"].size() == df.nrow());
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(y(i) == df["x"].get<bool>()(i));
+		BOOST_CHECK(y(i) == df[0].get<bool>()(i));	
+		BOOST_CHECK(y(i) == df.column<bool>("x")(i));
+		BOOST_CHECK(y(i) == df.column<bool>(0)(i));	
+	}
+	// via index
+	df[0] = x;  // df is back to original
+	BOOST_CHECK(df["x"].size() == df.nrow());
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(x(i) == df["x"].get<char>()(i));
+		BOOST_CHECK(x(i) == df[0].get<char>()(i));	
+		BOOST_CHECK(x(i) == df.column<char>("x")(i));
+		BOOST_CHECK(x(i) == df.column<char>(0)(i));	
+	}
+
+	/// erasing columns
+	// via index
+	size_t ncol_earlier = df.ncol();
+	df.erase_column(0);
+	BOOST_CHECK(df.ncol() == ncol_earlier-1);
+	// test for correct restructuring of data_frame after the erase
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(y(i) == df["y"].get<bool>()(i));
+		BOOST_CHECK(y(i) == df[0].get<bool>()(i));	
+		BOOST_CHECK(y(i) == df.column<bool>("y")(i));
+		BOOST_CHECK(y(i) == df.column<bool>(0)(i));	
+	}
+
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(z(i) == df["z"].get<std::string>()(i));
+		BOOST_CHECK(z(i) == df[1].get<std::string>()(i));	
+		BOOST_CHECK(z(i) == df.column<std::string>("z")(i));
+		BOOST_CHECK(z(i) == df.column<std::string>(1)(i));	
+	}
+	// via string
+	ncol_earlier = df.ncol();
+	df.erase_column("y");
+	BOOST_CHECK(df.ncol() == ncol_earlier-1);
+ 	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(z(i) == df["z"].get<std::string>()(i));
+		BOOST_CHECK(z(i) == df[0].get<std::string>()(i));	
+		BOOST_CHECK(z(i) == df.column<std::string>("z")(i));
+		BOOST_CHECK(z(i) == df.column<std::string>(0)(i));	
+	}
+		
+	/// Add columns via accessor
+	// via string
+	ncol_earlier = df.ncol();
+	df["y"] = y;
+	BOOST_CHECK(df.ncol() == ncol_earlier + 1);
+	
+ }
+
+
+BOOST_AUTO_TEST_CASE (Unary_Operators) {
+
+}
+
+BOOST_AUTO_TEST_CASE (Binary_Operators) {
+
+}
+
+BOOST_AUTO_TEST_CASE (Statistical_Summaries) {
+
 }

@@ -838,6 +838,43 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+
+		BOOST_UBLAS_INLINE
+		data_frame& add_column(const std::string& header, const df_column& col) {
+			try {
+				for(size_t i = 0; i < ncol_; ++i) {
+					if (column_headers_(i) == header) {
+						// throw something 
+					}
+				}
+				column_headers_.resize(ncol_ + 1);
+				column_headers_ (ncol_) = header;
+				++ncol_;
+				data_ [header] = col;
+				return *this;
+			}
+			catch (std::exception& e) {
+				std::terminate();
+			}
+		}
+		BOOST_UBLAS_INLINE
+		data_frame& add_column(const size_t i, const df_column& col) {
+			try {
+				if (i != ncol_) {
+					// throw something
+				}
+				column_headers_.resize(ncol_ + 1);
+				column_headers_ (ncol_) = default_name(i);
+				++ncol_;
+				data_ [default_name(i)] = col;
+				return *this;
+			}
+			catch (std::exception& e) {
+				std::terminate();
+			}
+		}
+
+
 		BOOST_UBLAS_INLINE 
 		void print() {
 			for(size_t i = 0; i < ncol_; ++i) {
