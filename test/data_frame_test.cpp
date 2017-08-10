@@ -137,10 +137,11 @@ BOOST_AUTO_TEST_CASE (Column_Accessors_Manipulators) {
 		
 	/// Add columns via accessor
 	// via string
+	df.print();
 	ncol_earlier = df.ncol();
 	df["y"] = y;
 	BOOST_CHECK(df.ncol() == ncol_earlier + 1);
-	
+	df.print();
  }
 
 
