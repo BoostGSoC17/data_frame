@@ -85,42 +85,86 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	};
 
+	//! Represents the column of a dataframe.
+	/*! Internally represented by boost::variant < COLUMN_TYPES > .
+	 *	Allowed types are: int, double, char, std::string...... (specified in INNER_TYPE).
+	 */
 	class df_column {
 	public:
+		//! \brief add 2 df_columns of same type.
 		friend df_column operator + (df_column& a, df_column& b);
+
+		//! \brief subtract 2 df_columns of same type.
 		friend df_column operator - (df_column& a, df_column& b);
-		template < class T > friend df_column operator + (df_column& a, const T& val);
-		template < class T > friend df_column operator - (df_column& a, const T& val);
-		template < class T > friend df_column operator * (df_column& a, const T& val);
 		
+		//! \brief add a constant value val to a column of same type.
+		template < class T > friend df_column operator + (df_column& a, const T& val);
+		
+		//! \brief subtract a constant value val from a column of same type.
+		template < class T > friend df_column operator - (df_column& a, const T& val);
+		
+		//! \brief multiply a constant value val to a column of same type.
+		template < class T > friend df_column operator * (df_column& a, const T& val);
+			
+		// ----------------------------
+		// Construction and Destruction
+		// ----------------------------
+
+		/*! \brief Constructor of df_column.
+		 *  By default \c size() == 0.
+		 *  type of the column is unset.
+		 */ 
 		df_column (): 
 			size_ (0) {}
 
-		/// Copy Constructor
+		/*! \brief Copy Constructor of df_column.
+		 *	Copies the vector into data_, T becomes the type of the column.
+		 *  \param const lvalue reference to a vector of some type T.
+		 */ 
 		template < class T > 
 		df_column (const vector<T>& data) :
 			data_ (data), 
 			size_ (data.size()) {}
 
+		/*! \brief Copy Constructor of df_column. 
+		 *	Copies the col into self.
+		 *  \param const lvalue reference to a df_column.
+		 */ 
 		df_column (const df_column& col) :
 			data_ (col.data()), 
 			size_ (col.size()) {}
 
-		/// Move Constructor
+		/*! \brief Move Constructor of a df_column.
+		 *	Moves the vector into data_, T becomes the type of the column.
+		 *  \param rvalue reference to a vector <T>, T: type of vector.
+		 */ 
 		template < class T > 
 		df_column (const vector <T>&& data) {
 			data_ = std::move(data);
 			size_ = std::move(size_);
 		} 
 
+		/*! \brief Move Constructor of df_column. 
+		 *	Moves the col into self.
+		 *  \param rvalue reference to a df_column.
+		 */ 
 		df_column (const df_column&& col) {
 			data_ = std::move(col.data());
 			size_ = std::move(col.size());
-		} 
+		}
+
+		//! \brief Destructor of df_column. 
 		BOOST_UBLAS_INLINE
 		~df_column() {}
 		
-		/// Copy Assignment Operator
+		// --------------------
+		// Assignment Operators
+		// --------------------
+
+		/*! \brief Copy Assignment Operator of a df_column. 
+		 *	Copies the vector into data_, T becomes the type of the column.
+		 *  \param const lvalue reference to a vector <T>, T: type of vector.
+		 */  
 		template < class T > 
 		df_column& operator = (const vector<T>& data) {
 			data_ = data;
@@ -128,13 +172,20 @@ namespace boost { namespace numeric { namespace ublas {
 			return *this;
 		}
 
+		/*! \brief Copy Assignment operator of df_column. 
+		 *	Copies the col into self.
+		 *  \param const lvalue reference to a df_column.
+		 */ 
 		df_column& operator = (const df_column& col) {
 			data_  = col.data();
 			size_  = col.size();
 			return *this;
 		}
 
-		/// Move Assignment Operator
+		/*! \brief Move Assignemnt Operator of a df_column. 
+		 *	Moves the vector into data_, T becomes the type of the column.
+		 *  \param rvalue reference to a vector <T>, T: type of vector.
+		 */ 
 		template < class T > 
 		df_column& operator = (const vector <T>&& data) {
 			data_ = std::move(data);
@@ -142,60 +193,113 @@ namespace boost { namespace numeric { namespace ublas {
 			return *this;
 		}
 
+		/*! \brief Move Assignment operator of df_column. 
+		 *	Copies the col into self.
+		 *  \param rvalue reference to a df_column.
+		 */ 
 		df_column& operator = (const df_column&& col) {
 			data_ = std::move(col.data());
 			size_ = std::move(col.size());
 			return *this;
 		}	
 
+		// ----------------------
+		// Manipulation Operators
+		// ----------------------
+
+		/*! \brief Addition to df_column.
+		 *	Adds x to self if the \c x.type() == \c self.type()  and \c x.size() == \c self.size().
+		 *  \param lvalue reference to a df_column.
+		 */
 		df_column operator += (df_column& x) {
 			(*this) = (*this) + x;
 			return *this;
 		}
+
+		/*! \brief Subtraction from df_column.
+		 *	Subtracts x from self if the \c x.type() == \c self.type()  and \c x.size() == \c self.size().
+		 *  \param lvalue reference to a df_column.
+		 */
 		df_column operator -= (df_column& x) {
 			return (*this) = (*this) - x;
 		}
+
+		/*! \brief Addition to df_column.
+		 *	Adds val to self if the \c x.type() == T.
+		 *  \param const lvalue reference to a value.
+		 */
 		template < class T > 
 		df_column operator += (const T& val) {
 			return (*this) = (*this) + val;
 		}
+
+		/*! \brief Subtraction from df_column.
+		 *	Subtracts val from self if the \c x.type() == T.
+		 *  \param const lvalue reference to a value.
+		 */
 		template < class T > 
 		df_column operator -= (const T& val) {
 			return (*this) = (*this) - val;
 		}
+
+		/*! \brief Multiplication to df_column.
+		 *	Multiplies val to self if the \c x.type() == T.
+		 *  \param const lvalue reference to a value.
+		 */
 		template < class T > 
 		df_column operator *= (const T& val) {
 			return (*this) = (*this) * val;
 		}
 
-		/// Storage Accessors
+		// ---------
+		// Accessors
+		// ---------
+		
+		//! \brief Returns the size of the column vector.
 		const size_t size() const {
 			return size_;
 		}	
-		const boost::variant < COLUMN_TYPES > data() const {
-			return data_;
-		} 
+
+		//! \brief Returns the 0 - based index of the type of column vector in boost::variant < COLUMN_TYPES >. 
 		const short type() const {
 			return data_.which();
 		}
+		
+		// -----------------
+		// Storage Accessors
+		// -----------------
 
+		//! \brief Returns the data_ variable.
+		const boost::variant < COLUMN_TYPES > data() const {
+			return data_;
+		} 
+
+		/*! \brief Returns the df_column as vector<T>.
+ 		 *  T should be same as the type of the df_column.
+ 		 */
 		template < class T >
 		BOOST_UBLAS_INLINE 
 		vector<T>& get() {
 			return boost::get<vector<T>>(data_); 
 		}
 
+		/*! \brief Returns the i-th element of df_column.
+ 		 *  T should be same as the type of the df_column.
+ 		 */
 		template < class T > 
 		const T eval(const size_t& i) const {
 			return get<T> (i);
 		}
 
+		//! \brief Print the contents of df_column in a single line.
 		void print() {
 			boost::apply_visitor (print_data_frame_column{}, data_);
 		}
 		
 	private:
+		//! \brief Stores the data in df_column. 
 		boost::variant < COLUMN_TYPES > data_;
+		//! \brief Stores the size of the column vector.
 		size_t size_;
 	};
 
@@ -595,7 +699,6 @@ namespace boost { namespace numeric { namespace ublas {
 	df_column operator * (const T& val, df_column& a) {
 		return a * val;
 	}
-
 	bool operator == (df_column& y, df_column& x) {
 		if (y.type() != x.type()) {
 			return false;
@@ -673,7 +776,6 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 		return true;
 	}
-
 	bool operator != (df_column& y, df_column& x) {
 		return !(x == y);
 	}

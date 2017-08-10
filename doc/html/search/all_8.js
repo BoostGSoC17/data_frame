@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['same_5fheader',['same_header',['../structsame__header.html',1,'']]],
-  ['size',['size',['../classboost_1_1numeric_1_1ublas_1_1df__column.html#ae604a0d9f7118a91615df1bcb4a7f823',1,'boost::numeric::ublas::df_column']]]
+  ['print',['print',['../classboost_1_1numeric_1_1ublas_1_1df__column.html#abacd7ce00ef0a7e3d89e099fefa2ba64',1,'boost::numeric::ublas::df_column']]],
+  ['print_5fdata_5fframe_5fcolumn',['print_data_frame_column',['../classboost_1_1numeric_1_1ublas_1_1print__data__frame__column.html',1,'boost::numeric::ublas']]]
 ];

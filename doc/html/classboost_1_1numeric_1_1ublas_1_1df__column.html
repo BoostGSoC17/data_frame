@@ -94,102 +94,556 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">boost::numeric::ublas::df_column Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents the column of a dataframe.  
+ <a href="classboost_1_1numeric_1_1ublas_1_1df__column.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="df_8hpp_source.html">df.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a823796ec0d98231f2ee9b086b2c61939"><td class="memTemplParams" colspan="2"><a class="anchor" id="a823796ec0d98231f2ee9b086b2c61939"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a823796ec0d98231f2ee9b086b2c61939"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a823796ec0d98231f2ee9b086b2c61939">df_column</a> (const vector&lt; T &gt; &amp;data)</td></tr>
-<tr class="memdesc:a823796ec0d98231f2ee9b086b2c61939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Constructor. <br /></td></tr>
+<tr class="memitem:a73d49d7f0ad1d1205cfecfa8eec795e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73d49d7f0ad1d1205cfecfa8eec795e8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a73d49d7f0ad1d1205cfecfa8eec795e8">df_column</a> ()</td></tr>
+<tr class="memdesc:a73d49d7f0ad1d1205cfecfa8eec795e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. By default <code><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#ae604a0d9f7118a91615df1bcb4a7f823" title="Returns the size of the column vector. ">size()</a></code> == 0. type of the column is unset. <br /></td></tr>
+<tr class="separator:a73d49d7f0ad1d1205cfecfa8eec795e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a823796ec0d98231f2ee9b086b2c61939"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a823796ec0d98231f2ee9b086b2c61939"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a823796ec0d98231f2ee9b086b2c61939">df_column</a> (const vector&lt; T &gt; &amp;<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a4affb80868ab80aabf96f0be2fd613c7">data</a>)</td></tr>
+<tr class="memdesc:a823796ec0d98231f2ee9b086b2c61939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the vector into data_, T becomes the type of the column.  <a href="#a823796ec0d98231f2ee9b086b2c61939">More...</a><br /></td></tr>
 <tr class="separator:a823796ec0d98231f2ee9b086b2c61939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09d5a761b2f2ea3c15557a76e66040f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09d5a761b2f2ea3c15557a76e66040f3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>df_column</b> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memitem:a09d5a761b2f2ea3c15557a76e66040f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a09d5a761b2f2ea3c15557a76e66040f3">df_column</a> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memdesc:a09d5a761b2f2ea3c15557a76e66040f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self.  <a href="#a09d5a761b2f2ea3c15557a76e66040f3">More...</a><br /></td></tr>
 <tr class="separator:a09d5a761b2f2ea3c15557a76e66040f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="memTemplParams" colspan="2"><a class="anchor" id="a41b4b0c0a2046d30ef669ba21bace5e4"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a41b4b0c0a2046d30ef669ba21bace5e4">df_column</a> (const vector&lt; T &gt; &amp;&amp;data)</td></tr>
-<tr class="memdesc:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Constructor. <br /></td></tr>
+<tr class="memitem:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a41b4b0c0a2046d30ef669ba21bace5e4">df_column</a> (const vector&lt; T &gt; &amp;&amp;<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a4affb80868ab80aabf96f0be2fd613c7">data</a>)</td></tr>
+<tr class="memdesc:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Constructor of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the vector into data_, T becomes the type of the column.  <a href="#a41b4b0c0a2046d30ef669ba21bace5e4">More...</a><br /></td></tr>
 <tr class="separator:a41b4b0c0a2046d30ef669ba21bace5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f661b526d05184e6ff2f1660725040a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f661b526d05184e6ff2f1660725040a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>df_column</b> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;col)</td></tr>
+<tr class="memitem:a7f661b526d05184e6ff2f1660725040a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a7f661b526d05184e6ff2f1660725040a">df_column</a> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;col)</td></tr>
+<tr class="memdesc:a7f661b526d05184e6ff2f1660725040a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the col into self.  <a href="#a7f661b526d05184e6ff2f1660725040a">More...</a><br /></td></tr>
 <tr class="separator:a7f661b526d05184e6ff2f1660725040a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a528d33691118789591a55ca3c603e9fc"><td class="memTemplParams" colspan="2"><a class="anchor" id="a528d33691118789591a55ca3c603e9fc"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a528d33691118789591a55ca3c603e9fc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a528d33691118789591a55ca3c603e9fc">operator=</a> (const vector&lt; T &gt; &amp;data)</td></tr>
-<tr class="memdesc:a528d33691118789591a55ca3c603e9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Assignment Operator. <br /></td></tr>
+<tr class="memitem:a64f7cfd401d7f3706dd1e5974c3a270b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64f7cfd401d7f3706dd1e5974c3a270b"></a>
+BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a64f7cfd401d7f3706dd1e5974c3a270b">~df_column</a> ()</td></tr>
+<tr class="memdesc:a64f7cfd401d7f3706dd1e5974c3a270b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. <br /></td></tr>
+<tr class="separator:a64f7cfd401d7f3706dd1e5974c3a270b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a528d33691118789591a55ca3c603e9fc"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a528d33691118789591a55ca3c603e9fc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a528d33691118789591a55ca3c603e9fc">operator=</a> (const vector&lt; T &gt; &amp;<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a4affb80868ab80aabf96f0be2fd613c7">data</a>)</td></tr>
+<tr class="memdesc:a528d33691118789591a55ca3c603e9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Assignment Operator of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the vector into data_, T becomes the type of the column.  <a href="#a528d33691118789591a55ca3c603e9fc">More...</a><br /></td></tr>
 <tr class="separator:a528d33691118789591a55ca3c603e9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a692deb6563cbf93c09a1269c20d6d7c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a692deb6563cbf93c09a1269c20d6d7c6"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memitem:a692deb6563cbf93c09a1269c20d6d7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a692deb6563cbf93c09a1269c20d6d7c6">operator=</a> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memdesc:a692deb6563cbf93c09a1269c20d6d7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Assignment operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self.  <a href="#a692deb6563cbf93c09a1269c20d6d7c6">More...</a><br /></td></tr>
 <tr class="separator:a692deb6563cbf93c09a1269c20d6d7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69525a0546149c9c5ef3526639423b90"><td class="memTemplParams" colspan="2"><a class="anchor" id="a69525a0546149c9c5ef3526639423b90"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a69525a0546149c9c5ef3526639423b90"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a69525a0546149c9c5ef3526639423b90">operator=</a> (const vector&lt; T &gt; &amp;&amp;data)</td></tr>
-<tr class="memdesc:a69525a0546149c9c5ef3526639423b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Assignment Operator. <br /></td></tr>
+<tr class="memitem:a69525a0546149c9c5ef3526639423b90"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a69525a0546149c9c5ef3526639423b90"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a69525a0546149c9c5ef3526639423b90">operator=</a> (const vector&lt; T &gt; &amp;&amp;<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a4affb80868ab80aabf96f0be2fd613c7">data</a>)</td></tr>
+<tr class="memdesc:a69525a0546149c9c5ef3526639423b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Assignemnt Operator of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the vector into data_, T becomes the type of the column.  <a href="#a69525a0546149c9c5ef3526639423b90">More...</a><br /></td></tr>
 <tr class="separator:a69525a0546149c9c5ef3526639423b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10798ea9fa787b7172a54379ce956984"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10798ea9fa787b7172a54379ce956984"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;col)</td></tr>
+<tr class="memitem:a10798ea9fa787b7172a54379ce956984"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a10798ea9fa787b7172a54379ce956984">operator=</a> (const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;col)</td></tr>
+<tr class="memdesc:a10798ea9fa787b7172a54379ce956984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move Assignment operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self.  <a href="#a10798ea9fa787b7172a54379ce956984">More...</a><br /></td></tr>
 <tr class="separator:a10798ea9fa787b7172a54379ce956984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07f20e236c022eebc286468ef8653fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07f20e236c022eebc286468ef8653fe7"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;x)</td></tr>
+<tr class="memitem:a07f20e236c022eebc286468ef8653fe7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a07f20e236c022eebc286468ef8653fe7">operator+=</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;x)</td></tr>
+<tr class="memdesc:a07f20e236c022eebc286468ef8653fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addition to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Adds x to self if the <code>x.type()</code> == <code>self.type()</code> and <code>x.size()</code> == <code>self.size()</code>.  <a href="#a07f20e236c022eebc286468ef8653fe7">More...</a><br /></td></tr>
 <tr class="separator:a07f20e236c022eebc286468ef8653fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfbc15a4704852ab8b8cafea6f331d36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfbc15a4704852ab8b8cafea6f331d36"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;x)</td></tr>
+<tr class="memitem:adfbc15a4704852ab8b8cafea6f331d36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#adfbc15a4704852ab8b8cafea6f331d36">operator-=</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;x)</td></tr>
+<tr class="memdesc:adfbc15a4704852ab8b8cafea6f331d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtraction from <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Subtracts x from self if the <code>x.type()</code> == <code>self.type()</code> and <code>x.size()</code> == <code>self.size()</code>.  <a href="#adfbc15a4704852ab8b8cafea6f331d36">More...</a><br /></td></tr>
 <tr class="separator:adfbc15a4704852ab8b8cafea6f331d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae0ea24e50a5b0bab6a1769843e4e8a31"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (const T &amp;val)</td></tr>
+<tr class="memitem:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#ae0ea24e50a5b0bab6a1769843e4e8a31">operator+=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addition to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Adds val to self if the <code>x.type()</code> == T.  <a href="#ae0ea24e50a5b0bab6a1769843e4e8a31">More...</a><br /></td></tr>
 <tr class="separator:ae0ea24e50a5b0bab6a1769843e4e8a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1538077a1e758cd91af28532fba2e12"><td class="memTemplParams" colspan="2"><a class="anchor" id="af1538077a1e758cd91af28532fba2e12"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:af1538077a1e758cd91af28532fba2e12"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-=</b> (const T &amp;val)</td></tr>
+<tr class="memitem:af1538077a1e758cd91af28532fba2e12"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af1538077a1e758cd91af28532fba2e12"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#af1538077a1e758cd91af28532fba2e12">operator-=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:af1538077a1e758cd91af28532fba2e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtraction from <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Subtracts val from self if the <code>x.type()</code> == T.  <a href="#af1538077a1e758cd91af28532fba2e12">More...</a><br /></td></tr>
 <tr class="separator:af1538077a1e758cd91af28532fba2e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89a456bc73862053d18385ef49b9fd46"><td class="memTemplParams" colspan="2"><a class="anchor" id="a89a456bc73862053d18385ef49b9fd46"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a89a456bc73862053d18385ef49b9fd46"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*=</b> (const T &amp;val)</td></tr>
+<tr class="memitem:a89a456bc73862053d18385ef49b9fd46"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a89a456bc73862053d18385ef49b9fd46"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a89a456bc73862053d18385ef49b9fd46">operator*=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:a89a456bc73862053d18385ef49b9fd46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Multiplies val to self if the <code>x.type()</code> == T.  <a href="#a89a456bc73862053d18385ef49b9fd46">More...</a><br /></td></tr>
 <tr class="separator:a89a456bc73862053d18385ef49b9fd46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae604a0d9f7118a91615df1bcb4a7f823"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae604a0d9f7118a91615df1bcb4a7f823"></a>
 const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#ae604a0d9f7118a91615df1bcb4a7f823">size</a> () const </td></tr>
-<tr class="memdesc:ae604a0d9f7118a91615df1bcb4a7f823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage Accessors. <br /></td></tr>
+<tr class="memdesc:ae604a0d9f7118a91615df1bcb4a7f823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the column vector. <br /></td></tr>
 <tr class="separator:ae604a0d9f7118a91615df1bcb4a7f823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4affb80868ab80aabf96f0be2fd613c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4affb80868ab80aabf96f0be2fd613c7"></a>
-const boost::variant&lt; COLUMN_TYPES &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () const </td></tr>
-<tr class="separator:a4affb80868ab80aabf96f0be2fd613c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cc0ab94af87b956eb75ea159ad76ea6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cc0ab94af87b956eb75ea159ad76ea6"></a>
-const short&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> () const </td></tr>
+const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a0cc0ab94af87b956eb75ea159ad76ea6">type</a> () const </td></tr>
+<tr class="memdesc:a0cc0ab94af87b956eb75ea159ad76ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the 0 - based index of the type of column vector in boost::variant &lt; COLUMN_TYPES &gt;. <br /></td></tr>
 <tr class="separator:a0cc0ab94af87b956eb75ea159ad76ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4affb80868ab80aabf96f0be2fd613c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4affb80868ab80aabf96f0be2fd613c7"></a>
+const boost::variant&lt; COLUMN_TYPES &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a4affb80868ab80aabf96f0be2fd613c7">data</a> () const </td></tr>
+<tr class="memdesc:a4affb80868ab80aabf96f0be2fd613c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the data_ variable. <br /></td></tr>
+<tr class="separator:a4affb80868ab80aabf96f0be2fd613c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a166ffc39d030e2773661bd24f79f66c3"><td class="memTemplParams" colspan="2"><a class="anchor" id="a166ffc39d030e2773661bd24f79f66c3"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a166ffc39d030e2773661bd24f79f66c3"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> ()</td></tr>
+<tr class="memitem:a166ffc39d030e2773661bd24f79f66c3"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a166ffc39d030e2773661bd24f79f66c3">get</a> ()</td></tr>
+<tr class="memdesc:a166ffc39d030e2773661bd24f79f66c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a> as vector&lt;T&gt;. T should be same as the type of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. <br /></td></tr>
 <tr class="separator:a166ffc39d030e2773661bd24f79f66c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0ef5ad76e5ac4b096c70a8c0bd29fbf"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad0ef5ad76e5ac4b096c70a8c0bd29fbf"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad0ef5ad76e5ac4b096c70a8c0bd29fbf"><td class="memTemplItemLeft" align="right" valign="top">const T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>eval</b> (const size_t &amp;i) const </td></tr>
+<tr class="memitem:ad0ef5ad76e5ac4b096c70a8c0bd29fbf"><td class="memTemplItemLeft" align="right" valign="top">const T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#ad0ef5ad76e5ac4b096c70a8c0bd29fbf">eval</a> (const size_t &amp;i) const </td></tr>
+<tr class="memdesc:ad0ef5ad76e5ac4b096c70a8c0bd29fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th element of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. T should be same as the type of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. <br /></td></tr>
 <tr class="separator:ad0ef5ad76e5ac4b096c70a8c0bd29fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abacd7ce00ef0a7e3d89e099fefa2ba64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abacd7ce00ef0a7e3d89e099fefa2ba64"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#abacd7ce00ef0a7e3d89e099fefa2ba64">print</a> ()</td></tr>
+<tr class="memdesc:abacd7ce00ef0a7e3d89e099fefa2ba64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the contents of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a> in a single line. <br /></td></tr>
 <tr class="separator:abacd7ce00ef0a7e3d89e099fefa2ba64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:af49a160a88867a3857fa62054750742d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af49a160a88867a3857fa62054750742d"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;b)</td></tr>
+<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#af49a160a88867a3857fa62054750742d">operator+</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;b)</td></tr>
+<tr class="memdesc:af49a160a88867a3857fa62054750742d"><td class="mdescLeft">&#160;</td><td class="mdescRight">add 2 df_columns of same type. <br /></td></tr>
 <tr class="separator:af49a160a88867a3857fa62054750742d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bffb7e6810852b8f01d0794d85e0298"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bffb7e6810852b8f01d0794d85e0298"></a>
-<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;b)</td></tr>
+<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a8bffb7e6810852b8f01d0794d85e0298">operator-</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;b)</td></tr>
+<tr class="memdesc:a8bffb7e6810852b8f01d0794d85e0298"><td class="mdescLeft">&#160;</td><td class="mdescRight">subtract 2 df_columns of same type. <br /></td></tr>
 <tr class="separator:a8bffb7e6810852b8f01d0794d85e0298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a64459c6a2aa15589c8c729341d3760"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5a64459c6a2aa15589c8c729341d3760"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a5a64459c6a2aa15589c8c729341d3760"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memitem:a5a64459c6a2aa15589c8c729341d3760"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a5a64459c6a2aa15589c8c729341d3760">operator+</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memdesc:a5a64459c6a2aa15589c8c729341d3760"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a constant value val to a column of same type. <br /></td></tr>
 <tr class="separator:a5a64459c6a2aa15589c8c729341d3760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6161de113fac68f0aa29fd02411ef024"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6161de113fac68f0aa29fd02411ef024"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a6161de113fac68f0aa29fd02411ef024"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memitem:a6161de113fac68f0aa29fd02411ef024"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#a6161de113fac68f0aa29fd02411ef024">operator-</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memdesc:a6161de113fac68f0aa29fd02411ef024"><td class="mdescLeft">&#160;</td><td class="mdescRight">subtract a constant value val from a column of same type. <br /></td></tr>
 <tr class="separator:a6161de113fac68f0aa29fd02411ef024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affcb489c3bc406669e8b88b3490fdec0"><td class="memTemplParams" colspan="2"><a class="anchor" id="affcb489c3bc406669e8b88b3490fdec0"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:affcb489c3bc406669e8b88b3490fdec0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memitem:affcb489c3bc406669e8b88b3490fdec0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html#affcb489c3bc406669e8b88b3490fdec0">operator*</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;a, const T &amp;val)</td></tr>
+<tr class="memdesc:affcb489c3bc406669e8b88b3490fdec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">multiply a constant value val to a column of same type. <br /></td></tr>
 <tr class="separator:affcb489c3bc406669e8b88b3490fdec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the column of a dataframe. </p>
+<p>Internally represented by boost::variant &lt; COLUMN_TYPES &gt; . Allowed types are: int, double, char, std::string...... (specified in INNER_TYPE). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a823796ec0d98231f2ee9b086b2c61939"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::numeric::ublas::df_column::df_column </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the vector into data_, T becomes the type of the column. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a vector of some type T. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a09d5a761b2f2ea3c15557a76e66040f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::numeric::ublas::df_column::df_column </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a41b4b0c0a2046d30ef669ba21bace5e4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::numeric::ublas::df_column::df_column </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; T &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move Constructor of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the vector into data_, T becomes the type of the column. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rvalue</td><td>reference to a vector &lt;T&gt;, T: type of vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7f661b526d05184e6ff2f1660725040a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::numeric::ublas::df_column::df_column </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the col into self. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rvalue</td><td>reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a89a456bc73862053d18385ef49b9fd46"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> boost::numeric::ublas::df_column::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiplication to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Multiplies val to self if the <code>x.type()</code> == T. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a07f20e236c022eebc286468ef8653fe7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> boost::numeric::ublas::df_column::operator+= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addition to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Adds x to self if the <code>x.type()</code> == <code>self.type()</code> and <code>x.size()</code> == <code>self.size()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lvalue</td><td>reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae0ea24e50a5b0bab6a1769843e4e8a31"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> boost::numeric::ublas::df_column::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addition to <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Adds val to self if the <code>x.type()</code> == T. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adfbc15a4704852ab8b8cafea6f331d36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> boost::numeric::ublas::df_column::operator-= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subtraction from <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Subtracts x from self if the <code>x.type()</code> == <code>self.type()</code> and <code>x.size()</code> == <code>self.size()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lvalue</td><td>reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af1538077a1e758cd91af28532fba2e12"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> boost::numeric::ublas::df_column::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subtraction from <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Subtracts val from self if the <code>x.type()</code> == T. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a528d33691118789591a55ca3c603e9fc"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&amp; boost::numeric::ublas::df_column::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy Assignment Operator of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the vector into data_, T becomes the type of the column. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a vector &lt;T&gt;, T: type of vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a692deb6563cbf93c09a1269c20d6d7c6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&amp; boost::numeric::ublas::df_column::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy Assignment operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>lvalue reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a69525a0546149c9c5ef3526639423b90"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&amp; boost::numeric::ublas::df_column::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; T &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move Assignemnt Operator of a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Moves the vector into data_, T becomes the type of the column. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rvalue</td><td>reference to a vector &lt;T&gt;, T: type of vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a10798ea9fa787b7172a54379ce956984"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&amp; boost::numeric::ublas::df_column::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move Assignment operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. Copies the col into self. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rvalue</td><td>reference to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/rishabh/GSoC/dataframe/include/boost/numeric/ublas/FINAL_VERSIONS/<a class="el" href="df_8hpp_source.html">df.hpp</a></li>
 </ul>
