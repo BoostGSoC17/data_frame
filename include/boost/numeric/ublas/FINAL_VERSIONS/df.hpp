@@ -1003,7 +1003,7 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
-		/* THIS IS AMBIGUOS */ 
+		/* THIS IS AMBIGUOS: SHOULD I REMOVE THIS??*/ 
 		/*! \brief add_column operator of data_frame.
 		 *  adds column at the end of the data_frame columns.  
 		 *  \param column header
@@ -1036,34 +1036,49 @@ namespace boost { namespace numeric { namespace ublas {
 				data_ [column_headers_(i)].print();
 			}
 		}
-																	
+											
+		// -----------------
+		// Storage Accessors
+		// -----------------
+
+		//! \brief Returns the headers of data_frame as vector<std::string>.
 		BOOST_UBLAS_INLINE
 		vector<std::string>& headers() {
 			return column_headers_;
 		}
 
+		// ------------------------
+		// Random Access Containers
+		// ------------------------
+
+		//! \brief Returns the no. of columns in data_frame.
 		BOOST_UBLAS_INLINE
 		const size_t ncol() const {
 			return ncol_;
 		}
 
+		//! \brief Returns the no. of rows in data_frame.
 		BOOST_UBLAS_INLINE
 		const size_t nrow() const {
 			return nrow_;
 		}
 
+		//! \brief Returns the column header at i-th index.
 		BOOST_UBLAS_INLINE
 		const std::string colname(const size_t& i) {
 			return column_headers_(i);
 		}
 
 	private:
+		//! \brief Stores data.
 		std::map < std::string, df_column > data_;
+		//! \brief Stores sizes.
 		size_t ncol_, nrow_;
+		//! \brief Stores column headers.
 		vector < std::string> column_headers_;
 		
-		/// \returns the default column name
-		/// \used when the column name is not set by the user
+		//! \brief Returns the default column name.
+		//! used when the column name is not set by the user.s
 		BOOST_UBLAS_INLINE
 		std::string default_name(size_t i) {
 			return ("Col-" + boost::lexical_cast<std::string>(i));
@@ -1186,7 +1201,8 @@ namespace boost { namespace numeric { namespace ublas {
 	bool operator != (data_frame& a, data_frame& b) {
 		return !(a == b);
 	}
-	/// \ The current proxies are for columns of a data_frame.
+
+	
 	class data_frame_range {
 	public:
 		typedef ublas::vector<std::string>::size_type size_type;

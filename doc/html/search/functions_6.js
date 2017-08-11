@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['print',['print',['../classboost_1_1numeric_1_1ublas_1_1df__column.html#abacd7ce00ef0a7e3d89e099fefa2ba64',1,'boost::numeric::ublas::df_column::print()'],['../classboost_1_1numeric_1_1ublas_1_1data__frame.html#a2aae0aa66a1eadc3301b40cd104596c1',1,'boost::numeric::ublas::data_frame::print()']]]
+  ['ncol',['ncol',['../classboost_1_1numeric_1_1ublas_1_1data__frame.html#adf7817e6cf0dcc7fa6d892a351b5c9a8',1,'boost::numeric::ublas::data_frame']]],
+  ['nrow',['nrow',['../classboost_1_1numeric_1_1ublas_1_1data__frame.html#a7f773294cbd41d890b5469e2a85abd32',1,'boost::numeric::ublas::data_frame']]]
 ];
