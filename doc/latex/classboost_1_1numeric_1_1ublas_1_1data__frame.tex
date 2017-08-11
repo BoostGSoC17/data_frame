@@ -1,38 +1,53 @@
 \hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame}{}\section{boost\+:\+:numeric\+:\+:ublas\+:\+:data\+\_\+frame Class Reference}
 \label{classboost_1_1numeric_1_1ublas_1_1data__frame}\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
+
+
+Represents a dataframe.  
+
+
+
+
+{\ttfamily \#include $<$df.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a1fe0c252f16d65762717c1da13432e8f}{data\+\_\+frame} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a1fe0c252f16d65762717c1da13432e8f}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a1fe0c252f16d65762717c1da13432e8f}
 
-\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. By default {\ttfamily nrow()} == 0 and ncol() == 0. type of the columns is unset. \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a1cfb2a3083283f2aceff85649120ce61}{data\+\_\+frame} (const vector$<$ std\+::string $>$ \&headers, const vector$<$ \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} $>$ \&data)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a5ab7148ee2440c33f10b59c466eba998}{$\sim$data\+\_\+frame} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a5ab7148ee2440c33f10b59c466eba998}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a5ab7148ee2440c33f10b59c466eba998}
+
+\begin{DoxyCompactList}\small\item\em Destructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a7bc6a73935b5d7f0dbdfffdcdae841dd}{operator\mbox{[}$\,$\mbox{]}} (const std\+::string \&header)
-\item 
+\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. creates the column (with the given header) if doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a58496ee7ebcb0c67457b2c0c476ecec4}{operator\mbox{[}$\,$\mbox{]}} (const size\+\_\+t \&i)
-\item 
-{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$ T $>$ \& {\bfseries column} (const std\+::string \&header)\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a261a6b02e41c2d5c3e17c7a91c5cb2d5}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a261a6b02e41c2d5c3e17c7a91c5cb2d5}
-
-\item 
-{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$ T $>$ \& {\bfseries column} (const size\+\_\+t \&i)\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_ac7a4a31485c55e9b3254e1e62ea4c7a8}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_ac7a4a31485c55e9b3254e1e62ea4c7a8}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. creates the column (if index is valid and non-\/existent) if doesn\textquotesingle{}t exist. valid-\/index == {\ttfamily ncol()} \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$ T $>$ \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a261a6b02e41c2d5c3e17c7a91c5cb2d5}{column} (const std\+::string \&header)
+\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$ T $>$ \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_ac7a4a31485c55e9b3254e1e62ea4c7a8}{column} (const size\+\_\+t \&i)
+\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a751e376399080f1c09ddf8ad1e11e478}{erase\+\_\+column} (const size\+\_\+t i)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em erase\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. erase the column({\ttfamily i}) and restructure the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{is valid so delete the column\mbox{[}\$name\mbox{]}}
 \label{_amgrpc6b17b382216a655e548a62040c929a3}%
- column\mbox{[}\$name\mbox{]} \begin{DoxyCompactItemize}
-\item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \& {\bfseries add\+\_\+column} (const std\+::string \&header, const \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \&col)\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a8f67aa27f8f340e8bfd42ce0f7713be0}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a8f67aa27f8f340e8bfd42ce0f7713be0}
+erase\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. erase the column({\ttfamily header}) and restructure the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}.
 
-\item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \& {\bfseries add\+\_\+column} (const size\+\_\+t i, const \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \&col)\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a487209ed44384e2999d6a407160276e6}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a487209ed44384e2999d6a407160276e6}
 
+\begin{DoxyParams}{Parameters}
+{\em column} & header to be accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyCompactItemize}
 \item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void {\bfseries print} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a2aae0aa66a1eadc3301b40cd104596c1}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a2aae0aa66a1eadc3301b40cd104596c1}
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a8f67aa27f8f340e8bfd42ce0f7713be0}{add\+\_\+column} (const std\+::string \&header, const \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \&col)
+\begin{DoxyCompactList}\small\item\em add\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. adds column at the end of the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} columns. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a487209ed44384e2999d6a407160276e6}{add\+\_\+column} (const size\+\_\+t i, const \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \&col)
+\begin{DoxyCompactList}\small\item\em add\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. adds column at the end of the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} columns. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame_a2aae0aa66a1eadc3301b40cd104596c1}{print} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a2aae0aa66a1eadc3301b40cd104596c1}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a2aae0aa66a1eadc3301b40cd104596c1}
 
-\item 
+\begin{DoxyCompactList}\small\item\em prints the data in the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. Print Format\+: \mbox{[}column header\mbox{]}\+: data(0) data(1) ....... \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$ std\+::string $>$ \& {\bfseries headers} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_aff5e603e988e7b710a3df6104d706c12}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_aff5e603e988e7b710a3df6104d706c12}
 
 \item 
@@ -47,6 +62,11 @@ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE const std\+::string {\b
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Represents a dataframe. 
+
+Internally represented as map $<$ string, \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} $>$ and a vector $<$ string$>$ to store the headers. Allowed types are\+: int, double, char, std\+::string...... (specified in I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE). 
+
 \subsection{Constructor \& Destructor Documentation}
 \index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!data\+\_\+frame@{data\+\_\+frame}}
 \index{data\+\_\+frame@{data\+\_\+frame}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
@@ -56,16 +76,98 @@ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE const std\+::string {\b
 \item[{const vector$<$ {\bf df\+\_\+column} $>$ \&}]{data}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a1cfb2a3083283f2aceff85649120ce61}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a1cfb2a3083283f2aceff85649120ce61}
-\+: column header data\+\_\+ in the form of columns 
-\begin{DoxyExceptions}{Exceptions}
-{\em for} & unequal headers and columns\\
+
+
+Constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
 \hline
-{\em for} & unequal no. of rows in \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} columns\\
-\hline
-\end{DoxyExceptions}
-the data\+\_\+ members 
+\end{DoxyParams}
+
 
 \subsection{Member Function Documentation}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!add\+\_\+column@{add\+\_\+column}}
+\index{add\+\_\+column@{add\+\_\+column}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
+\subsubsection[{\texorpdfstring{add\+\_\+column(const std\+::string \&header, const df\+\_\+column \&col)}{add_column(const std::string &header, const df_column &col)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::add\+\_\+column (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{header, }
+\item[{const {\bf df\+\_\+column} \&}]{col}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a8f67aa27f8f340e8bfd42ce0f7713be0}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a8f67aa27f8f340e8bfd42ce0f7713be0}
+
+
+add\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. adds column at the end of the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & header \\
+\hline
+{\em const} & lvalue reference to the column data in the form of \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column}. \\
+\hline
+\end{DoxyParams}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!add\+\_\+column@{add\+\_\+column}}
+\index{add\+\_\+column@{add\+\_\+column}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
+\subsubsection[{\texorpdfstring{add\+\_\+column(const size\+\_\+t i, const df\+\_\+column \&col)}{add_column(const size_t i, const df_column &col)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::add\+\_\+column (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t}]{i, }
+\item[{const {\bf df\+\_\+column} \&}]{col}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a487209ed44384e2999d6a407160276e6}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a487209ed44384e2999d6a407160276e6}
+
+
+add\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. adds column at the end of the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & header \\
+\hline
+{\em const} & lvalue reference to the column data in the form of \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column}. \\
+\hline
+\end{DoxyParams}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!column@{column}}
+\index{column@{column}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
+\subsubsection[{\texorpdfstring{column(const std\+::string \&header)}{column(const std::string &header)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$T$>$\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::column (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{header}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a261a6b02e41c2d5c3e17c7a91c5cb2d5}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a261a6b02e41c2d5c3e17c7a91c5cb2d5}
+
+
+Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+header} & to be accessed. \\
+\hline
+{\em T(template} & parameter)\+: type of the column data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+T$>$ version of the column. 
+\end{DoxyReturn}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!column@{column}}
+\index{column@{column}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
+\subsubsection[{\texorpdfstring{column(const size\+\_\+t \&i)}{column(const size_t &i)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE vector$<$T$>$\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::column (
+\begin{DoxyParamCaption}
+\item[{const size\+\_\+t \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_ac7a4a31485c55e9b3254e1e62ea4c7a8}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_ac7a4a31485c55e9b3254e1e62ea4c7a8}
+
+
+Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & index to be accessed. \\
+\hline
+{\em T(template} & parameter)\+: type of the column data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+T$>$ version of the column. 
+\end{DoxyReturn}
 \index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!erase\+\_\+column@{erase\+\_\+column}}
 \index{erase\+\_\+column@{erase\+\_\+column}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
 \subsubsection[{\texorpdfstring{erase\+\_\+column(const size\+\_\+t i)}{erase_column(const size_t i)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void boost\+::numeric\+::ublas\+::data\+\_\+frame\+::erase\+\_\+column (
@@ -73,27 +175,54 @@ the data\+\_\+ members
 \item[{const size\+\_\+t}]{i}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a751e376399080f1c09ddf8ad1e11e478}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a751e376399080f1c09ddf8ad1e11e478}
-column\mbox{[}\$i\mbox{]} 0-\/based indexing is valid so delete the column\mbox{[}\$i\mbox{]} \index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+
+
+erase\+\_\+column operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. erase the column({\ttfamily i}) and restructure the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & index to be erased. \\
+\hline
+\end{DoxyParams}
+is valid so delete the column\mbox{[}\$i\mbox{]} \index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
 \subsubsection[{\texorpdfstring{operator[](const std\+::string \&header)}{operator[](const std::string &header)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf df\+\_\+column}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::operator\mbox{[}$\,$\mbox{]} (
 \begin{DoxyParamCaption}
 \item[{const std\+::string \&}]{header}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a7bc6a73935b5d7f0dbdfffdcdae841dd}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a7bc6a73935b5d7f0dbdfffdcdae841dd}
--\/-\/-\/-\/-\/-\/-\/--------- /// column accessors /// -\/-\/-\/-\/-\/-\/-\/--------- /// column name already exists \begin{DoxyReturn}{Returns}
-the particular column
+
+
+Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. creates the column (with the given header) if doesn\textquotesingle{}t exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column\+\_\+header} & to be accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Requested \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column}. 
 \end{DoxyReturn}
-the column (will be furthur used by = operator in \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column}) \index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!boost\+::numeric\+::ublas\+::data\+\_\+frame@{boost\+::numeric\+::ublas\+::data\+\_\+frame}}
 \subsubsection[{\texorpdfstring{operator[](const size\+\_\+t \&i)}{operator[](const size_t &i)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf df\+\_\+column}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+::operator\mbox{[}$\,$\mbox{]} (
 \begin{DoxyParamCaption}
 \item[{const size\+\_\+t \&}]{i}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame_a58496ee7ebcb0c67457b2c0c476ecec4}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame_a58496ee7ebcb0c67457b2c0c476ecec4}
-column name already exists \begin{DoxyReturn}{Returns}
-the particular column
+
+
+Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. creates the column (if index is valid and non-\/existent) if doesn\textquotesingle{}t exist. valid-\/index == {\ttfamily ncol()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column-\/index} & to be accessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Requested \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column}. 
 \end{DoxyReturn}
-name if no name is set by default 
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

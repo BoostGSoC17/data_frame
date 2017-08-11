@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print',['print',['../classboost_1_1numeric_1_1ublas_1_1df__column.html#abacd7ce00ef0a7e3d89e099fefa2ba64',1,'boost::numeric::ublas::df_column']]]
+  ['get',['get',['../classboost_1_1numeric_1_1ublas_1_1df__column.html#a166ffc39d030e2773661bd24f79f66c3',1,'boost::numeric::ublas::df_column']]]
 ];

@@ -790,24 +790,32 @@ namespace boost { namespace numeric { namespace ublas {
 	    return;
 	}
 
+	//! Represents a dataframe.
+	/*! Internally represented as map < string, df_column > and a vector < string> to store the headers.
+	 *	Allowed types are: int, double, char, std::string...... (specified in INNER_TYPE).
+	 */
 	class data_frame {
 	public:
+		
 		// construction and destruction
 		
-		/// \default constructor
+		/*! \brief Constructor of data_frame.
+		 *  By default \c nrow() == 0 and ncol() == 0.
+		 *  type of the columns is unset.
+		 */ 
 		BOOST_UBLAS_INLINE 
 		data_frame () :
 			ncol_ (0),
 			nrow_ (0) {}
 
-		/// \params: 	
-		/// 	column header
-		/// 	data_ in the form of columns
+		/*! \brief Constructor of data_frame.
+		 *  \param: const lvalue reference to headers(vector<std::string>).
+		 *  \param: const lvalue reference to data(vector<df_column>).
+		 */ 
 		BOOST_UBLAS_INLINE 
 		data_frame (const vector<std::string>& headers, const vector<df_column>& data) {
 			try {
-				// std::cout << "hello" << std::endl;
-				/// \exception for unequal headers and columns
+				// exception for unequal headers and columns
 				if (headers.size() != data.size()) {
 					throw inconsistent_arguments();
 				}
@@ -815,14 +823,14 @@ namespace boost { namespace numeric { namespace ublas {
 				ncol_ = headers.size();
 				nrow_ = (ncol_ > 0) ? data(0).size() : 0; 
 
-				/// \exception for unequal no. of rows in data_frame columns
+				// exception for unequal no. of rows in data_frame columns
 				for(size_t i = 1; i < ncol_; ++i) {
 					if (data (i).size() != nrow_) {
 						throw differing_rows();
 					}
 				}	
 
-				/// \initialise the data_ members
+				// initialise the data_ members
 				column_headers_ = headers;	
 				
 				for(size_t i = 0; i < ncol_; ++i) {
@@ -839,39 +847,51 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		//! Destructor of data_frame.
 		BOOST_UBLAS_INLINE
 		~data_frame() {}
 
-		/// ---------------- ///
-		/// column accessors ///
-		/// ---------------- ///
+		// ---------------- 
+		// column accessors 
+		// ---------------- 
 
+		/*! \brief Access operator of data_frame.
+		 *  creates the column (with the given header) if doesn't exist. 
+		 *  \param column_header to be accessed.
+		 *  \return Requested df_column.
+		 */ 
 		BOOST_UBLAS_INLINE 
 		df_column& operator[](const std::string& header) {
-			/// \given column name already exists
-			/// \return the particular column
+			// given column name already exists
+			// return the particular column
 			if(data_.find(header) != data_.end()) {
 				return data_ [header];
 			}
-			/// \create the column (will be furthur used by = operator in df_column)
+			// create the column (will be furthur used by = operator in df_column)
 			column_headers_.resize(ncol_ + 1);
 			column_headers_(ncol_) = header;
 			++ncol_;
 			return data_ [header];
 		}
 		
+		/*! \brief Access operator of data_frame.
+		 *  creates the column (if index is valid and non-existent) if doesn't exist. 
+		 *  valid-index == \c ncol()
+		 *  \param column-index to be accessed.
+		 *  \return Requested df_column.
+		 */ 
 		BOOST_UBLAS_INLINE 
 		df_column& operator[] (const size_t& i) {
 			try {
-				/// \given column name already exists
-				/// \return the particular column
+				// given column name already exists
+				// return the particular column
 				if(i < ncol_) {
 					return data_ [column_headers_ (i)];
 				}
 				else if(i > ncol_) {
 					throw holes();
 				} 
-				/// \custom name if no name is set by default
+				// custom name if no name is set by default
 				column_headers_.resize(ncol_ + 1);
 				column_headers_(ncol_) = default_name(ncol_); 
 				++ncol_;
@@ -882,12 +902,22 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 		
-		
+		/*! \brief Access operator of data_frame. 
+		 *  \param column_header to be accessed.
+		 *  \param T(template parameter): type of the column data. 
+		 *  \return vector<T> version of the column.	
+		 */ 
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		vector<T>& column (const std::string& header) {
 			return data_[header].get<T>();
 		}
+
+		/*! \brief Access operator of data_frame. 
+		 *  \param column index to be accessed.
+		 *  \param T(template parameter): type of the column data. 
+		 *  \return vector<T> version of the column.	
+		 */ 
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		vector<T>& column(const size_t& i) {
@@ -896,13 +926,14 @@ namespace boost { namespace numeric { namespace ublas {
 
 		/* Add row accessors */ 
 
-		// ------------ //
-		// erase column //
-		// ------------ //
+		// ------------ 
+		// erase column 
+		// ------------ 
 
-		/// \erase column[$i]
-		/// 	0-based indexing
-
+		/*! \brief erase_column operator of data_frame.
+		 *  erase the column(\c i) and restructure the data_frame.  
+		 *  \param column index to be erased.
+		 */ 
 		BOOST_UBLAS_INLINE 
 		void erase_column(const size_t i) {
 			try {
@@ -918,7 +949,11 @@ namespace boost { namespace numeric { namespace ublas {
 				std::terminate();
 			}
 		}
-		/// \erase column[$name]
+		
+		/*! \brief erase_column operator of data_frame.
+		 *  erase the column(\c header) and restructure the data_frame.  
+		 *  \param column header to be accessed.
+		 */ 
 		BOOST_UBLAS_INLINE 
 		void erase_column(const std::string& header) {
 			try {
@@ -940,7 +975,15 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		// ---------- 
+		// add column 
+		// ---------- 
 
+		/*! \brief add_column operator of data_frame.
+		 *  adds column at the end of the data_frame columns.  
+		 *  \param column header
+		 *  \param const lvalue reference to the column data in the form of df_column. 
+		 */ 		
 		BOOST_UBLAS_INLINE
 		data_frame& add_column(const std::string& header, const df_column& col) {
 			try {
@@ -959,6 +1002,13 @@ namespace boost { namespace numeric { namespace ublas {
 				std::terminate();
 			}
 		}
+
+		/* THIS IS AMBIGUOS */ 
+		/*! \brief add_column operator of data_frame.
+		 *  adds column at the end of the data_frame columns.  
+		 *  \param column header
+		 *  \param const lvalue reference to the column data in the form of df_column. 
+		 */ 		
 		BOOST_UBLAS_INLINE
 		data_frame& add_column(const size_t i, const df_column& col) {
 			try {
@@ -976,7 +1026,9 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
-
+		/*! \brief prints the data in the data_frame.
+		 *  Print Format: [column header]: data(0) data(1) .......  
+		 */ 		
 		BOOST_UBLAS_INLINE 
 		void print() {
 			for(size_t i = 0; i < ncol_; ++i) {
@@ -984,7 +1036,7 @@ namespace boost { namespace numeric { namespace ublas {
 				data_ [column_headers_(i)].print();
 			}
 		}
-
+																	
 		BOOST_UBLAS_INLINE
 		vector<std::string>& headers() {
 			return column_headers_;

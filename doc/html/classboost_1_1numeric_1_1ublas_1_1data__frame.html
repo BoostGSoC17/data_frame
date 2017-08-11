@@ -93,42 +93,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">boost::numeric::ublas::data_frame Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a dataframe.  
+ <a href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="df_8hpp_source.html">df.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1fe0c252f16d65762717c1da13432e8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fe0c252f16d65762717c1da13432e8f"></a>
 BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a1fe0c252f16d65762717c1da13432e8f">data_frame</a> ()</td></tr>
-<tr class="memdesc:a1fe0c252f16d65762717c1da13432e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor <br /></td></tr>
+<tr class="memdesc:a1fe0c252f16d65762717c1da13432e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. By default <code>nrow()</code> == 0 and ncol() == 0. type of the columns is unset. <br /></td></tr>
 <tr class="separator:a1fe0c252f16d65762717c1da13432e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cfb2a3083283f2aceff85649120ce61"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a1cfb2a3083283f2aceff85649120ce61">data_frame</a> (const vector&lt; std::string &gt; &amp;headers, const vector&lt; <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &gt; &amp;data)</td></tr>
+<tr class="memdesc:a1cfb2a3083283f2aceff85649120ce61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.  <a href="#a1cfb2a3083283f2aceff85649120ce61">More...</a><br /></td></tr>
 <tr class="separator:a1cfb2a3083283f2aceff85649120ce61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab7148ee2440c33f10b59c466eba998"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ab7148ee2440c33f10b59c466eba998"></a>
+BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a5ab7148ee2440c33f10b59c466eba998">~data_frame</a> ()</td></tr>
+<tr class="memdesc:a5ab7148ee2440c33f10b59c466eba998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. <br /></td></tr>
+<tr class="separator:a5ab7148ee2440c33f10b59c466eba998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bc6a73935b5d7f0dbdfffdcdae841dd"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a7bc6a73935b5d7f0dbdfffdcdae841dd">operator[]</a> (const std::string &amp;header)</td></tr>
+<tr class="memdesc:a7bc6a73935b5d7f0dbdfffdcdae841dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. creates the column (with the given header) if doesn't exist.  <a href="#a7bc6a73935b5d7f0dbdfffdcdae841dd">More...</a><br /></td></tr>
 <tr class="separator:a7bc6a73935b5d7f0dbdfffdcdae841dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58496ee7ebcb0c67457b2c0c476ecec4"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a58496ee7ebcb0c67457b2c0c476ecec4">operator[]</a> (const size_t &amp;i)</td></tr>
+<tr class="memdesc:a58496ee7ebcb0c67457b2c0c476ecec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. creates the column (if index is valid and non-existent) if doesn't exist. valid-index == <code>ncol()</code>  <a href="#a58496ee7ebcb0c67457b2c0c476ecec4">More...</a><br /></td></tr>
 <tr class="separator:a58496ee7ebcb0c67457b2c0c476ecec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="memTemplParams" colspan="2"><a class="anchor" id="a261a6b02e41c2d5c3e17c7a91c5cb2d5"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>column</b> (const std::string &amp;header)</td></tr>
+<tr class="memitem:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a261a6b02e41c2d5c3e17c7a91c5cb2d5">column</a> (const std::string &amp;header)</td></tr>
+<tr class="memdesc:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.  <a href="#a261a6b02e41c2d5c3e17c7a91c5cb2d5">More...</a><br /></td></tr>
 <tr class="separator:a261a6b02e41c2d5c3e17c7a91c5cb2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac7a4a31485c55e9b3254e1e62ea4c7a8"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>column</b> (const size_t &amp;i)</td></tr>
+<tr class="memitem:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE vector&lt; T &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#ac7a4a31485c55e9b3254e1e62ea4c7a8">column</a> (const size_t &amp;i)</td></tr>
+<tr class="memdesc:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.  <a href="#ac7a4a31485c55e9b3254e1e62ea4c7a8">More...</a><br /></td></tr>
 <tr class="separator:ac7a4a31485c55e9b3254e1e62ea4c7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a751e376399080f1c09ddf8ad1e11e478"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a751e376399080f1c09ddf8ad1e11e478">erase_column</a> (const size_t i)</td></tr>
+<tr class="memdesc:a751e376399080f1c09ddf8ad1e11e478"><td class="mdescLeft">&#160;</td><td class="mdescRight">erase_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. erase the column(<code>i</code>) and restructure the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.  <a href="#a751e376399080f1c09ddf8ad1e11e478">More...</a><br /></td></tr>
 <tr class="separator:a751e376399080f1c09ddf8ad1e11e478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 is valid so delete the column[$name]</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpc6b17b382216a655e548a62040c929a3"></a> column[$name] </p>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpc6b17b382216a655e548a62040c929a3"></a>erase_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. erase the column(<code>header</code>) and restructure the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column</td><td>header to be accessed. </td></tr>
+  </table>
+  </dd>
+</dl>
 </td></tr>
-<tr class="memitem:a8f67aa27f8f340e8bfd42ce0f7713be0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f67aa27f8f340e8bfd42ce0f7713be0"></a>
-BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add_column</b> (const std::string &amp;header, const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memitem:a8f67aa27f8f340e8bfd42ce0f7713be0"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a8f67aa27f8f340e8bfd42ce0f7713be0">add_column</a> (const std::string &amp;header, const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memdesc:a8f67aa27f8f340e8bfd42ce0f7713be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">add_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. adds column at the end of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> columns.  <a href="#a8f67aa27f8f340e8bfd42ce0f7713be0">More...</a><br /></td></tr>
 <tr class="separator:a8f67aa27f8f340e8bfd42ce0f7713be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a487209ed44384e2999d6a407160276e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a487209ed44384e2999d6a407160276e6"></a>
-BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add_column</b> (const size_t i, const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memitem:a487209ed44384e2999d6a407160276e6"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a487209ed44384e2999d6a407160276e6">add_column</a> (const size_t i, const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;col)</td></tr>
+<tr class="memdesc:a487209ed44384e2999d6a407160276e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">add_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. adds column at the end of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> columns.  <a href="#a487209ed44384e2999d6a407160276e6">More...</a><br /></td></tr>
 <tr class="separator:a487209ed44384e2999d6a407160276e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aae0aa66a1eadc3301b40cd104596c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aae0aa66a1eadc3301b40cd104596c1"></a>
-BOOST_UBLAS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
+BOOST_UBLAS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html#a2aae0aa66a1eadc3301b40cd104596c1">print</a> ()</td></tr>
+<tr class="memdesc:a2aae0aa66a1eadc3301b40cd104596c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints the data in the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. Print Format: [column header]: data(0) data(1) ....... <br /></td></tr>
 <tr class="separator:a2aae0aa66a1eadc3301b40cd104596c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff5e603e988e7b710a3df6104d706c12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff5e603e988e7b710a3df6104d706c12"></a>
 BOOST_UBLAS_INLINE vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>headers</b> ()</td></tr>
@@ -143,7 +163,10 @@ BOOST_UBLAS_INLINE const size_t&#160;</td><td class="memItemRight" valign="botto
 BOOST_UBLAS_INLINE const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>colname</b> (const size_t &amp;i)</td></tr>
 <tr class="separator:abda7571a20f64b31d627d3fb2f7956fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a dataframe. </p>
+<p>Internally represented as map &lt; string, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a> &gt; and a vector &lt; string&gt; to store the headers. Allowed types are: int, double, char, std::string...... (specified in INNER_TYPE). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1cfb2a3083283f2aceff85649120ce61"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,19 +198,176 @@ BOOST_UBLAS_INLINE const std::string&#160;</td><td class="memItemRight" valign="
   </tr>
 </table>
 </div><div class="memdoc">
-<p>: column header data_ in the form of columns </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">for</td><td>unequal headers and columns</td></tr>
-    <tr><td class="paramname">for</td><td>unequal no. of rows in <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> columns</td></tr>
+
+<p>Constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td></td></tr>
   </table>
   </dd>
 </dl>
-<p>the data_ members </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8f67aa27f8f340e8bfd42ce0f7713be0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a>&amp; boost::numeric::ublas::data_frame::add_column </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>header</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>col</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>add_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. adds column at the end of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> columns. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column</td><td>header </td></tr>
+    <tr><td class="paramname">const</td><td>lvalue reference to the column data in the form of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a487209ed44384e2999d6a407160276e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a>&amp; boost::numeric::ublas::data_frame::add_column </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td>
+          <td class="paramname"><em>col</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>add_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. adds column at the end of the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> columns. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column</td><td>header </td></tr>
+    <tr><td class="paramname">const</td><td>lvalue reference to the column data in the form of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a261a6b02e41c2d5c3e17c7a91c5cb2d5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE vector&lt;T&gt;&amp; boost::numeric::ublas::data_frame::column </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>header</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column_header</td><td>to be accessed. </td></tr>
+    <tr><td class="paramname">T(template</td><td>parameter): type of the column data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;T&gt; version of the column. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac7a4a31485c55e9b3254e1e62ea4c7a8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE vector&lt;T&gt;&amp; boost::numeric::ublas::data_frame::column </td>
+          <td>(</td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column</td><td>index to be accessed. </td></tr>
+    <tr><td class="paramname">T(template</td><td>parameter): type of the column data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;T&gt; version of the column. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a751e376399080f1c09ddf8ad1e11e478"></a>
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +389,14 @@ BOOST_UBLAS_INLINE const std::string&#160;</td><td class="memItemRight" valign="
   </tr>
 </table>
 </div><div class="memdoc">
-<p>column[$i] 0-based indexing </p>
+
+<p>erase_column operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. erase the column(<code>i</code>) and restructure the <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column</td><td>index to be erased. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>is valid so delete the column[$i] </p>
 
 </div>
@@ -235,9 +422,15 @@ BOOST_UBLAS_INLINE const std::string&#160;</td><td class="memItemRight" valign="
   </tr>
 </table>
 </div><div class="memdoc">
-<p>-------&mdash;&mdash;&mdash; /// column accessors /// -------&mdash;&mdash;&mdash; /// </p>
-<p>column name already exists </p><dl class="section return"><dt>Returns</dt><dd>the particular column</dd></dl>
-<p>the column (will be furthur used by = operator in <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>) </p>
+
+<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. creates the column (with the given header) if doesn't exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column_header</td><td>to be accessed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Requested <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </dd></dl>
 
 </div>
 </div>
@@ -262,8 +455,15 @@ BOOST_UBLAS_INLINE const std::string&#160;</td><td class="memItemRight" valign="
   </tr>
 </table>
 </div><div class="memdoc">
-<p>column name already exists </p><dl class="section return"><dt>Returns</dt><dd>the particular column</dd></dl>
-<p>name if no name is set by default </p>
+
+<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. creates the column (if index is valid and non-existent) if doesn't exist. valid-index == <code>ncol()</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">column-index</td><td>to be accessed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Requested <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html" title="Represents the column of a dataframe. ">df_column</a>. </dd></dl>
 
 </div>
 </div>
