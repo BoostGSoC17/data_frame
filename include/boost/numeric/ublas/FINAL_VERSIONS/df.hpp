@@ -296,6 +296,71 @@ namespace boost { namespace numeric { namespace ublas {
 			boost::apply_visitor (print_data_frame_column{}, data_);
 		}
 		
+		// ---------------------
+		// Statistical Summaries
+		// ---------------------
+
+		//! \brief Returns the minimum element of the column vector. 
+		template < class T1, class T2 > 
+		BOOST_UBLAS_INLINE 
+		T2 Min () {
+			T2 Minimum = get<T1> ()(0);
+			for(size_t i = 1; i < size_; ++i) {
+				if (get <T1> ()(i) < Minimum) {
+					Minimum = (T2)get<T1>()(i);
+				}
+			}	
+			return Minimum;
+		}
+
+		//! \brief Returns the maximum element of the column vector.
+		template < class T1, class T2> 
+		BOOST_UBLAS_INLINE 
+		T2 Max () {
+			T2 Maximum = get<T1>()(0);
+			for(size_t i = 1; i < size_; ++i) {
+				if (get<T1>()(i) > Maximum) {
+					Maximum = (T2) get<T1>()(i);
+				}
+			}	
+			return Maximum;
+		}
+
+		//! \brief Returns the mean of the column vector.
+		template < class T1, class T2 >
+		BOOST_UBLAS_INLINE
+		T2 Mean() {
+			T2 sum = 0;
+			for(size_t i = 0; i < size_; ++i) {
+				sum += (T2) get<T1>()(i);
+			}
+			return (T2) (sum / size_);
+		}
+
+		//! \brief Returns the median element of the column vector.
+		template < class T1, class T2 >
+		BOOST_UBLAS_INLINE
+		T2 Median() {
+			vector<T1> v = get<T1>();
+			std::sort(v.begin(), v.end());
+			if (v.size() & 1) {
+				return (T2)v[v.size()/2];
+			}
+			else {
+				return ((T2)(v[v.size()/2-1] + v[v.size()/2]) / 2);
+			}
+		}
+
+		//! \brief Prints Minimum, Maximum, Mean, Median of a column vector.
+		template <class T1, class T2>
+		void summary() {
+			std::cout << "Min. : " << Min <T1, T2>()  << ", ";
+			std::cout << "Max. : " << Max <T1, T2>()  << ", ";
+			std::cout << "Mean : " << Mean <T1, T2>() << ", ";
+			std::cout << "Median : " << Median <T1, T2>() << "  ";
+			std::cout << std::endl;	 
+		}
+
 	private:
 		//! \brief Stores the data in df_column. 
 		boost::variant < COLUMN_TYPES > data_;
@@ -1069,6 +1134,49 @@ namespace boost { namespace numeric { namespace ublas {
 			return column_headers_(i);
 		}
 
+		// ---------------------
+		// Statistical Summaries
+		// ---------------------
+
+		/*! \brief prints the column statistics in the data_frame.
+		 *  Print Format: [column header]: data(0) data(1) .......  
+		 *  Doesn't calculate statistics of non numerical types.
+		 */ 
+		BOOST_UBLAS_INLINE
+		void summary() {
+			for(size_t i = 0; i < ncol_; ++i) {
+				std::cout << "[" << column_headers_(i) << "]" << ": ";
+				 switch(data_[column_headers_(i)].type()) {
+					case 0: 	
+						data_[column_headers_(i)].summary <bool, long double >(); break;
+					case 3: 
+						data_[column_headers_(i)].summary <short, long double >(); break;
+					case 4: 
+						data_[column_headers_(i)].summary <unsigned short, long double >(); break;
+					case 5: 
+						data_[column_headers_(i)].summary <int, long double >(); break;
+					case 6: 
+						data_[column_headers_(i)].summary <unsigned int, long double >(); break;
+					case 7: 
+						data_[column_headers_(i)].summary <long, long double >(); break;
+					case 8: 
+						data_[column_headers_(i)].summary <unsigned long, long double >(); break;
+					case 9: 
+						data_[column_headers_(i)].summary <long long, long double >(); break;
+					case 10: 
+						data_[column_headers_(i)].summary <unsigned long long, long double >(); break;
+					case 11: 
+						data_[column_headers_(i)].summary <float, long double >(); break;
+					case 12: 
+						data_[column_headers_(i)].summary <double, long double >(); break;
+					case 13: 
+						data_[column_headers_(i)].summary <long double, long double >(); break;
+					default: 
+						std::cout << "Statistical Summaries not defined" << std::endl;
+				}
+			}
+		}
+
 	private:
 		//! \brief Stores data.
 		std::map < std::string, df_column > data_;
@@ -1202,7 +1310,7 @@ namespace boost { namespace numeric { namespace ublas {
 		return !(a == b);
 	}
 
-	
+
 	class data_frame_range {
 	public:
 		typedef ublas::vector<std::string>::size_type size_type;
