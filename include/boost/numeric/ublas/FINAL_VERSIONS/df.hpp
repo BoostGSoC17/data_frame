@@ -1,4 +1,3 @@
-
 #ifndef _BOOST_UBLAS_DATA_FRAME_
 #define _BOOST_UBLAS_DATA_FRAME_	
 
@@ -1310,26 +1309,39 @@ namespace boost { namespace numeric { namespace ublas {
 		return !(a == b);
 	}
 
+	// -----------------
+	// dataframe proxies
+	// -----------------
 
+	/*! \brief Represents data_frame column range class
+	 *	Builds a range on columns of another data_frame.
+	 *	allows access and modifications operations
+	 */
 	class data_frame_range {
 	public:
-		typedef ublas::vector<std::string>::size_type size_type;
-		typedef ublas::vector<std::string>::difference_type difference_type;
-		typedef ublas::basic_range<size_type, difference_type> range_type;
+		typedef vector<std::string>::size_type size_type;
+		typedef vector<std::string>::difference_type difference_type;
+		typedef basic_range<size_type, difference_type> range_type;
 
+		//! \brief: default constructor of data_frame_range.
 		BOOST_UBLAS_INLINE
 		data_frame_range();
 
+		/*! \brief constructor of data_frame_range.
+		 *	\param pointer to base data_frame (over which the proxy needs to be built).
+		 *	\param Boost.range over vector<std::string>(column headers).
+		 */
 		BOOST_UBLAS_INLINE
 		data_frame_range (data_frame* df, const range_type& range): 
 			column_headers_(df->headers(), range) {
 				df_ = df;
 		}
 
+		//! \brief Returns a new data_frame containing copy of columns referenced by the given vector_range.
 		BOOST_UBLAS_INLINE
 		data_frame DataFrame () {
-			ublas::vector<std::string> v1(column_headers_.size());
-			ublas::vector<ublas::df_column> v2(column_headers_.size());
+			vector<std::string> v1(column_headers_.size());
+			vector<ublas::df_column> v2(column_headers_.size());
 			for(size_t i = 0; i < column_headers_.size(); ++i) {
 				v1(i) = column_headers_(i);
 				v2(i) = (*df_)[v1(i)];
@@ -1337,49 +1349,58 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_frame(v1, v2);
 		} 
 
+		/*! \brief Access operator of data_frame_range.
+		 * 	\param column header to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */  
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const std::string& header) {
-			/// \check if the string is included in the given range.
 			return (*df_)[header];
 		}
 
-		/// here the index is the index in the vector_range
+		/*! \brief Access operator of data_frame_range.
+		 * 	\param column index to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
-			/// \check if the index is valid.
 			return (*df_)[column_headers_[i]];
 		}
 
-		BOOST_UBLAS_INLINE
-		const size_t size() const {
-			return column_headers_.size();
-		} 
-
 	private:
 		data_frame *df_;
-		ublas::vector_range < ublas::vector <std::string> > column_headers_;
+		vector_range < vector <std::string> > column_headers_;
 	};
 
-
+	/*! \brief Represents data_frame column slice class
+	 *	Builds a slice on columns of another data_frame.
+	 *	allows access and modifications operations
+	 */
 	class data_frame_slice {
 	public:
-		typedef ublas::vector<std::string>::size_type size_type;
-		typedef ublas::vector<std::string>::difference_type difference_type;
-		typedef ublas::basic_slice<size_type, difference_type> slice_type;
+		typedef vector<std::string>::size_type size_type;
+		typedef vector<std::string>::difference_type difference_type;
+		typedef basic_slice<size_type, difference_type> slice_type;
 
+		//! \brief: default constructor of data_frame_slice.
 		BOOST_UBLAS_INLINE
 		data_frame_slice ();
 
+		/*! \brief constructor of data_frame_slice.
+		 *	\param pointer to base data_frame (over which the proxy needs to be built).
+		 *	\param Boost.slice over vector<std::string>(column headers).
+		 */
 		BOOST_UBLAS_INLINE
 		data_frame_slice (data_frame* df, const slice_type& slice): 
 			column_headers_(df->headers(), slice) {
 				df_ = df;
 		}
 
+		//! \brief Returns a new data_frame containing copy of columns referenced by the given vector_slcie.
 		BOOST_UBLAS_INLINE
 		data_frame DataFrame () {
-			ublas::vector<std::string> v1(column_headers_.size());
-			ublas::vector<ublas::df_column> v2(column_headers_.size());
+			vector<std::string> v1(column_headers_.size());
+			vector<ublas::df_column> v2(column_headers_.size());
 			for(size_t i = 0; i < column_headers_.size(); ++i) {
 				v1(i) = column_headers_(i);
 				v2(i) = (*df_)[v1(i)];
@@ -1387,26 +1408,84 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_frame(v1, v2);
 		} 
 
+		/*! \brief Access operator of data_frame_slice.
+		 * 	\param column header to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */  
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const std::string& header) {
-			/// \check if the string is included in the given range.
 			return (*df_)[header];
 		}
 
-		/// here the index is the index in the vector_range
+		/*! \brief Access operator of data_frame_slice.
+		 * 	\param column index to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
-			/// \check if the index is valid.
 			return (*df_)[column_headers_[i]];
 		}
 
-		const size_t size() const {
-			return column_headers_.size();
-		} 
-
 	private:
 		data_frame *df_;
-		ublas::vector_slice < ublas::vector <std::string> > column_headers_;
+		vector_slice < vector <std::string> > column_headers_;
+	};
+
+	/*! \brief Represents data_frame column indirect class
+	 *	Builds an indirect vector on columns of another data_frame.
+	 *	allows access and modifications operations
+	 */
+	class data_frame_indirect {
+	public:
+
+		//! \brief: default constructor of data_frame_indirect.
+		BOOST_UBLAS_INLINE
+		data_frame_indirect();
+
+		/*! \brief constructor of data_frame_indirect.
+		 *	\param pointer to base data_frame (over which the proxy needs to be built).
+		 *	\param indirect_array over vector<std::string>(column headers).
+		 */
+		BOOST_UBLAS_INLINE
+		data_frame_indirect(data_frame* df, const indirect_array<> ia):
+		 	column_headers_(df->headers(), ia){
+		 	df_ = df;
+		} 
+
+		//! \brief Returns a new data_frame containing copy of columns referenced by the given vector_slcie.
+		BOOST_UBLAS_INLINE
+		data_frame DataFrame () {
+			vector<std::string> v1(column_headers_.size());
+			vector<df_column> v2(column_headers_.size());
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				v1(i) = column_headers_(i);
+				v2(i) = (*df_)[v1(i)];
+			}
+			return data_frame(v1, v2);
+		} 
+
+
+		/*! \brief Access operator of data_frame_slice.
+		 * 	\param column header to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */  
+		BOOST_UBLAS_INLINE
+		df_column& operator [] (const std::string& header) {
+			return (*df_)[header];
+		}
+
+		/*! \brief Access operator of data_frame_slice.
+		 * 	\param column index to be accessed.
+		 *  Returns reference to the column in the base data_frame.
+		 */
+		BOOST_UBLAS_INLINE
+		df_column& operator [] (const size_t& i) {
+			return (*df_)[column_headers_[i]];
+		}
+
+	private: 
+		data_frame *df_;
+		vector_indirect < vector < std::string> > column_headers_;
 	};
 }}}
 
