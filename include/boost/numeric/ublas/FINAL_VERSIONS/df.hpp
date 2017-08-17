@@ -1192,6 +1192,16 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	};
 
+	data_frame operator - (data_frame& a) {
+		vector<std::string> header(a.ncol());
+		vector<df_column> col(a.ncol());
+		for(size_t i = 0; i < a.ncol(); ++i) {
+			header(i) = a.colname(i);
+			col(i) = - a[i];
+		}
+		return data_frame(header, col);
+	}
+	
 	data_frame operator + (data_frame& a, data_frame& b) {
 		try {
 			if (a.ncol() != b.ncol()) {
