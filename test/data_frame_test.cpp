@@ -6,7 +6,7 @@
 #define BOOST_TEST_MODULE  TEST_COLV1
 
 #include <boost/test/unit_test.hpp>
-#include "../include/boost/numeric/ublas/df.hpp"
+#include "../include/boost/numeric/ublas/FINAL_VERSIONS/df.hpp"
 using namespace boost::numeric::ublas; 
 
 BOOST_AUTO_TEST_CASE (Constructors) {
@@ -144,9 +144,65 @@ BOOST_AUTO_TEST_CASE (Column_Accessors_Manipulators) {
 	df.print();
  }
 
+BOOST_AUTO_TEST_CASE (Equality_Check_Operators) {
+	// Column Retrieval
+	vector < std::string > names(3);
+	names(0) = "x";
+	names(1) = "y";
+	names(2) = "z";
 
+	vector < char > x(2);
+	vector < bool > y(2);
+	vector < std::string > z(2);
+	x(0) = 'p';
+	x(1) = 'q';
+	y(0) = true;
+	y(1) = false;
+	z(0) = "Oh!";
+	z(1) = "Yeah..";
+
+	vector < df_column > cols(3);
+	cols (0) = x;
+	cols (1) = y;
+	cols (2) = z;
+
+	data_frame df(names, cols);
+	data_frame df2(df);
+	// should pass
+	BOOST_CHECK(df == df2);
+
+	data_frame empty;
+	// should pass
+	BOOST_CHECK(df != empty);
+
+	// should fail
+	BOOST_CHECK(df == empty);
+}
+ 
 BOOST_AUTO_TEST_CASE (Unary_Operators) {
-
+	vector < std::string > names(4);
+	names(0) = "a", names(1) = "b", names(2) = "c", names(3) = "d";
+	vector < int > x(2), y(2);
+	x(0) = 1;
+	y(1) = 1;
+	vector < df_column > cols(4);
+	cols (0) = x;
+	cols (1) = y;
+	cols (2) = x;
+	cols (3) = y;
+	data_frame df(names, cols);
+	// move constructor :) 
+	data_frame negate_df(-df);
+	BOOST_CHECK (negate_df.nrow() == df.nrow() && negate_df.ncol() == df.ncol());	
+	for(size_t i = 0; i < negate_df.ncol(); ++i) negate_df.colname(i) == names(i);
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(x(i) == -negate_df[0].get<int>()(i));
+		BOOST_CHECK(x(i) == -negate_df[2].get<int>()(i));	
+	}
+	for(size_t i = 0; i < df.nrow(); ++i) {
+		BOOST_CHECK(y(i) == -negate_df[1].get<int>()(i));
+		BOOST_CHECK(y(i) == -negate_df[3].get<int>()(i));	
+	}
 }
 
 BOOST_AUTO_TEST_CASE (Binary_Operators) {
@@ -156,3 +212,4 @@ BOOST_AUTO_TEST_CASE (Binary_Operators) {
 BOOST_AUTO_TEST_CASE (Statistical_Summaries) {
 
 }
+
