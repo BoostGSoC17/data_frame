@@ -6,7 +6,7 @@
 #define BOOST_TEST_MODULE  TEST_COLV1
 
 #include <boost/test/unit_test.hpp>
-#include "../include/boost/numeric/ublas/df.hpp"
+#include "../include/boost/numeric/ublas/FINAL_VERSIONS/df.hpp"
 using namespace boost::numeric::ublas; 
 
 BOOST_AUTO_TEST_CASE (Constructors) {
@@ -146,7 +146,50 @@ BOOST_AUTO_TEST_CASE (Binary_Operators) {
 	}
 }
 
+// No static_assert checking. Manual looking shows that results are perfect. :-)
+BOOST_AUTO_TEST_CASE (Printing) {
+	vector < int > z(3);
+	z(0) = 15;
+	z(1) = 12;
+	z(2) = 13;
+	df_column Z(z);
+	df_column Y(2*Z);
+	Z.print();
+	Y.summary < int, double> ();
+}
+
 BOOST_AUTO_TEST_CASE (Statistical_Summaries) {
 
+	// Mean
+	vector<double> v(6);
+    v(0) = 10, v(1) = 20, v(2) = 30, v(3) = 40, v(4) = 50, v(5) = 60.123777;
+    df_column V(v);
+    double mean = V.Mean<double, double>();
+    double var = (10.0 + 20.0 + 30.0 + 40.0 + 50.0 + 60.123777) / 6.0;
+    //std::cout << mean << ' ' << var << '\n';
+    BOOST_CHECK(fabs(mean - var) < 1e-9);
+
+	// Median
+	double Median = V.Median<double, double>();
+	BOOST_CHECK( fabs(Median - 35) < 1e-9);
+	v.resize(7);
+	v(6) = 70;
+	V = v;
+	Median = V.Median<double, double>();
+	BOOST_CHECK( fabs(Median - 40) < 1e-9);
+	
+	// Max, Min
+    vector < long long > r(10);
+    for(int i = 0; i < 10; ++i) r(i) = 1e16 + rand() % 1000;
+    long long mx = -1, mn = 1e18;
+	for(int i = 0; i < 10; ++i) { 
+		if (r(i) > mx) mx = r(i);
+		if (r(i) < mn) mn = r(i);
+	}
+	df_column R(r);
+	long long MAX = R.Max<long long, long long>();
+	long long MIN = R.Min<long long, long long>();
+	BOOST_CHECK(mx == MAX);
+	BOOST_CHECK(mn == MIN);	
 }
 
