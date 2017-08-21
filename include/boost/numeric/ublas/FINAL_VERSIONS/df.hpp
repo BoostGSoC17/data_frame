@@ -989,7 +989,67 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_[column_headers_ (i)].get<T>();
 		}
 
-		/* Add row accessors */ 
+		// -------------
+		// row accessors
+		// -------------
+
+		vector < boost::variant < COLUMN_DATA_TYPES > > operator () (const size_t row) {
+			vector < boost::variant < COLUMN_DATA_TYPES > > ret(ncol_);
+			for(size_t i = 0; i < ncol_; ++i) {
+				switch((*this)[i].type()) {
+					case 0: 	
+						ret(i) = (*this)[i].eval<bool>(row);
+						break;
+					case 1: 
+						ret(i) = (*this)[i].eval<char>(row);
+						break;
+					case 2: 
+						ret(i) = (*this)[i].eval<unsigned char>(row);
+						break;
+					case 3: 
+						ret(i) = (*this)[i].eval<short>(row);
+						break;
+					case 4: 
+						ret(i) = (*this)[i].eval<unsigned short>(row);
+						break;
+					case 5: 
+						ret(i) = (*this)[i].eval<int>(row);
+						break;
+					case 6: 
+						ret(i) = (*this)[i].eval<unsigned int>(row);
+						break;
+					case 7: 
+						ret(i) = (*this)[i].eval<long>(row);
+						break;
+					case 8: 
+						ret(i) = (*this)[i].eval<unsigned long>(row);
+						break;
+					case 9: 
+						ret(i) = (*this)[i].eval<long long>(row);
+						break;
+					case 10: 
+						ret(i) = (*this)[i].eval<unsigned long long>(row);
+						break;
+					case 11: 
+						ret(i) = (*this)[i].eval<float>(row);
+						break;
+					case 12: 
+						ret(i) = (*this)[i].eval<double>(row);
+						break;
+					case 13: 
+						ret(i) = (*this)[i].eval<long double>(row);
+						break;
+					case 14: 
+						ret(i) = (*this)[i].eval<std::string>(row);
+						break;
+					case 15: 
+						ret(i) = (*this)[i].eval<std::string*>(row);
+						break;
+				} 
+			}
+
+			return ret;
+		}
 
 		// ------------ 
 		// erase column 

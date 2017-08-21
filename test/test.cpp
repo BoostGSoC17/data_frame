@@ -3,7 +3,7 @@
 /// \To run use ./a.out --log_level=all to see the entire error report.
 
 // #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE  DF_COLUMN
+#define BOOST_TEST_MODULE  DATA_FRAME
 
 #include <boost/test/unit_test.hpp>
 #include "../include/boost/numeric/ublas/FINAL_VERSIONS/df.hpp"
@@ -390,10 +390,10 @@ BOOST_AUTO_TEST_CASE (data_frame_Unary_Operators) {
 	}
 }
 
-BOOST_AUTO_TEST_CASE (data_frame_Binary_Operators) {
+BOOST_AUTO_TEST_CASE (data_frame_Statistical_Summaries) {
 
 }
 
-BOOST_AUTO_TEST_CASE (data_frame_Statistical_Summaries) {
-
+BOOST_AUTO_TEST_CASE (data_frame_Binary_Operators) {
+	
 }
