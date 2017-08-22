@@ -1438,6 +1438,32 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_range operator += (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] += val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_range operator -= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_range operator *= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
 	private:
 		data_frame *df_;
 		vector_range < vector <std::string> > column_headers_;
@@ -1497,6 +1523,32 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_slice operator += (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] += val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_slice operator -= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_slice operator *= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
 	private:
 		data_frame *df_;
 		vector_slice < vector <std::string> > column_headers_;
@@ -1554,6 +1606,32 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_indirect operator += (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] += val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_indirect operator -= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
+
+		template < class T > 
+		BOOST_UBLAS_INLINE 
+		data_frame_indirect operator *= (const T& val) {
+			for(size_t i = 0; i < column_headers_.size(); ++i) {
+				(*df_)[column_headers_(i)] -= val;
+			}
+			return (*this);
+		}
 	private: 
 		data_frame *df_;
 		vector_indirect < vector < std::string> > column_headers_;
