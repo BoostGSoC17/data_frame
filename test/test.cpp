@@ -2,7 +2,7 @@
 /// \To compile, use boost with the flag -lboost_unit_test_framework.
 /// \To run use ./a.out --log_level=all to see the entire error report.
 
-// #define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE  DATA_FRAME
 
 #include <boost/test/unit_test.hpp>
@@ -391,9 +391,133 @@ BOOST_AUTO_TEST_CASE (data_frame_Unary_Operators) {
 }
 
 BOOST_AUTO_TEST_CASE (data_frame_Statistical_Summaries) {
-
+	vector < int > x(2);
+	vector < std::string > y(2);
+	vector < double > z(2);
+	x(0) = 10, x(1) = 11;
+	y(0) = "rishabh", y(1) = "arora";
+	z(0) = 1.2, z(1) = 2.0;
+	vector < std::string > headers(3);
+	headers(0) = "x", headers(1) = "y", headers(2) = "z";
+	vector < df_column > A(3);
+	A(0) = x, A(1) = y, A(2) = z;
+	data_frame df(headers, A);
+	// Already checked above that df_column_summaries work fine. and data_Frame summaries are extension of df_column_summaries for each column of the data_Frame.
+	df.summary();
 }
 
 BOOST_AUTO_TEST_CASE (data_frame_Binary_Operators) {
+	vector < std::string > headers(2);
+	headers(0) = "a";
+	headers(1) = "b";
+	vector < double > a(2), b(2);
+	a(0) = 1.1, a(1) = 2.1;
+	b(0) = 1.2, b(1) = 2.3;
+	vector < df_column > col(2);
+	col(0) = a;
+	col(1) = b;
+	data_frame df1(headers, col);
+	vector < df_column > col2(2);
+	a = 2 * a;
+	b = 2 * b;
+	col2(0) = a;
+	col2(1) = b;
+	data_frame df2(headers, col2);
 	
+	data_frame df3 = df1 + df2;
+	BOOST_CHECK(df3.nrow() == df1.nrow() && df3.nrow() == df2.nrow());
+	BOOST_CHECK(df3.ncol() == df1.ncol() && df3.ncol() == df2.ncol());
+
+	for(size_t i = 0; i < df3.nrow(); ++i) {
+		BOOST_CHECK(df3[0].get<double>()(i) == df1[0].get<double>()(i) + df2[0].get<double>()(i)); 
+	}
+	for(size_t i = 0; i < df3.nrow(); ++i) {
+		BOOST_CHECK(df3[1].get<double>()(i) == df1[1].get<double>()(i) + df2[1].get<double>()(i)); 
+	}	
+
+	data_frame df4 = df3 - df2;
+	BOOST_CHECK(df4.nrow() == df3.nrow() && df4.nrow() == df2.nrow());
+	BOOST_CHECK(df4.ncol() == df3.ncol() && df4.ncol() == df2.ncol());
+
+	for(size_t i = 0; i < df4.nrow(); ++i) {
+		BOOST_CHECK(fabs(df4[0].get<double>()(i) - df1[0].get<double>()(i)) < 1e-9); 
+	}
+	for(size_t i = 0; i < df3.nrow(); ++i) {
+		BOOST_CHECK(fabs(df4[1].get<double>()(i) - df1[1].get<double>()(i)) < 1e-9); 
+	}
+
+	data_frame df5 = df1 + 5;
+	BOOST_CHECK(df5.nrow() == df1.nrow());
+	BOOST_CHECK(df5.ncol() == df1.ncol());
+
+	for(size_t i = 0; i < df5.nrow(); ++i) {
+		BOOST_CHECK(fabs(df5[0].get<double>()(i) - df1[0].get<double>()(i) - 5) < 1e-9); 
+	}
+	for(size_t i = 0; i < df5.nrow(); ++i) {
+		BOOST_CHECK(fabs(df5[1].get<double>()(i) - df1[1].get<double>()(i)- 5) < 1e-9); 
+	}
+
+	data_frame df6 = df1 - 10;
+	BOOST_CHECK(df6.nrow() == df1.nrow());
+	BOOST_CHECK(df6.ncol() == df1.ncol());
+
+	for(size_t i = 0; i < df6.nrow(); ++i) {
+		BOOST_CHECK(fabs(df6[0].get<double>()(i) - df1[0].get<double>()(i) + 10) < 1e-9); 
+	}
+	for(size_t i = 0; i < df6.nrow(); ++i) {
+		BOOST_CHECK(fabs(df6[1].get<double>()(i) - df1[1].get<double>()(i) + 10) < 1e-9); 
+	}
+
+	data_frame df7 = 2 * df1;
+	BOOST_CHECK(df7.nrow() == df1.nrow());
+	BOOST_CHECK(df7.ncol() == df1.ncol());
+
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 2 * df1[0].get<double>()(i)) < 1e-9); 
+	}
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 2 * df1[1].get<double>()(i)) < 1e-9); 
+	}
+
+	df7 += df1;
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 3 * df1[0].get<double>()(i)) < 1e-9); 
+	}
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 3 * df1[1].get<double>()(i)) < 1e-9); 
+	}
+
+	df7 -= df1;
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 2 * df1[0].get<double>()(i)) < 1e-9); 
+	}
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 2 * df1[1].get<double>()(i)) < 1e-9); 
+	}
+
+	df7 += 5;
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 2 * df1[0].get<double>()(i) - 5) < 1e-9); 
+	}
+	for(size_t i = 0; i < df6.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 2 * df1[1].get<double>()(i) - 5) < 1e-9); 
+	}	
+
+	df7 -= 10;
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 2 * df1[0].get<double>()(i) + 5) < 1e-9); 
+	}
+	for(size_t i = 0; i < df6.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 2 * df1[1].get<double>()(i) + 5) < 1e-9); 
+	}	
+
+	df7 += 5;
+	df7 *= 3;
+
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[0].get<double>()(i) - 6 * df1[0].get<double>()(i)) < 1e-9); 
+	}
+	for(size_t i = 0; i < df7.nrow(); ++i) {
+		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 6 * df1[1].get<double>()(i)) < 1e-9); 
+	}
 }

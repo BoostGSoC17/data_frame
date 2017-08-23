@@ -1,4 +1,3 @@
-
 #ifndef _BOOST_UBLAS_DATA_FRAME_
 #define _BOOST_UBLAS_DATA_FRAME_	
 
@@ -862,6 +861,12 @@ namespace boost { namespace numeric { namespace ublas {
 	class data_frame {
 	public:
 		
+		friend data_frame operator + (data_frame& a, data_frame& b);
+		friend data_frame operator - (data_frame& a, data_frame& b);
+		template < class T > friend data_frame operator + (data_frame& a, const T& val);
+		template < class T > friend data_frame operator - (data_frame& a, const T& val);
+		template < class T > friend data_frame operator * (data_frame& a, const T& val);
+		 
 		// construction and destruction
 		
 		/*! \brief Constructor of data_frame.
@@ -989,67 +994,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_[column_headers_ (i)].get<T>();
 		}
 
-		// -------------
-		// row accessors
-		// -------------
-
-		vector < boost::variant < COLUMN_DATA_TYPES > > operator () (const size_t row) {
-			vector < boost::variant < COLUMN_DATA_TYPES > > ret(ncol_);
-			for(size_t i = 0; i < ncol_; ++i) {
-				switch((*this)[i].type()) {
-					case 0: 	
-						ret(i) = (*this)[i].eval<bool>(row);
-						break;
-					case 1: 
-						ret(i) = (*this)[i].eval<char>(row);
-						break;
-					case 2: 
-						ret(i) = (*this)[i].eval<unsigned char>(row);
-						break;
-					case 3: 
-						ret(i) = (*this)[i].eval<short>(row);
-						break;
-					case 4: 
-						ret(i) = (*this)[i].eval<unsigned short>(row);
-						break;
-					case 5: 
-						ret(i) = (*this)[i].eval<int>(row);
-						break;
-					case 6: 
-						ret(i) = (*this)[i].eval<unsigned int>(row);
-						break;
-					case 7: 
-						ret(i) = (*this)[i].eval<long>(row);
-						break;
-					case 8: 
-						ret(i) = (*this)[i].eval<unsigned long>(row);
-						break;
-					case 9: 
-						ret(i) = (*this)[i].eval<long long>(row);
-						break;
-					case 10: 
-						ret(i) = (*this)[i].eval<unsigned long long>(row);
-						break;
-					case 11: 
-						ret(i) = (*this)[i].eval<float>(row);
-						break;
-					case 12: 
-						ret(i) = (*this)[i].eval<double>(row);
-						break;
-					case 13: 
-						ret(i) = (*this)[i].eval<long double>(row);
-						break;
-					case 14: 
-						ret(i) = (*this)[i].eval<std::string>(row);
-						break;
-					case 15: 
-						ret(i) = (*this)[i].eval<std::string*>(row);
-						break;
-				} 
-			}
-
-			return ret;
-		}
+		/* Add row accessors */ 
 
 		// ------------ 
 		// erase column 
@@ -1237,6 +1182,34 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		BOOST_UBLAS_INLINE
+		data_frame operator += (data_frame& df_) {
+			return (*this) = (*this) + df_;
+		}
+
+		BOOST_UBLAS_INLINE
+		data_frame operator -= (data_frame& df_) {
+			return (*this) = (*this) - df_;
+		}
+
+		BOOST_UBLAS_INLINE
+		template < class T > 
+		data_frame operator += (const T& val) {
+			return (*this) = (*this) + val;
+		}
+
+		BOOST_UBLAS_INLINE
+		template < class T > 
+		data_frame operator -= (const T& val) {
+			return (*this) = (*this) - val;
+		}
+
+		BOOST_UBLAS_INLINE
+		template < class T > 
+		data_frame operator *= (const T& val) {
+			return (*this) = (*this) * val;
+		}
+		
 	private:
 		//! \brief Stores data.
 		std::map < std::string, df_column > data_;
@@ -1333,7 +1306,7 @@ namespace boost { namespace numeric { namespace ublas {
 	}
 
 	template < class T > 
-	data_frame operator - (const T& val, data_frame& a) {
+	data_frame operator - (data_frame& a, const T& val) {
 		return a + (-val);
 	}
 
@@ -1438,32 +1411,6 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_range operator += (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] += val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_range operator -= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_range operator *= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
 	private:
 		data_frame *df_;
 		vector_range < vector <std::string> > column_headers_;
@@ -1523,32 +1470,6 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_slice operator += (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] += val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_slice operator -= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_slice operator *= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
 	private:
 		data_frame *df_;
 		vector_slice < vector <std::string> > column_headers_;
@@ -1606,32 +1527,6 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_indirect operator += (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] += val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_indirect operator -= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
-
-		template < class T > 
-		BOOST_UBLAS_INLINE 
-		data_frame_indirect operator *= (const T& val) {
-			for(size_t i = 0; i < column_headers_.size(); ++i) {
-				(*df_)[column_headers_(i)] -= val;
-			}
-			return (*this);
-		}
 	private: 
 		data_frame *df_;
 		vector_indirect < vector < std::string> > column_headers_;

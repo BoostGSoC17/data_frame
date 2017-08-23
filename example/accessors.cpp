@@ -1,15 +1,15 @@
 
-#include "../include/boost/numeric/ublas/df.hpp"
+#include "../include/boost/numeric/ublas/FINAL_VERSIONS/df.hpp"
 
 int main() {
 	
 	using namespace boost::numeric::ublas;
 	
 	vector <int> a(2);
-	vector <double> b(2); 
+	vector <char> b(2); 
 	a(0) = 1, a(1) = 2;
 	b(0) = 'a', b(1) = 'b';
-	df_column data(2);
+	vector < df_column > data(2);
 	data(0) = a;
 	data(1) = b;
 	vector < std::string> h(2);
@@ -20,6 +20,7 @@ int main() {
 	df_column A = df["a"];
 	A.print();
 
+	std::cout << std::endl;
 	df_column B = df[1];
 	B.print();
 
@@ -27,7 +28,7 @@ int main() {
 	vector<int> AA = df.column<int>("a");
 
 	// returns the column vector as ublas::vector<T>; T = TYPE
-	vector<int> BB = df.column<double>(1);
+	vector<char> BB = df.column<char>(1);
 	
 	// row accessors
 	return 0;

@@ -1,5 +1,5 @@
 
-#include "../include/boost/numeric/ublas/df.hpp"
+#include "../include/boost/numeric/ublas/FINAL_VERSIONS/df.hpp"
 
 // instantiation, assignment and printing.
 int main() {
@@ -10,7 +10,7 @@ int main() {
 	vector <char> b(2); 
 	a(0) = 1, a(1) = 2;
 	b(0) = 'a', b(1) = 'b';
-	df_column data(2);
+	vector < df_column > data(2);
 	data(0) = a;
 	data(1) = b;
 	vector < std::string> h(2);
@@ -19,11 +19,12 @@ int main() {
 
 	// prints the data column-wise
 	df.print();
-	
+	std::cout << std::endl;
 	// assign entire columns of a data_frame
 	df[0] = df[1];
 	df.print();
-
+	std::cout << std::endl;
+	
 	// assigns the value of data_frame df to data_frame df2;
 	data_frame df2;
 	df2 = df;
