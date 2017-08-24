@@ -2,7 +2,7 @@
 \label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
 
 
-Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column slice class Builds a slice on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. allows access and modifications operations.  
+Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column slice class Builds a slice on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. Allows access and modifications operations.  
 
 
 
@@ -12,42 +12,70 @@ Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+f
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef vector$<$ std\+::string $>$\+::size\+\_\+type {\bfseries size\+\_\+type}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}
-
+typedef vector$<$ std\+::string $>$\+::\hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}{size\+\_\+type} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}{size\+\_\+type}
 \item 
-typedef vector$<$ std\+::string $>$\+::difference\+\_\+type {\bfseries difference\+\_\+type}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}
-
+typedef vector$<$ std\+::string $>$\+::\hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}{difference\+\_\+type} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}{difference\+\_\+type}
 \item 
-typedef basic\+\_\+slice$<$ size\+\_\+type, difference\+\_\+type $>$ {\bfseries slice\+\_\+type}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}
-
+typedef basic\+\_\+slice$<$ \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}{size\+\_\+type}, \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}{difference\+\_\+type} $>$ \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}{slice\+\_\+type}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}{data\+\_\+frame\+\_\+slice} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}
-
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}{data\+\_\+frame\+\_\+slice} ()
 \begin{DoxyCompactList}\small\item\em \+: default constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a4f440936f399c24489b37b2104f7a768}{data\+\_\+frame\+\_\+slice} (\hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} $\ast$df, const slice\+\_\+type \&slice)
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a4f440936f399c24489b37b2104f7a768}{data\+\_\+frame\+\_\+slice} (\hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} $\ast$df, const \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}{slice\+\_\+type} \&slice)
 \begin{DoxyCompactList}\small\item\em constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}{Data\+Frame} ()\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}
-
+\hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a537d1217f1a7071fcc3c8535a507524f}{$\sim$data\+\_\+frame\+\_\+slice} ()
+\begin{DoxyCompactList}\small\item\em \+: destructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}{Data\+Frame} ()
 \begin{DoxyCompactList}\small\item\em Returns a new \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} containing copy of columns referenced by the given vector\+\_\+slcie. \end{DoxyCompactList}\item 
-B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a575f53947d4aa935ec63035df39ca19a}{operator\mbox{[}$\,$\mbox{]}} (const std\+::string \&header)
-\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\item 
 B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} \& \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a9df845f93d29e0707e39eb94ccc27b57}{operator\mbox{[}$\,$\mbox{]}} (const size\+\_\+t \&i)
-\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE const size\+\_\+t \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a612cba6777919402295333e77e668df0}{size} () const 
+\begin{DoxyCompactList}\small\item\em Returns the size of the slice (number of elements in the slice). \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a06d355a54c494ff46144381b301886bd}{print} ()
+\begin{DoxyCompactList}\small\item\em Prints the slice similar to a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_af525173771a96c6d2e9349ab2933a211}{operator+=} (const T \&val)
+\begin{DoxyCompactList}\small\item\em Adds all the values in slice by {\ttfamily val}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ac61cd0ea96f5a946fb6af6be9fd036ee}{operator-\/=} (const T \&val)
+\begin{DoxyCompactList}\small\item\em Subtracts {\ttfamily val} from all the values in slice. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice} \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ae0973493074b3a4d855b3a742d7980d3}{operator$\ast$=} (const T \&val)
+\begin{DoxyCompactList}\small\item\em Multiplies all the values in slice by {\ttfamily val}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column slice class Builds a slice on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. allows access and modifications operations. 
+Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column slice class Builds a slice on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. Allows access and modifications operations. 
+
+\subsection{Member Typedef Documentation}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!difference\+\_\+type@{difference\+\_\+type}}
+\index{difference\+\_\+type@{difference\+\_\+type}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{difference\+\_\+type}{difference_type}}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<$std\+::string$>$\+::{\bf difference\+\_\+type} {\bf boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::difference\+\_\+type}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ab8da22e0f4069692d24bc0269f7d8281}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!size\+\_\+type@{size\+\_\+type}}
+\index{size\+\_\+type@{size\+\_\+type}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{size\+\_\+type}{size_type}}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<$std\+::string$>$\+::{\bf size\+\_\+type} {\bf boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::size\+\_\+type}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a64882afbb9ec95de2ba7b7f2c67c6549}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!slice\+\_\+type@{slice\+\_\+type}}
+\index{slice\+\_\+type@{slice\+\_\+type}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{slice\+\_\+type}{slice_type}}]{\setlength{\rightskip}{0pt plus 5cm}typedef basic\+\_\+slice$<${\bf size\+\_\+type}, {\bf difference\+\_\+type}$>$ {\bf boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::slice\+\_\+type}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a218c8259c584054d643724fd8f74450c}
+
 
 \subsection{Constructor \& Destructor Documentation}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!data\+\_\+frame\+\_\+slice@{data\+\_\+frame\+\_\+slice}}
+\index{data\+\_\+frame\+\_\+slice@{data\+\_\+frame\+\_\+slice}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{data\+\_\+frame\+\_\+slice()}{data_frame_slice()}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::data\+\_\+frame\+\_\+slice (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a08f7552cc358a576165c6394999dc878}
+
+
+\+: default constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. 
+
 \index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!data\+\_\+frame\+\_\+slice@{data\+\_\+frame\+\_\+slice}}
 \index{data\+\_\+frame\+\_\+slice@{data\+\_\+frame\+\_\+slice}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
 \subsubsection[{\texorpdfstring{data\+\_\+frame\+\_\+slice(data\+\_\+frame $\ast$df, const slice\+\_\+type \&slice)}{data_frame_slice(data_frame *df, const slice_type &slice)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::data\+\_\+frame\+\_\+slice (
 \begin{DoxyParamCaption}
 \item[{{\bf data\+\_\+frame} $\ast$}]{df, }
-\item[{const slice\+\_\+type \&}]{slice}
+\item[{const {\bf slice\+\_\+type} \&}]{slice}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a4f440936f399c24489b37b2104f7a768}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a4f440936f399c24489b37b2104f7a768}
 
@@ -61,25 +89,64 @@ constructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{
 {\em Boost.\+slice} & over vector$<$std\+::string$>$(column headers). \\
 \hline
 \end{DoxyParams}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!````~data\+\_\+frame\+\_\+slice@{$\sim$data\+\_\+frame\+\_\+slice}}
+\index{````~data\+\_\+frame\+\_\+slice@{$\sim$data\+\_\+frame\+\_\+slice}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{$\sim$data\+\_\+frame\+\_\+slice()}{~data_frame_slice()}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::$\sim$data\+\_\+frame\+\_\+slice (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a537d1217f1a7071fcc3c8535a507524f}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a537d1217f1a7071fcc3c8535a507524f}
+
+
+\+: destructor of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. 
+
 
 
 \subsection{Member Function Documentation}
-\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
-\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
-\subsubsection[{\texorpdfstring{operator[](const std\+::string \&header)}{operator[](const std::string &header)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf df\+\_\+column}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::operator\mbox{[}$\,$\mbox{]} (
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!Data\+Frame@{Data\+Frame}}
+\index{Data\+Frame@{Data\+Frame}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{Data\+Frame()}{DataFrame()}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame} boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::\+Data\+Frame (
 \begin{DoxyParamCaption}
-\item[{const std\+::string \&}]{header}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a575f53947d4aa935ec63035df39ca19a}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a575f53947d4aa935ec63035df39ca19a}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a8daaa1c0828185701ca1bbddfe29af03}
 
 
-Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{data\+\_\+frame\+\_\+slice}. 
+Returns a new \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} containing copy of columns referenced by the given vector\+\_\+slcie. 
+
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{operator$\ast$=(const T \&val)}{operator*=(const T &val)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame\+\_\+slice} boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ae0973493074b3a4d855b3a742d7980d3}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ae0973493074b3a4d855b3a742d7980d3}
 
 
-\begin{DoxyParams}{Parameters}
-{\em column} & header to be accessed. Returns reference to the column in the base \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \\
-\hline
-\end{DoxyParams}
+Multiplies all the values in slice by {\ttfamily val}. 
+
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{operator+=(const T \&val)}{operator+=(const T &val)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame\+\_\+slice} boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_af525173771a96c6d2e9349ab2933a211}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_af525173771a96c6d2e9349ab2933a211}
+
+
+Adds all the values in slice by {\ttfamily val}. 
+
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{operator-\/=(const T \&val)}{operator-=(const T &val)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf data\+\_\+frame\+\_\+slice} boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ac61cd0ea96f5a946fb6af6be9fd036ee}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_ac61cd0ea96f5a946fb6af6be9fd036ee}
+
+
+Subtracts {\ttfamily val} from all the values in slice. 
+
 \index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
 \subsubsection[{\texorpdfstring{operator[](const size\+\_\+t \&i)}{operator[](const size_t &i)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE {\bf df\+\_\+column}\& boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::operator\mbox{[}$\,$\mbox{]} (
@@ -96,8 +163,30 @@ Access operator of \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__sli
 {\em column} & index to be accessed. Returns reference to the column in the base \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. \\
 \hline
 \end{DoxyParams}
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!print@{print}}
+\index{print@{print}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{print()}{print()}}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::print (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a06d355a54c494ff46144381b301886bd}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a06d355a54c494ff46144381b301886bd}
+
+
+Prints the slice similar to a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. 
+
+\index{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}!size@{size}}
+\index{size@{size}!boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice@{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}}
+\subsubsection[{\texorpdfstring{size() const }{size() const }}]{\setlength{\rightskip}{0pt plus 5cm}B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE const size\+\_\+t boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a612cba6777919402295333e77e668df0}{}\label{classboost_1_1numeric_1_1ublas_1_1data__frame__slice_a612cba6777919402295333e77e668df0}
+
+
+Returns the size of the slice (number of elements in the slice). 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/df.\+hpp\end{DoxyCompactItemize}
+/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/\hyperlink{df_8hpp}{df.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,176 @@
+\hypertarget{df_8hpp}{}\section{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/df.hpp File Reference}
+\label{df_8hpp}\index{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/df.\+hpp@{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/df.\+hpp}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$boost/variant.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/preprocessor/seq/elem.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/preprocessor/seq/for\+\_\+each\+\_\+product.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/preprocessor/seq/enum.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/numeric/ublas/vector.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/lexical\+\_\+cast.\+hpp$>$}\\*
+{\ttfamily \#include $<$boost/numeric/ublas/vector\+\_\+proxy.\+hpp$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include \char`\"{}./data\+\_\+frame\+\_\+exceptions.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}./vector\+\_\+proxy.\+cpp\char`\"{}}\\*
+Include dependency graph for df.\+hpp\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1print__data__frame__column}{boost\+::numeric\+::ublas\+::print\+\_\+data\+\_\+frame\+\_\+column}
+\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{boost\+::numeric\+::ublas\+::df\+\_\+column}
+\begin{DoxyCompactList}\small\item\em Represents the column of a dataframe. \end{DoxyCompactList}\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{boost\+::numeric\+::ublas\+::data\+\_\+frame}
+\begin{DoxyCompactList}\small\item\em Represents a dataframe. \end{DoxyCompactList}\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__range}{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+range}
+\begin{DoxyCompactList}\small\item\em Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column range class Builds a range on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. allows access and modifications operations. \end{DoxyCompactList}\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__slice}{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+slice}
+\begin{DoxyCompactList}\small\item\em Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column slice class Builds a slice on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. Allows access and modifications operations. \end{DoxyCompactList}\item 
+class \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame__indirect}{boost\+::numeric\+::ublas\+::data\+\_\+frame\+\_\+indirect}
+\begin{DoxyCompactList}\small\item\em Represents \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} column indirect class Builds an indirect vector on columns of another \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame}. allows access and modifications operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceboost}{boost}
+\item 
+ \hyperlink{namespaceboost_1_1numeric}{boost\+::numeric}
+\item 
+ \hyperlink{namespaceboost_1_1numeric_1_1ublas}{boost\+::numeric\+::ublas}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{df_8hpp_a2701ef418e5c8481d7c16af8e8ee0644}{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}
+\item 
+\#define \hyperlink{df_8hpp_a53a81dffb087b72624335291d05b8eb1}{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}~(vector)
+\item 
+\#define \hyperlink{df_8hpp_ad40b62dac44a3e8f0bb383f7eb7cd38a}{V\+M\+A\+C\+RO}(r,  product)~(ublas\+::\+B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+L\+EM(0, product)$<$B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+L\+EM(1, product)$>$)
+\begin{DoxyCompactList}\small\item\em for the inner and outer types \end{DoxyCompactList}\item 
+\#define \hyperlink{df_8hpp_ad64f24ac0d8ce6750953095f377d4e2e}{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES}~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+P\+R\+O\+D\+U\+CT(\hyperlink{df_8hpp_ad40b62dac44a3e8f0bb383f7eb7cd38a}{V\+M\+A\+C\+RO}, (\hyperlink{df_8hpp_a53a81dffb087b72624335291d05b8eb1}{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}) (\hyperlink{df_8hpp_a2701ef418e5c8481d7c16af8e8ee0644}{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}))
+\item 
+\#define \hyperlink{df_8hpp_a9c2402c5ed22207ed96c90756cc34057}{C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES}~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+N\+UM(\hyperlink{df_8hpp_ad64f24ac0d8ce6750953095f377d4e2e}{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES})
+\item 
+\#define \hyperlink{df_8hpp_afef621cf30ef388830e03c82fe775aee}{C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES}~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+N\+UM(\hyperlink{df_8hpp_a2701ef418e5c8481d7c16af8e8ee0644}{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_af2e56c266ca040ab2f8aa591307dc5ce}{boost\+::numeric\+::ublas\+::operator-\/} (df\+\_\+column \&a)
+\begin{DoxyCompactList}\small\item\em Returns the negation of the column if exists. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_a65a9cb5bb193dd3b0e60a0322f983492}{boost\+::numeric\+::ublas\+::operator+} (df\+\_\+column \&a, df\+\_\+column \&b)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as sum of 2 df\+\_\+columns. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_acdc4d942c740ceaaabe541603885c4eb}{boost\+::numeric\+::ublas\+::operator-\/} (df\+\_\+column \&a, df\+\_\+column \&b)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as difference of 2 df\+\_\+columns. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_aab7910174f8fec8d67ddf60450647378}{boost\+::numeric\+::ublas\+::operator+} (df\+\_\+column \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as sum of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_a50606f185ceb02fb0c5c10a23788447b}{boost\+::numeric\+::ublas\+::operator+} (const T \&val, df\+\_\+column \&a)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as sum of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_ad73b7fb3d11e31ce06f729e108c254b2}{boost\+::numeric\+::ublas\+::operator-\/} (df\+\_\+column \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as difference of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_a8ad96e0ddb1935d3bb727962de2b0d10}{boost\+::numeric\+::ublas\+::operator$\ast$} (df\+\_\+column \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as product of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE df\+\_\+column \hyperlink{namespaceboost_1_1numeric_1_1ublas_aa753b89e21db8fbc3f3c50a5d61eb391}{boost\+::numeric\+::ublas\+::operator$\ast$} (const T \&val, df\+\_\+column \&a)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} as product of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1df__column}{df\+\_\+column} and a constant value. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE bool \hyperlink{namespaceboost_1_1numeric_1_1ublas_a3b1e71f695ecb6efb4599e4c11db7b33}{boost\+::numeric\+::ublas\+::operator==} (df\+\_\+column \&y, df\+\_\+column \&x)
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily true} if {\ttfamily y.\+size()} == {\ttfamily x.\+size()} and {\ttfamily y.\+get$<$\+T$>$} == {\ttfamily x.\+get$<$\+T$>$()} else {\ttfamily false}. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE bool \hyperlink{namespaceboost_1_1numeric_1_1ublas_acb2da4513828781cd99e831326b65d75}{boost\+::numeric\+::ublas\+::operator!=} (df\+\_\+column \&y, df\+\_\+column \&x)
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily false} if {\ttfamily y.\+size()} == {\ttfamily x.\+size()} and {\ttfamily y.\+get$<$\+T$>$} == {\ttfamily x.\+get$<$\+T$>$()} else {\ttfamily true}. \end{DoxyCompactList}\item 
+B\+O\+O\+S\+T\+\_\+\+U\+B\+L\+A\+S\+\_\+\+I\+N\+L\+I\+NE void \hyperlink{namespaceboost_1_1numeric_1_1ublas_a71c332a163ff84135fc371c37e797b60}{boost\+::numeric\+::ublas\+::remove} (vector$<$ std\+::string $>$ \&v, size\+\_\+t idx)
+\item 
+data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_ae8ed8ec1868fc661bbe4e44eb5fda0d6}{boost\+::numeric\+::ublas\+::operator-\/} (data\+\_\+frame \&a)
+\begin{DoxyCompactList}\small\item\em Returns the negation of the \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} if exists. \end{DoxyCompactList}\item 
+data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_aef3513791390396555e7784ec06119b1}{boost\+::numeric\+::ublas\+::operator+} (data\+\_\+frame \&a, data\+\_\+frame \&b)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as sum of 2 data\+\_\+frames. \end{DoxyCompactList}\item 
+data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_a7e69814ab82677f37fd012980ef7540f}{boost\+::numeric\+::ublas\+::operator-\/} (data\+\_\+frame \&a, data\+\_\+frame \&b)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as difference of 2 data\+\_\+frames. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_ac21b1bd53035a317958d2f381f781b0a}{boost\+::numeric\+::ublas\+::operator+} (data\+\_\+frame \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as sum of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_a6edb2db4e95c040b323d6431a853339d}{boost\+::numeric\+::ublas\+::operator+} (const T \&val, data\+\_\+frame \&a)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as sum of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_ad7505ba5ac6c6aa713e84fac5a69ac05}{boost\+::numeric\+::ublas\+::operator-\/} (data\+\_\+frame \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as difference of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_a3284a7108f4321ba2dda7ee61c87965c}{boost\+::numeric\+::ublas\+::operator$\ast$} (data\+\_\+frame \&a, const T \&val)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as product of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} and a constant value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\data\+\_\+frame \hyperlink{namespaceboost_1_1numeric_1_1ublas_a9982df9f93c16e17d970027d4baad321}{boost\+::numeric\+::ublas\+::operator$\ast$} (const T \&val, data\+\_\+frame \&a)
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} as product of a \hyperlink{classboost_1_1numeric_1_1ublas_1_1data__frame}{data\+\_\+frame} and a constant value. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceboost_1_1numeric_1_1ublas_ae71af2d81b7a1117420b6a3823e821a1}{boost\+::numeric\+::ublas\+::operator==} (data\+\_\+frame \&a, data\+\_\+frame \&b)
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily true} if (for all columns of a and b) {\ttfamily y.\+size()} == {\ttfamily x.\+size()} and {\ttfamily y.\+get$<$\+T$>$} == {\ttfamily x.\+get$<$\+T$>$()} else {\ttfamily false}. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceboost_1_1numeric_1_1ublas_a1f64fd7d8ef5ad76620006b498fe8400}{boost\+::numeric\+::ublas\+::operator!=} (data\+\_\+frame \&a, data\+\_\+frame \&b)
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily false} if (for all columns of a and b){\ttfamily y.\+size()} == {\ttfamily x.\+size()} and {\ttfamily y.\+get$<$\+T$>$} == {\ttfamily x.\+get$<$\+T$>$()} else {\ttfamily true}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ bool $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a5464d550b5fd0951f14b0bd93ccb0df2}{boost\+::numeric\+::ublas\+::\+A0}
+\item 
+vector$<$ char $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_adecfd0f3cb516b97b0da1565629f59d1}{boost\+::numeric\+::ublas\+::\+A1}
+\item 
+vector$<$ unsigned char $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a04baccb7ef5149e6079f0f39904c10fc}{boost\+::numeric\+::ublas\+::\+A2}
+\item 
+vector$<$ short $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a21ae51ca27e984306163f9e9e23981a3}{boost\+::numeric\+::ublas\+::\+A3}
+\item 
+vector$<$ unsigned short $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a6ee2ec81873323b383e5f3e133cb38d9}{boost\+::numeric\+::ublas\+::\+A4}
+\item 
+vector$<$ int $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_aa06ed90bd1a632f409b7bd155a23b610}{boost\+::numeric\+::ublas\+::\+A5}
+\item 
+vector$<$ unsigned int $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a563a365ea9deabb74722dac554da1d70}{boost\+::numeric\+::ublas\+::\+A6}
+\item 
+vector$<$ long $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a665d5a514bd51ed5cb4fea7b064cb0e5}{boost\+::numeric\+::ublas\+::\+A7}
+\item 
+vector$<$ unsigned long $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_abf090883e8b56e426046e0da35d7fa34}{boost\+::numeric\+::ublas\+::\+A8}
+\item 
+vector$<$ long long $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a8b6747feac830cb4434b5a06e1e23d9f}{boost\+::numeric\+::ublas\+::\+A9}
+\item 
+vector$<$ unsigned long long $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a916d52ec29025a9ccb0f0436ffb4a5cd}{boost\+::numeric\+::ublas\+::\+A10}
+\item 
+vector$<$ float $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a1c64070e76144ca640278cb67b5a6d37}{boost\+::numeric\+::ublas\+::\+A11}
+\item 
+vector$<$ double $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a588ba2742f8ab5a89778c14813a9c148}{boost\+::numeric\+::ublas\+::\+A12}
+\item 
+vector$<$ long double $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a51d18fd225441f779d79ce1594ea3742}{boost\+::numeric\+::ublas\+::\+A13}
+\item 
+vector$<$ std\+::string $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a1ffbe402403c5cf35bf6e9c7da53f312}{boost\+::numeric\+::ublas\+::\+A14}
+\item 
+vector$<$ std\+::string $\ast$ $>$ \hyperlink{namespaceboost_1_1numeric_1_1ublas_a27f19c7b7ed596e94891f3a5ec9045d8}{boost\+::numeric\+::ublas\+::\+A15}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{df.\+hpp@{df.\+hpp}!A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES@{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES}}
+\index{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES@{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES}{ALL_VARIANT_TYPES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H\+\_\+\+P\+R\+O\+D\+U\+CT({\bf V\+M\+A\+C\+RO}, ({\bf V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}) ({\bf I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}))}\hypertarget{df_8hpp_ad64f24ac0d8ce6750953095f377d4e2e}{}\label{df_8hpp_ad64f24ac0d8ce6750953095f377d4e2e}
+\index{df.\+hpp@{df.\+hpp}!C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES@{C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES}}
+\index{C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES@{C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES}{COLUMN_DATA_TYPES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+L\+U\+M\+N\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+ES~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+N\+UM({\bf I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE})}\hypertarget{df_8hpp_afef621cf30ef388830e03c82fe775aee}{}\label{df_8hpp_afef621cf30ef388830e03c82fe775aee}
+\index{df.\+hpp@{df.\+hpp}!C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES@{C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES}}
+\index{C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES@{C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES}{COLUMN_TYPES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+L\+U\+M\+N\+\_\+\+T\+Y\+P\+ES~B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+N\+UM({\bf A\+L\+L\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+T\+Y\+P\+ES})}\hypertarget{df_8hpp_a9c2402c5ed22207ed96c90756cc34057}{}\label{df_8hpp_a9c2402c5ed22207ed96c90756cc34057}
+\index{df.\+hpp@{df.\+hpp}!I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE@{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}}
+\index{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE@{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}{INNER_TYPE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+N\+N\+E\+R\+\_\+\+T\+Y\+PE}\hypertarget{df_8hpp_a2701ef418e5c8481d7c16af8e8ee0644}{}\label{df_8hpp_a2701ef418e5c8481d7c16af8e8ee0644}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(bool) \(\backslash\)
+(\textcolor{keywordtype}{char}) (\textcolor{keywordtype}{unsigned} char) \(\backslash\)
+(\textcolor{keywordtype}{short}) (\textcolor{keywordtype}{unsigned} short) \(\backslash\)
+(\textcolor{keywordtype}{int}) (\textcolor{keywordtype}{unsigned} int) \(\backslash\)
+(\textcolor{keywordtype}{long}) (\textcolor{keywordtype}{unsigned} long) \(\backslash\)
+(\textcolor{keywordtype}{long} \textcolor{keywordtype}{long}) (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} long) \(\backslash\)
+(\textcolor{keywordtype}{float}) (double) (\textcolor{keywordtype}{long} \textcolor{keywordtype}{double}) \(\backslash\)
+(std::string) (std::string*) \(\backslash\)
+\end{DoxyCode}
+\index{df.\+hpp@{df.\+hpp}!V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE@{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}}
+\index{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE@{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE}{VECTOR_TYPE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+E\+C\+T\+O\+R\+\_\+\+T\+Y\+PE~(vector)}\hypertarget{df_8hpp_a53a81dffb087b72624335291d05b8eb1}{}\label{df_8hpp_a53a81dffb087b72624335291d05b8eb1}
+\index{df.\+hpp@{df.\+hpp}!V\+M\+A\+C\+RO@{V\+M\+A\+C\+RO}}
+\index{V\+M\+A\+C\+RO@{V\+M\+A\+C\+RO}!df.\+hpp@{df.\+hpp}}
+\subsubsection[{\texorpdfstring{V\+M\+A\+C\+RO}{VMACRO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+M\+A\+C\+RO(
+\begin{DoxyParamCaption}
+\item[{}]{r, }
+\item[{}]{product}
+\end{DoxyParamCaption}
+)~(ublas\+::\+B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+L\+EM(0, product)$<$B\+O\+O\+S\+T\+\_\+\+P\+P\+\_\+\+S\+E\+Q\+\_\+\+E\+L\+EM(1, product)$>$)}\hypertarget{df_8hpp_ad40b62dac44a3e8f0bb383f7eb7cd38a}{}\label{df_8hpp_ad40b62dac44a3e8f0bb383f7eb7cd38a}
+
+
+for the inner and outer types 
+

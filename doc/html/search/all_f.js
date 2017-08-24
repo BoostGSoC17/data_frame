@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['vector_5fproxy',['vector_proxy',['../classboost_1_1numeric_1_1ublas_1_1vector__proxy.html',1,'boost::numeric::ublas']]]
+  ['undefined_5fcolumn_5fheader',['undefined_column_header',['../structundefined__column__header.html',1,'']]],
+  ['unequal_5fcolumns',['unequal_columns',['../structunequal__columns.html',1,'']]],
+  ['unequal_5frows',['unequal_rows',['../structunequal__rows.html',1,'']]]
 ];

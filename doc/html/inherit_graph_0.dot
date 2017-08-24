@@ -3,25 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="bad_header_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbad__header__type.html"];
-  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="column_type_mismatch",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structcolumn__type__mismatch.html"];
-  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="differing_rows",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdiffering__rows.html"];
-  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="holes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structholes.html"];
-  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="inconsistent_arguments",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structinconsistent__arguments.html"];
-  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="same_header",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structsame__header.html"];
-  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="type_not_supported",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtype__not__supported.html"];
-  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="undefined_column_header",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structundefined__column__header.html"];
-  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node10 [label="undefined_column_name",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structundefined__column__name.html"];
-  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="undefined_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structundefined__index.html"];
+  Node1 [label="boost::numeric::ublas\l::data_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1numeric_1_1ublas_1_1data__frame.html",tooltip="Represents a dataframe. "];
 }

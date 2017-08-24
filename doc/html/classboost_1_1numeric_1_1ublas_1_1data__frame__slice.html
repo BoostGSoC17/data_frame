@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: boost::numeric::ublas::data_frame_slice Class Reference</title>
+<title>data_frame: boost::numeric::ublas::data_frame_slice Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">data_frame
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
  </tr>
@@ -38,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -82,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>boost</b></li><li class="navelem"><b>numeric</b></li><li class="navelem"><b>ublas</b></li><li class="navelem"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceboost.html">boost</a></li><li class="navelem"><a class="el" href="namespaceboost_1_1numeric.html">numeric</a></li><li class="navelem"><a class="el" href="namespaceboost_1_1numeric_1_1ublas.html">ublas</a></li><li class="navelem"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,46 +97,113 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Represents <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> column slice class Builds a slice on columns of another <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. allows access and modifications operations.  
+<p>Represents <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> column slice class Builds a slice on columns of another <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. Allows access and modifications operations.  
  <a href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="df_8hpp_source.html">df.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a64882afbb9ec95de2ba7b7f2c67c6549"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64882afbb9ec95de2ba7b7f2c67c6549"></a>
-typedef vector&lt; std::string &gt;::size_type&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b></td></tr>
+<tr class="memitem:a64882afbb9ec95de2ba7b7f2c67c6549"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; std::string &gt;::<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">size_type</a></td></tr>
 <tr class="separator:a64882afbb9ec95de2ba7b7f2c67c6549"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8da22e0f4069692d24bc0269f7d8281"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8da22e0f4069692d24bc0269f7d8281"></a>
-typedef vector&lt; std::string &gt;::difference_type&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b></td></tr>
+<tr class="memitem:ab8da22e0f4069692d24bc0269f7d8281"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; std::string &gt;::<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">difference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">difference_type</a></td></tr>
 <tr class="separator:ab8da22e0f4069692d24bc0269f7d8281"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a218c8259c584054d643724fd8f74450c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a218c8259c584054d643724fd8f74450c"></a>
-typedef basic_slice&lt; size_type, difference_type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>slice_type</b></td></tr>
+<tr class="memitem:a218c8259c584054d643724fd8f74450c"><td class="memItemLeft" align="right" valign="top">typedef basic_slice&lt; <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">size_type</a>, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">difference_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a218c8259c584054d643724fd8f74450c">slice_type</a></td></tr>
 <tr class="separator:a218c8259c584054d643724fd8f74450c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a08f7552cc358a576165c6394999dc878"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08f7552cc358a576165c6394999dc878"></a>
-BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a08f7552cc358a576165c6394999dc878">data_frame_slice</a> ()</td></tr>
-<tr class="memdesc:a08f7552cc358a576165c6394999dc878"><td class="mdescLeft">&#160;</td><td class="mdescRight">: default constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>. <br /></td></tr>
+<tr class="memitem:a08f7552cc358a576165c6394999dc878"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a08f7552cc358a576165c6394999dc878">data_frame_slice</a> ()</td></tr>
+<tr class="memdesc:a08f7552cc358a576165c6394999dc878"><td class="mdescLeft">&#160;</td><td class="mdescRight">: default constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a08f7552cc358a576165c6394999dc878">More...</a><br /></td></tr>
 <tr class="separator:a08f7552cc358a576165c6394999dc878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f440936f399c24489b37b2104f7a768"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a4f440936f399c24489b37b2104f7a768">data_frame_slice</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> *df, const slice_type &amp;slice)</td></tr>
-<tr class="memdesc:a4f440936f399c24489b37b2104f7a768"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a4f440936f399c24489b37b2104f7a768">More...</a><br /></td></tr>
+<tr class="memitem:a4f440936f399c24489b37b2104f7a768"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a4f440936f399c24489b37b2104f7a768">data_frame_slice</a> (<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> *df, const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a218c8259c584054d643724fd8f74450c">slice_type</a> &amp;slice)</td></tr>
+<tr class="memdesc:a4f440936f399c24489b37b2104f7a768"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a4f440936f399c24489b37b2104f7a768">More...</a><br /></td></tr>
 <tr class="separator:a4f440936f399c24489b37b2104f7a768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8daaa1c0828185701ca1bbddfe29af03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8daaa1c0828185701ca1bbddfe29af03"></a>
-BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a8daaa1c0828185701ca1bbddfe29af03">DataFrame</a> ()</td></tr>
-<tr class="memdesc:a8daaa1c0828185701ca1bbddfe29af03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> containing copy of columns referenced by the given vector_slcie. <br /></td></tr>
+<tr class="memitem:a537d1217f1a7071fcc3c8535a507524f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a537d1217f1a7071fcc3c8535a507524f">~data_frame_slice</a> ()</td></tr>
+<tr class="memdesc:a537d1217f1a7071fcc3c8535a507524f"><td class="mdescLeft">&#160;</td><td class="mdescRight">: destructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a537d1217f1a7071fcc3c8535a507524f">More...</a><br /></td></tr>
+<tr class="separator:a537d1217f1a7071fcc3c8535a507524f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8daaa1c0828185701ca1bbddfe29af03"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a8daaa1c0828185701ca1bbddfe29af03">DataFrame</a> ()</td></tr>
+<tr class="memdesc:a8daaa1c0828185701ca1bbddfe29af03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> containing copy of columns referenced by the given vector_slcie.  <a href="#a8daaa1c0828185701ca1bbddfe29af03">More...</a><br /></td></tr>
 <tr class="separator:a8daaa1c0828185701ca1bbddfe29af03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a575f53947d4aa935ec63035df39ca19a"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a575f53947d4aa935ec63035df39ca19a">operator[]</a> (const std::string &amp;header)</td></tr>
-<tr class="memdesc:a575f53947d4aa935ec63035df39ca19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a575f53947d4aa935ec63035df39ca19a">More...</a><br /></td></tr>
-<tr class="separator:a575f53947d4aa935ec63035df39ca19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9df845f93d29e0707e39eb94ccc27b57"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a9df845f93d29e0707e39eb94ccc27b57">operator[]</a> (const size_t &amp;i)</td></tr>
-<tr class="memdesc:a9df845f93d29e0707e39eb94ccc27b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a9df845f93d29e0707e39eb94ccc27b57">More...</a><br /></td></tr>
+<tr class="memdesc:a9df845f93d29e0707e39eb94ccc27b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>.  <a href="#a9df845f93d29e0707e39eb94ccc27b57">More...</a><br /></td></tr>
 <tr class="separator:a9df845f93d29e0707e39eb94ccc27b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612cba6777919402295333e77e668df0"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a612cba6777919402295333e77e668df0">size</a> () const </td></tr>
+<tr class="memdesc:a612cba6777919402295333e77e668df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the slice (number of elements in the slice).  <a href="#a612cba6777919402295333e77e668df0">More...</a><br /></td></tr>
+<tr class="separator:a612cba6777919402295333e77e668df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06d355a54c494ff46144381b301886bd"><td class="memItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a06d355a54c494ff46144381b301886bd">print</a> ()</td></tr>
+<tr class="memdesc:a06d355a54c494ff46144381b301886bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the slice similar to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>.  <a href="#a06d355a54c494ff46144381b301886bd">More...</a><br /></td></tr>
+<tr class="separator:a06d355a54c494ff46144381b301886bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af525173771a96c6d2e9349ab2933a211"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af525173771a96c6d2e9349ab2933a211"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#af525173771a96c6d2e9349ab2933a211">operator+=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:af525173771a96c6d2e9349ab2933a211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds all the values in slice by <code>val</code>.  <a href="#af525173771a96c6d2e9349ab2933a211">More...</a><br /></td></tr>
+<tr class="separator:af525173771a96c6d2e9349ab2933a211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac61cd0ea96f5a946fb6af6be9fd036ee"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac61cd0ea96f5a946fb6af6be9fd036ee"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ac61cd0ea96f5a946fb6af6be9fd036ee">operator-=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:ac61cd0ea96f5a946fb6af6be9fd036ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtracts <code>val</code> from all the values in slice.  <a href="#ac61cd0ea96f5a946fb6af6be9fd036ee">More...</a><br /></td></tr>
+<tr class="separator:ac61cd0ea96f5a946fb6af6be9fd036ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0973493074b3a4d855b3a742d7980d3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae0973493074b3a4d855b3a742d7980d3"><td class="memTemplItemLeft" align="right" valign="top">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ae0973493074b3a4d855b3a742d7980d3">operator*=</a> (const T &amp;val)</td></tr>
+<tr class="memdesc:ae0973493074b3a4d855b3a742d7980d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies all the values in slice by <code>val</code>.  <a href="#ae0973493074b3a4d855b3a742d7980d3">More...</a><br /></td></tr>
+<tr class="separator:ae0973493074b3a4d855b3a742d7980d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> column slice class Builds a slice on columns of another <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. allows access and modifications operations. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p>Represents <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> column slice class Builds a slice on columns of another <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. Allows access and modifications operations. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="ab8da22e0f4069692d24bc0269f7d8281"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef vector&lt;std::string&gt;::<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">difference_type</a> <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">boost::numeric::ublas::data_frame_slice::difference_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a64882afbb9ec95de2ba7b7f2c67c6549"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef vector&lt;std::string&gt;::<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">size_type</a> <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">boost::numeric::ublas::data_frame_slice::size_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a218c8259c584054d643724fd8f74450c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef basic_slice&lt;<a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a64882afbb9ec95de2ba7b7f2c67c6549">size_type</a>, <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#ab8da22e0f4069692d24bc0269f7d8281">difference_type</a>&gt; <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a218c8259c584054d643724fd8f74450c">boost::numeric::ublas::data_frame_slice::slice_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a08f7552cc358a576165c6394999dc878"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE boost::numeric::ublas::data_frame_slice::data_frame_slice </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: default constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>. </p>
+
+</div>
+</div>
 <a class="anchor" id="a4f440936f399c24489b37b2104f7a768"></a>
 <div class="memitem">
 <div class="memproto">
@@ -151,7 +220,7 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const slice_type &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html#a218c8259c584054d643724fd8f74450c">slice_type</a> &amp;&#160;</td>
           <td class="paramname"><em>slice</em>&#160;</td>
         </tr>
         <tr>
@@ -167,7 +236,7 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
 </table>
 </div><div class="memdoc">
 
-<p>constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>. </p>
+<p>constructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pointer</td><td>to base <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> (over which the proxy needs to be built). </td></tr>
@@ -178,8 +247,7 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a575f53947d4aa935ec63035df39ca19a"></a>
+<a class="anchor" id="a537d1217f1a7071fcc3c8535a507524f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -187,10 +255,9 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1df__column.html">df_column</a>&amp; boost::numeric::ublas::data_frame_slice::operator[] </td>
+          <td class="memname">boost::numeric::ublas::data_frame_slice::~data_frame_slice </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>header</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -201,13 +268,117 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
 </table>
 </div><div class="memdoc">
 
-<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">column</td><td>header to be accessed. Returns reference to the column in the base <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>: destructor of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8daaa1c0828185701ca1bbddfe29af03"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html">data_frame</a> boost::numeric::ublas::data_frame_slice::DataFrame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a new <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a> containing copy of columns referenced by the given vector_slcie. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae0973493074b3a4d855b3a742d7980d3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a> boost::numeric::ublas::data_frame_slice::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiplies all the values in slice by <code>val</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af525173771a96c6d2e9349ab2933a211"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a> boost::numeric::ublas::data_frame_slice::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds all the values in slice by <code>val</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac61cd0ea96f5a946fb6af6be9fd036ee"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html">data_frame_slice</a> boost::numeric::ublas::data_frame_slice::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subtracts <code>val</code> from all the values in slice. </p>
 
 </div>
 </div>
@@ -233,13 +404,63 @@ BOOST_UBLAS_INLINE <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__f
 </table>
 </div><div class="memdoc">
 
-<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. allows access and modifications operations. ">data_frame_slice</a>. </p>
+<p>Access operator of <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html" title="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. ">data_frame_slice</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">column</td><td>index to be accessed. Returns reference to the column in the base <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a06d355a54c494ff46144381b301886bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE void boost::numeric::ublas::data_frame_slice::print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints the slice similar to a <a class="el" href="classboost_1_1numeric_1_1ublas_1_1data__frame.html" title="Represents a dataframe. ">data_frame</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a612cba6777919402295333e77e668df0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_UBLAS_INLINE const size_t boost::numeric::ublas::data_frame_slice::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the size of the slice (number of elements in the slice). </p>
 
 </div>
 </div>

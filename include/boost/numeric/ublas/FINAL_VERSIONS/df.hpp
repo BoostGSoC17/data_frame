@@ -19,7 +19,7 @@
 #include "./data_frame_exceptions.hpp"
 #include "./vector_proxy.cpp"
 
-/// \Basic allowed types for vectors
+// Basic allowed types for vectors
 #define INNER_TYPE \
 (bool) \
 (char) (unsigned char) \
@@ -390,8 +390,9 @@ namespace boost { namespace numeric { namespace ublas {
 		boost::variant < COLUMN_TYPES > data_;
 		//! \brief Stores the size of the column vector.
 		size_t size_;
-	};
-
+	};			
+						
+	//! \brief Returns the negation of the column if exists. 
 	BOOST_UBLAS_INLINE
 	df_column operator - (df_column& a) {	
 		df_column X;
@@ -446,6 +447,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a df_column as sum of 2 df_columns.
 	BOOST_UBLAS_INLINE
 	df_column operator + (df_column& a, df_column& b) {	
 		df_column X;
@@ -501,6 +503,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a df_column as difference of 2 df_columns.
 	BOOST_UBLAS_INLINE
 	df_column operator - (df_column& a, df_column& b) {	
 		df_column X;
@@ -556,6 +559,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a df_column as sum of a df_column and a constant value.
 	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator + (df_column& a, const T& val) {
@@ -698,19 +702,22 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a df_column as sum of a df_column and a constant value.
 	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator + (const T& val, df_column& a) {
 		return a + val;
 	}
 
+	//! \brief Returns a df_column as difference of a df_column and a constant value.
 	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator - (df_column& a, const T& val) {
 		return a + (-val);
 	}
 
-	BOOST_UBLAS_INLINE
+	//! \brief Returns a df_column as product of a df_column and a constant value.
+	BOOST_UBLAS_INLINE	
 	template < class T > 
 	df_column operator * (df_column& a, const T& val) {
 		df_column X;
@@ -766,12 +773,14 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a df_column as product of a df_column and a constant value.
 	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator * (const T& val, df_column& a) {
 		return a * val;
 	}
 
+	//! \brief Returns \c true if \c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c false
 	BOOST_UBLAS_INLINE
 	bool operator == (df_column& y, df_column& x) {
 		if (y.type() != x.type()) {
@@ -851,6 +860,7 @@ namespace boost { namespace numeric { namespace ublas {
 		return true;
 	}
 
+	//! \brief Returns \c false if \c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c true
 	BOOST_UBLAS_INLINE
 	bool operator != (df_column& y, df_column& x) {
 		return !(x == y);
@@ -1018,6 +1028,10 @@ namespace boost { namespace numeric { namespace ublas {
 		// row accessors 
 		// ------------- 
 
+		/*! brief Row Access operator of data_frame.
+		 *  \param row index to be accessed.
+		 *  Returns the row as vector < int, double ...... >.
+		 */
 		vector < boost::variant < COLUMN_DATA_TYPES > > operator () (const size_t row) {
 			vector < boost::variant < COLUMN_DATA_TYPES > > ret(ncol_);
 			for(size_t i = 0; i < ncol_; ++i) {
@@ -1109,7 +1123,7 @@ namespace boost { namespace numeric { namespace ublas {
 				if (data_.find(header) == data_.end()) {
 					throw undefined_column_header();
 				}
-				/// \name is valid so delete the column[$name]
+				// name is valid so delete the column[$name]
 				data_.erase(header);
 				for(size_t i = 0; i < column_headers_.size(); i++) {
 					if (header == column_headers_(i)) {
@@ -1238,34 +1252,42 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		//! \brief Adds another data_frame to self.
 		BOOST_UBLAS_INLINE
 		data_frame operator += (data_frame& df_) {
 			return (*this) = (*this) + df_;
 		}
 
+		//! \brief Subtracts another data_frame from self.
 		BOOST_UBLAS_INLINE
 		data_frame operator -= (data_frame& df_) {
 			return (*this) = (*this) - df_;
 		}
 
+		//! \brief Adds a constant value to self.
 		BOOST_UBLAS_INLINE
 		template < class T > 
 		data_frame operator += (const T& val) {
 			return (*this) = (*this) + val;
 		}
 
+		//! \brief Subtracts constant value from self.
 		BOOST_UBLAS_INLINE
 		template < class T > 
 		data_frame operator -= (const T& val) {
 			return (*this) = (*this) - val;
 		}
 
+		//! \brief Multiplies constant value to self.
 		BOOST_UBLAS_INLINE
 		template < class T > 
 		data_frame operator *= (const T& val) {
 			return (*this) = (*this) * val;
 		}
-			
+		
+		/*! \brief Update the column header of a column.
+		 *	\param std::string to be updated, std::string updated to.
+		 */
 		BOOST_UBLAS_INLINE 
 		void set_col_header(const std::string& a, const std::string& b) {
 			try {
@@ -1286,6 +1308,9 @@ namespace boost { namespace numeric { namespace ublas {
 			}
 		}
 
+		/*! \brief Update the column header of a column.
+		 *	\param index of the column to be updated, std::string updated to.
+		 */
 		BOOST_UBLAS_INLINE 
 		void set_col_header(const size_t col, const std::string& b) {
 			data_[b] = data_[column_headers_(col)];
@@ -1309,6 +1334,9 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	};
 
+
+	
+	//! \brief Returns the negation of the data_frame if exists. 
 	data_frame operator - (data_frame& a) {
 		vector<std::string> header(a.ncol());
 		vector<df_column> col(a.ncol());
@@ -1319,6 +1347,7 @@ namespace boost { namespace numeric { namespace ublas {
 		return data_frame(header, col);
 	}
 	
+	//! \brief Returns a data_frame as sum of 2 data_frames.
 	data_frame operator + (data_frame& a, data_frame& b) {
 		try {
 			if (a.ncol() != b.ncol()) {
@@ -1343,6 +1372,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a data_frame as difference of 2 data_frames.
 	data_frame operator - (data_frame& a, data_frame& b) {
 		try {
 			if (a.ncol() != b.ncol()) {
@@ -1367,6 +1397,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 	}
 
+	//! \brief Returns a data_frame as sum of a data_frame and a constant value.
 	template < class T >
 	data_frame operator + (data_frame& a, const T& val) {
 		vector<std::string> header(a.ncol());
@@ -1378,16 +1409,19 @@ namespace boost { namespace numeric { namespace ublas {
 		return data_frame(header, col);
 	}
 
+	//! \brief Returns a data_frame as sum of a data_frame and a constant value.
 	template < class T > 
 	data_frame operator + (const T& val, data_frame& a) {
 		return a + val;
 	}
 
+	//! \brief Returns a data_frame as difference of a data_frame and a constant value.
 	template < class T > 
 	data_frame operator - (data_frame& a, const T& val) {
 		return a + (-val);
 	}
 
+	//! \brief Returns a data_frame as product of a data_frame and a constant value.
 	template < class T >
 	data_frame operator * (data_frame& a, const T& val) {
 		vector<std::string> header(a.ncol());
@@ -1399,11 +1433,13 @@ namespace boost { namespace numeric { namespace ublas {
 		return data_frame(header, col);
 	}
 
+	//! \brief Returns a data_frame as product of a data_frame and a constant value.
 	template < class T > 
 	data_frame operator * (const T& val, data_frame& a) {
 		return a * val;
 	}
 
+	//! \brief Returns \c true if (for all columns of a and b) \c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c false
 	bool operator == (data_frame& a, data_frame& b) {
 		if (a.ncol() != b.ncol()) {
 			return false;
@@ -1422,6 +1458,7 @@ namespace boost { namespace numeric { namespace ublas {
 		return true;
 	}
 
+	//! \brief Returns \c false if (for all columns of a and b)\c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c true
 	bool operator != (data_frame& a, data_frame& b) {
 		return !(a == b);
 	}
@@ -1441,8 +1478,8 @@ namespace boost { namespace numeric { namespace ublas {
 		typedef basic_range<size_type, difference_type> range_type;
 
 		//! \brief: default constructor of data_frame_range.
-		// BOOST_UBLAS_INLINE
-		// data_frame_range();
+		BOOST_UBLAS_INLINE
+		data_frame_range();
 
 		/*! \brief constructor of data_frame_range.
 		 *	\param pointer to base data_frame (over which the proxy needs to be built).
@@ -1477,12 +1514,14 @@ namespace boost { namespace numeric { namespace ublas {
 		df_column& operator [] (const size_t& i) {
 			return (*df_)[column_headers_[i]];
 		}
-
+		
+		//! \brief Returns the size of the range (number of elements in the range).
 		BOOST_UBLAS_INLINE
 		const size_t size() const {
 			return column_headers_.size();
 		}
 
+		//! \brief Prints the range similar to a data_frame.
 		BOOST_UBLAS_INLINE
 		void print() {
 			for(auto header: column_headers_) {
@@ -1492,6 +1531,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return;
 		}
 
+		//! \brief Adds all the values in range by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_range operator += (const T& val) {
@@ -1501,6 +1541,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);
 		}
 
+		//! \brief Subtracts \c val from all the values in range.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_range operator -= (const T& val) {
@@ -1510,6 +1551,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);		
 		}
 
+		//! \brief Multiplies all the values in range by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_range operator *= (const T& val) {
@@ -1520,13 +1562,15 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 
 	private:
+		//! \brief Represents the base data_frame.
 		data_frame *df_;
+		//! \brief Range over the column of data_frame.
 		vector_range < vector <std::string> > column_headers_;
 	};
 
 	/*! \brief Represents data_frame column slice class
 	 *	Builds a slice on columns of another data_frame.
-	 *	allows access and modifications operations
+	 *	Allows access and modifications operations
 	 */
 	class data_frame_slice {
 	public:
@@ -1547,7 +1591,6 @@ namespace boost { namespace numeric { namespace ublas {
 			column_headers_(df->headers(), slice) {
 				df_ = df;
 		}
-
 
 		//! \brief: destructor of data_frame_slice.
 		~data_frame_slice() {}
@@ -1573,11 +1616,14 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
+	
+		//! \brief Returns the size of the slice (number of elements in the slice).
 		BOOST_UBLAS_INLINE
 		const size_t size() const {
 			return column_headers_.size();
 		}
 
+		//! \brief Prints the slice similar to a data_frame.
 		BOOST_UBLAS_INLINE
 		void print() {
 			for(auto header: column_headers_) {
@@ -1587,6 +1633,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return;
 		}
 
+		//! \brief Adds all the values in slice by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_slice operator += (const T& val) {
@@ -1596,6 +1643,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);
 		}
 
+		//! \brief Subtracts \c val from all the values in slice.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_slice operator -= (const T& val) {
@@ -1605,6 +1653,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);
 		}
 
+		//! \brief Multiplies all the values in slice by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_slice operator *= (const T& val) {
@@ -1614,7 +1663,9 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);
 		}
 	private:
+		//! \brief Represents the base data_frame.
 		data_frame *df_;
+		//! \brief Slice over the column of data_frame.
 		vector_slice < vector <std::string> > column_headers_;
 	};
 
@@ -1651,11 +1702,10 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_frame(v1, v2);
 		} 
 
-
 		//! \brief: destructor of data_frame_indirect.
 		~data_frame_indirect() {}
 
-		/*! \brief Access operator of data_frame_slice.
+		/*! \brief Access operator of data_frame_indirect.
 		 * 	\param column index to be accessed.
 		 *  Returns reference to the column in the base data_frame.
 		 */
@@ -1663,12 +1713,14 @@ namespace boost { namespace numeric { namespace ublas {
 		df_column& operator [] (const size_t& i) {
 			return (*df_)[column_headers_[i]];
 		}
-
+	
+		//! \brief Returns the size of the indirect_data_frame (number of elements in the indirect data_frame).
 		BOOST_UBLAS_INLINE
 		const size_t size() const {
 			return column_headers_.size();
 		}
 
+		//! \brief Prints the data_frame_indirect similar to a data_frame.
 		BOOST_UBLAS_INLINE
 		void print() {
 			for(auto header: column_headers_) {
@@ -1678,6 +1730,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return;
 		}
 
+		//! \brief Adds all the values in data_frame_indirect by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_indirect operator += (const T& val) {
@@ -1687,6 +1740,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);
 		}
 
+		//! \brief Subtracts \c val from all the values in data_frame_indirect.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_indirect operator -= (const T& val) {
@@ -1696,6 +1750,7 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*this);			
 		}
 
+		//! \brief Multiplies all the values in data_frame_indirect by \c val.
 		template < class T >
 		BOOST_UBLAS_INLINE
 		data_frame_indirect operator *= (const T& val) {
@@ -1706,7 +1761,9 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 
 	private: 
+		//! \brief Represents the base data_frame.
 		data_frame *df_;
+		//! \brief vector_indirect over the column of data_frame.
 		vector_indirect < vector < std::string> > column_headers_;
 	};
 }}}

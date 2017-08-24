@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bad_5fheader_5ftype',['bad_header_type',['../structbad__header__type.html',1,'']]]
+  ['column_5fheader_5fmismatch',['column_header_mismatch',['../structcolumn__header__mismatch.html',1,'']]]
 ];

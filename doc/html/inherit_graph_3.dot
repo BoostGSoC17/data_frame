@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="boost::numeric::ublas\l::data_frame_range",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1numeric_1_1ublas_1_1data__frame__range.html",tooltip="Represents data_frame column range class Builds a range on columns of another data_frame. allows access and modifications operations. "];
+  Node1 [label="boost::numeric::ublas\l::data_frame_slice",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1numeric_1_1ublas_1_1data__frame__slice.html",tooltip="Represents data_frame column slice class Builds a slice on columns of another data_frame. Allows access and modifications operations. "];
 }

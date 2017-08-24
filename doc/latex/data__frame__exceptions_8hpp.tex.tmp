@@ -1,0 +1,26 @@
+\hypertarget{data__frame__exceptions_8hpp}{}\section{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/data\+\_\+frame\+\_\+exceptions.hpp File Reference}
+\label{data__frame__exceptions_8hpp}\index{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/data\+\_\+frame\+\_\+exceptions.\+hpp@{/home/rishabh/\+G\+So\+C/dataframe/include/boost/numeric/ublas/\+F\+I\+N\+A\+L\+\_\+\+V\+E\+R\+S\+I\+O\+N\+S/data\+\_\+frame\+\_\+exceptions.\+hpp}}
+{\ttfamily \#include $<$exception$>$}\\*
+Include dependency graph for data\+\_\+frame\+\_\+exceptions.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structinconsistent__arguments}{inconsistent\+\_\+arguments}
+\begin{DoxyCompactList}\small\item\em Contains various exceptions encountered when dealing with data\+\_\+frames. Triggering an exception leads to termination of program at runtime. \end{DoxyCompactList}\item 
+struct \hyperlink{structdiffering__rows}{differing\+\_\+rows}
+\begin{DoxyCompactList}\small\item\em number of rows in a data\+\_\+frame should be same. \end{DoxyCompactList}\item 
+struct \hyperlink{structsame__header}{same\+\_\+header}
+\begin{DoxyCompactList}\small\item\em thrown if 2 columns have the same header. \end{DoxyCompactList}\item 
+struct \hyperlink{structholes}{holes}
+\begin{DoxyCompactList}\small\item\em thrown if data\+\_\+frame structure has gap. (a columns is empty) \end{DoxyCompactList}\item 
+struct \hyperlink{structundefined__column__header}{undefined\+\_\+column\+\_\+header}
+\begin{DoxyCompactList}\small\item\em thrown if column header mentioned doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+struct \hyperlink{structunequal__rows}{unequal\+\_\+rows}
+\begin{DoxyCompactList}\small\item\em thrown if a data\+\_\+frame expression has unequal number of rows. \end{DoxyCompactList}\item 
+struct \hyperlink{structunequal__columns}{unequal\+\_\+columns}
+\begin{DoxyCompactList}\small\item\em thrown if a data\+\_\+frame expression has unequal number of columns. \end{DoxyCompactList}\item 
+struct \hyperlink{structcolumn__header__mismatch}{column\+\_\+header\+\_\+mismatch}
+\begin{DoxyCompactList}\small\item\em thrown if a data\+\_\+frame expression doesn\textquotesingle{}t have the same columns. \end{DoxyCompactList}\end{DoxyCompactItemize}

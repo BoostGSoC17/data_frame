@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['same_5fheader',['same_header',['../structsame__header.html',1,'']]]
+  ['undefined_5fcolumn_5fheader',['undefined_column_header',['../structundefined__column__header.html',1,'']]],
+  ['unequal_5fcolumns',['unequal_columns',['../structunequal__columns.html',1,'']]],
+  ['unequal_5frows',['unequal_rows',['../structunequal__rows.html',1,'']]]
 ];
