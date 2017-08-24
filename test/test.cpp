@@ -521,3 +521,169 @@ BOOST_AUTO_TEST_CASE (data_frame_Binary_Operators) {
 		BOOST_CHECK(fabs(df7[1].get<double>()(i) - 6 * df1[1].get<double>()(i)) < 1e-9); 
 	}
 }
+
+BOOST_AUTO_TEST_CASE (data_frame_row_accessor) {
+	vector < int > a(3);
+	vector < std::string > b(3); 
+	vector < bool > c(3);
+	vector < long long > d(3); 
+	vector < char > e(3);
+	vector < std::string > headers(5);
+	headers(0) = "a", headers(1) = "b", headers(2) = "c", headers(3) = "d", headers(4) = "e";
+	a(0) = 1, a(1) = 2, a(2) = 3;
+	b(0) = "R", b(1) = "RArora", b(2) = "Arora";
+	c(0) = 0, c(1) = 1, c(2) = 0;
+	d(0) = (long long)1e10, d(1) = (long long)1e10 + 100, d(2) = (long long)1e10 - 100;
+	e(0) = 'a', e(1) = 'b', e(2) = 'c';
+	vector < df_column > col(5);
+	col(0) = a, col(1) = b, col(2) = c, col(3) = d, col(4) = e;
+	data_frame df(headers, col);
+	vector < boost::variant < COLUMN_DATA_TYPES > > row = df(0);
+	BOOST_CHECK(row.size() == df.ncol());
+	BOOST_CHECK(boost::get<int>(row(0)) == a(0));
+	BOOST_CHECK(boost::get<std::string>(row(1)) == b(0));
+	BOOST_CHECK(boost::get<bool>(row(2)) == c(0));
+	BOOST_CHECK(boost::get<long long>(row(3)) == d(0));
+	BOOST_CHECK(boost::get<char>(row(4)) == e(0));
+}
+
+BOOST_AUTO_TEST_CASE (data_frame_proxies) {
+	vector < int > a(3);
+	vector < std::string > b(3); 
+	vector < bool > c(3);
+	vector < long long > d(3); 
+	vector < char > e(3);
+
+	vector < std::string > headers(5);
+	
+	headers(0) = "a", headers(1) = "b", headers(2) = "c", headers(3) = "d", headers(4) = "e";
+	a(0) = 1, a(1) = 2, a(2) = 3;
+	b(0) = "R", b(1) = "RArora", b(2) = "Arora";
+	c(0) = 0, c(1) = 1, c(2) = 0;
+	d(0) = (long long)1e10, d(1) = (long long)1e10 + 100, d(2) = (long long)1e10 - 100;
+	e(0) = 'a', e(1) = 'b', e(2) = 'c';
+	
+	vector < df_column > col(5);
+	col(0) = a, col(1) = b, col(2) = c, col(3) = d, col(4) = e;
+	data_frame df(headers, col);
+	data_frame_range dfr1(&df, range(0, 3));
+	BOOST_CHECK(dfr1.size() == 3);
+	//dfr1.print();
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr1[0].get<int>()(i) == a(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr1[1].get<std::string>()(i) == b(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr1[2].get<bool>()(i) == c(i));	
+	}
+
+	data_frame_slice dfs1(&df, slice(0, 2, 3));
+	BOOST_CHECK(dfs1.size() == 3);
+	//dfs1.print();
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs1[0].get<int>()(i) == a(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs1[1].get<bool>()(i) == c(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs1[2].get<char>()(i) == e(i));	
+	}
+
+	indirect_array ia(3);
+	ia[0] = 0, ia[1] = 1, ia[2] = 4;
+	data_frame_indirect dfi1(&df, ia);
+	// dfi1.print();
+	BOOST_CHECK(dfs1.size() == 3);
+
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi1[0].get<int>()(i) == a(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi1[1].get<std::string>()(i) == b(i));	
+	}
+	for (int i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi1[2].get<char>()(i) == e(i));	
+	}
+	
+	data_frame_range dfr(&df, range(3, 4));
+	dfr += 3;	
+	dfr.print();
+	// now only column 3 is updated, rest of the data_frame remains the same.
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr[0].get<long long>()(i) == d(i) + 3);	
+	}
+
+	dfr -= 3;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr[0].get<long long>()(i) == d(i));	
+	}
+
+	dfr *= 5;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfr[0].get<long long>()(i) == 5 * d(i));	
+	}
+
+	data_frame_slice dfs(&df, slice(0, 3, 2));
+	dfs += 3;
+	
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs[0].get<int>()(i) == a(i) + 3);			
+		BOOST_CHECK(dfs[1].get<long long>()(i) == 5 * d(i) + 3);	
+	}
+
+	dfs -= 3;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs[0].get<int>()(i) == a(i));			
+		BOOST_CHECK(dfs[1].get<long long>()(i) == 5 * d(i));	
+	}
+
+	dfs *= 2;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfs[0].get<int>()(i) == 2 * a(i));			
+		BOOST_CHECK(dfs[1].get<long long>()(i) == 10 * d(i) );	
+	}
+
+	indirect_array <> ia1(2);
+	ia1[0] = 0, ia1[1] = 3;
+	data_frame_indirect dfi(&df, ia1);
+	dfi += 1;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi[0].get<int>()(i) == 2 * a(i) + 1);			
+		BOOST_CHECK(dfi[1].get<long long>()(i) == 10 * d(i) + 1);	
+	}	
+	dfi -= 1;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi[0].get<int>()(i) == 2 * a(i));			
+		BOOST_CHECK(dfi[1].get<long long>()(i) == 10 * d(i));	
+	}
+	dfi *= 100;
+	for(size_t i = 0; i < 3; ++i) {
+		BOOST_CHECK(dfi[0].get<int>()(i) == 200 * a(i));			
+		BOOST_CHECK(dfi[1].get<long long>()(i) == 1000 * d(i));	
+	}
+}	
+
+BOOST_AUTO_TEST_CASE(a) {
+	vector < int > a(3);
+	vector < std::string > b(3); 
+	vector < bool > c(3);
+	vector < long long > d(3); 
+	vector < char > e(3);
+
+	vector < std::string > headers(5);
+	
+	headers(0) = "a", headers(1) = "b", headers(2) = "c", headers(3) = "d", headers(4) = "e";
+	a(0) = 1, a(1) = 2, a(2) = 3;
+	b(0) = "R", b(1) = "RArora", b(2) = "Arora";
+	c(0) = 0, c(1) = 1, c(2) = 0;
+	d(0) = (long long)1e10, d(1) = (long long)1e10 + 100, d(2) = (long long)1e10 - 100;
+	e(0) = 'a', e(1) = 'b', e(2) = 'c';
+	
+	vector < df_column > col(5);
+	col(0) = a, col(1) = b, col(2) = c, col(3) = d, col(4) = e;
+	data_frame df(headers, col);
+	df_column x = df["a"];
+}

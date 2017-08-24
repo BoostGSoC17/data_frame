@@ -9,52 +9,50 @@
 
 struct inconsistent_arguments : public std::exception {
    const char * what () const throw () {
-      return "inconsistent constructor arguments";
+      return "inconsistent data_frame constructor arguments";
    }
 };
-struct same_header : public std::exception {
-   const char * what () const throw () {
-      return "data_frame columns not allowed to have same header";
-   }
-};
-struct undefined_column_header : public std::exception {
-   const char * what () const throw () {
-      return "";
-   }
-};
-struct holes : public std::exception {
-   const char * what () const throw () {
-      return "new columns will leave holes after existing columns";
-   }
-};
-struct type_not_supported : public std::exception {
-   const char * what () const throw () {
-      return "type not supported";
-   }
-};
-struct undefined_index : public std::exception {
-   const char * what () const throw () {
-      return "undefined column index";
-   }
-};
+
 struct differing_rows : public std::exception {
    const char * what () const throw () {
       return "differing number of rows";
    }
 };
-struct bad_header_type : public std::exception {
+
+struct same_header : public std::exception {
    const char * what () const throw () {
-      return "invalid column header type";
+      return "data_frame columns not allowed to have same header";
    }
 };
-struct column_type_mismatch : public std::exception {
+
+struct holes : public std::exception {
    const char * what () const throw () {
-      return "";
+      return "new columns will leave holes after existing columns";
    }
 };
-struct undefined_column_name : public std::exception {
+
+struct undefined_column_header : public std::exception {
    const char * what () const throw () {
-      return "";
+      return "column header not defined";
    }
 };
+
+struct unequal_rows : public std::exception {
+   const char * what () const throw () {
+      return "unequal number of rows in the expression";
+   }
+};
+
+struct unequal_columns : public std::exception {
+   const char * what () const throw () {
+      return "unequal number of columns in the expression";
+   }
+};
+
+struct column_header_mismatch : public std::exception {
+   const char * what () const throw () {
+      return "column header mismatch";
+   }
+};
+
 #endif

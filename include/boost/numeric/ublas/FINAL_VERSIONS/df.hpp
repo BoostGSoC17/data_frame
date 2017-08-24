@@ -113,6 +113,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *  By default \c size() == 0.
 		 *  type of the column is unset.
 		 */ 
+		BOOST_UBLAS_INLINE
 		df_column (): 
 			size_ (0) {}
 
@@ -120,6 +121,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Copies the vector into data_, T becomes the type of the column.
 		 *  \param const lvalue reference to a vector of some type T.
 		 */ 
+		BOOST_UBLAS_INLINE
 		template < class T > 
 		df_column (const vector<T>& data) :
 			data_ (data), 
@@ -128,7 +130,8 @@ namespace boost { namespace numeric { namespace ublas {
 		/*! \brief Copy Constructor of df_column. 
 		 *	Copies the col into self.
 		 *  \param const lvalue reference to a df_column.
-		 */ 
+		 */
+		BOOST_UBLAS_INLINE 
 		df_column (const df_column& col) :
 			data_ (col.data()), 
 			size_ (col.size()) {}
@@ -136,7 +139,8 @@ namespace boost { namespace numeric { namespace ublas {
 		/*! \brief Move Constructor of a df_column.
 		 *	Moves the vector into data_, T becomes the type of the column.
 		 *  \param rvalue reference to a vector <T>, T: type of vector.
-		 */ 
+		 */
+		BOOST_UBLAS_INLINE 
 		template < class T > 
 		df_column (const vector <T>&& data) {
 			data_ = std::move(data);
@@ -146,7 +150,8 @@ namespace boost { namespace numeric { namespace ublas {
 		/*! \brief Move Constructor of df_column. 
 		 *	Moves the col into self.
 		 *  \param rvalue reference to a df_column.
-		 */ 
+		 */
+		BOOST_UBLAS_INLINE 
 		df_column (const df_column&& col) {
 			data_ = std::move(col.data());
 			size_ = std::move(col.size());
@@ -164,7 +169,8 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Copies the vector into data_, T becomes the type of the column.
 		 *  \param const lvalue reference to a vector <T>, T: type of vector.
 		 */  
-		template < class T > 
+		template < class T >
+		BOOST_UBLAS_INLINE 
 		df_column& operator = (const vector<T>& data) {
 			data_ = data;
 			size_ = data.size(); 
@@ -175,6 +181,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Copies the col into self.
 		 *  \param const lvalue reference to a df_column.
 		 */ 
+		BOOST_UBLAS_INLINE
 		df_column& operator = (const df_column& col) {
 			data_  = col.data();
 			size_  = col.size();
@@ -185,7 +192,8 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Moves the vector into data_, T becomes the type of the column.
 		 *  \param rvalue reference to a vector <T>, T: type of vector.
 		 */ 
-		template < class T > 
+		template < class T >
+		BOOST_UBLAS_INLINE 
 		df_column& operator = (const vector <T>&& data) {
 			data_ = std::move(data);
 			size_ = std::move(size_);
@@ -195,7 +203,8 @@ namespace boost { namespace numeric { namespace ublas {
 		/*! \brief Move Assignment operator of df_column. 
 		 *	Copies the col into self.
 		 *  \param rvalue reference to a df_column.
-		 */ 
+		 */
+		BOOST_UBLAS_INLINE 
 		df_column& operator = (const df_column&& col) {
 			data_ = std::move(col.data());
 			size_ = std::move(col.size());
@@ -210,6 +219,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Adds x to self if the \c x.type() == \c self.type()  and \c x.size() == \c self.size().
 		 *  \param lvalue reference to a df_column.
 		 */
+		BOOST_UBLAS_INLINE
 		df_column operator += (df_column& x) {
 			(*this) = (*this) + x;
 			return *this;
@@ -219,6 +229,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Subtracts x from self if the \c x.type() == \c self.type()  and \c x.size() == \c self.size().
 		 *  \param lvalue reference to a df_column.
 		 */
+		BOOST_UBLAS_INLINE
 		df_column operator -= (df_column& x) {
 			return (*this) = (*this) - x;
 		}
@@ -227,6 +238,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Adds val to self if the \c x.type() == T.
 		 *  \param const lvalue reference to a value.
 		 */
+		BOOST_UBLAS_INLINE
 		template < class T > 
 		df_column operator += (const T& val) {
 			return (*this) = (*this) + val;
@@ -236,6 +248,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Subtracts val from self if the \c x.type() == T.
 		 *  \param const lvalue reference to a value.
 		 */
+		BOOST_UBLAS_INLINE
 		template < class T > 
 		df_column operator -= (const T& val) {
 			return (*this) = (*this) - val;
@@ -245,6 +258,7 @@ namespace boost { namespace numeric { namespace ublas {
 		 *	Multiplies val to self if the \c x.type() == T.
 		 *  \param const lvalue reference to a value.
 		 */
+		BOOST_UBLAS_INLINE
 		template < class T > 
 		df_column operator *= (const T& val) {
 			return (*this) = (*this) * val;
@@ -255,11 +269,13 @@ namespace boost { namespace numeric { namespace ublas {
 		// ---------
 		
 		//! \brief Returns the size of the column vector.
+		BOOST_UBLAS_INLINE
 		const size_t size() const {
 			return size_;
 		}	
 
 		//! \brief Returns the 0 - based index of the type of column vector in boost::variant < COLUMN_TYPES >. 
+		BOOST_UBLAS_INLINE
 		const short type() const {
 			return data_.which();
 		}
@@ -269,6 +285,7 @@ namespace boost { namespace numeric { namespace ublas {
 		// -----------------
 
 		//! \brief Returns the data_ variable.
+		BOOST_UBLAS_INLINE
 		const boost::variant < COLUMN_TYPES > data() const {
 			return data_;
 		} 
@@ -286,11 +303,13 @@ namespace boost { namespace numeric { namespace ublas {
  		 *  T should be same as the type of the df_column.
  		 */
 		template < class T > 
-		const T eval(const size_t& i) const {
-			return get<T> (i);
+		BOOST_UBLAS_INLINE
+		T& eval(const size_t& i) {
+			return boost::get<vector<T>>(data_)(i);
 		}
 
 		//! \brief Print the contents of df_column in a single line.
+		BOOST_UBLAS_INLINE
 		void print() {
 			boost::apply_visitor (print_data_frame_column{}, data_);
 		}
@@ -351,6 +370,7 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 
 		//! \brief Prints Minimum, Maximum, Mean, Median of a column vector.
+		BOOST_UBLAS_INLINE
 		template <class T1, class T2>
 		void summary() {
 			std::cout << "Min. : " << Min <T1, T2>()  << ", ";
@@ -367,402 +387,387 @@ namespace boost { namespace numeric { namespace ublas {
 		size_t size_;
 	};
 
-	df_column operator - (df_column& a) {
-		try {	
-			df_column X;
-			switch (a.type()) {
-				case 0: 
-					A0 = -a.get<bool>();
-					return X = A0;
-				case 3: 
-					A3 = -a.get<short>();
-					X = A3;
-					return X;
-				case 4: 
-					A4 = -a.get<unsigned short>();
-					X = A4;
-					return X;
-				case 5: 
-					A5 = -a.get<int>();
-					X = A5;
-					return X;
-				case 6: 
-					A6 = -a.get<unsigned int>();
-					X = A6;
-					return X;
-				case 7: 
-					A7 = -a.get<long>();
-					X = A7;
-					return X;
-				case 8: 
-					A8 = -a.get<unsigned long>();
-					X = A8;
-					return X;
-				case 9: 
-					A9 = -a.get<long long>();
-					X = A9;
-					return X;
-				case 10: 
-					A10 = -a.get<unsigned long long>();
-					X = A10;
-					return X;
-				case 11: 
-					A11 = -a.get<float>();
-					X = A11;
-					return X;
-				case 12: 
-					A12 = -a.get<double>();
-					X = A12;
-					return X;
-				case 13: 
-					A13 = -a.get<long double>();
-					X = A13;
-					return X;
-			}
-		}
-		catch(std::exception& e) {
-			std::terminate();
+	BOOST_UBLAS_INLINE
+	df_column operator - (df_column& a) {	
+		df_column X;
+		switch (a.type()) {
+			case 0: 
+				A0 = -a.get<bool>();
+				return X = A0;
+			case 3: 
+				A3 = -a.get<short>();
+				X = A3;
+				return X;
+			case 4: 
+				A4 = -a.get<unsigned short>();
+				X = A4;
+				return X;
+			case 5: 
+				A5 = -a.get<int>();
+				X = A5;
+				return X;
+			case 6: 
+				A6 = -a.get<unsigned int>();
+				X = A6;
+				return X;
+			case 7: 
+				A7 = -a.get<long>();
+				X = A7;
+				return X;
+			case 8: 
+				A8 = -a.get<unsigned long>();
+				X = A8;
+				return X;
+			case 9: 
+				A9 = -a.get<long long>();
+				X = A9;
+				return X;
+			case 10: 
+				A10 = -a.get<unsigned long long>();
+				X = A10;
+				return X;
+			case 11: 
+				A11 = -a.get<float>();
+				X = A11;
+				return X;
+			case 12: 
+				A12 = -a.get<double>();
+				X = A12;
+				return X;
+			case 13: 
+				A13 = -a.get<long double>();
+				X = A13;
+				return X;
 		}
 	}
-	df_column operator + (df_column& a, df_column& b) {
-		try {
-			if (a.type() != b.type()) {
-				// throw something
-			}	
-			df_column X;
-			switch (a.type()) {
-				case 0: 
-					A0 = a.get<bool>() + b.get<bool>();
-					X = A0;
-					return X;
-				case 3: 
-					A3 = a.get<short>() + b.get<short>();
-					X = A3;
-					return X;
-				case 4: 
-					A4 = a.get<unsigned short>() + b.get<unsigned short>();
-					X = A4;
-					return X;
-				case 5: 
-					A5 = a.get<int>() + b.get<int>();
-					X = A5;
-					return X;
-				case 6: 
-					A6 = a.get<unsigned int>() + b.get<unsigned int>();
-					X = A6;
-					return X;
-				case 7: 
-					A7 = a.get<long>() + b.get<long>();
-					X = A7;
-					return X;
-				case 8: 
-					A8 = a.get<unsigned long>() + b.get<unsigned long>();
-					X = A8;
-					return X;
-				case 9: 
-					A9 = a.get<long long>() + b.get<long long>();
-					X = A9;
-					return X;
-				case 10: 
-					A10 = a.get<unsigned long long>() + b.get<unsigned long long>();
-					X = A10;
-					return X;
-				case 11: 
-					A11 = a.get<float>() + b.get<float>();
-					X = A11;
-					return X;
-				case 12: 
-					A12 = a.get<double>() + b.get<double>();
-					X = A12;
-					return X;
-				case 13: 
-					A13 = a.get<long double>() + b.get<long double>();
-					X = A13;
-					return X;
-			}
-		}
-		catch(std::exception& e) {
-			std::terminate();
+
+	BOOST_UBLAS_INLINE
+	df_column operator + (df_column& a, df_column& b) {	
+		df_column X;
+		switch (a.type()) {
+			case 0: 
+				A0 = a.get<bool>() + b.get<bool>();
+				X = A0;
+				return X;
+			case 3: 
+				A3 = a.get<short>() + b.get<short>();
+				X = A3;
+				return X;
+			case 4: 
+				A4 = a.get<unsigned short>() + b.get<unsigned short>();
+				X = A4;
+				return X;
+			case 5: 
+				A5 = a.get<int>() + b.get<int>();
+				X = A5;
+				return X;
+			case 6: 
+				A6 = a.get<unsigned int>() + b.get<unsigned int>();
+				X = A6;
+				return X;
+			case 7: 
+				A7 = a.get<long>() + b.get<long>();
+				X = A7;
+				return X;
+			case 8: 
+				A8 = a.get<unsigned long>() + b.get<unsigned long>();
+				X = A8;
+				return X;
+			case 9: 
+				A9 = a.get<long long>() + b.get<long long>();
+				X = A9;
+				return X;
+			case 10: 
+				A10 = a.get<unsigned long long>() + b.get<unsigned long long>();
+				X = A10;
+				return X;
+			case 11: 
+				A11 = a.get<float>() + b.get<float>();
+				X = A11;
+				return X;
+			case 12: 
+				A12 = a.get<double>() + b.get<double>();
+				X = A12;
+				return X;
+			case 13: 
+				A13 = a.get<long double>() + b.get<long double>();
+				X = A13;
+				return X;
 		}
 	}
-	df_column operator - (df_column& a, df_column& b) {
-		try {
-			if (a.type() != b.type()) {
-				// throw something
-			}	
-			df_column X;
-			switch (a.type()) {
-				case 0: 
-					A0 = a.get<bool>() - b.get<bool>();
-					X = A0;
-					return X;
-				case 3: 
-					A3 = a.get<short>() - b.get<short>();
-					X = A3;
-					return X;
-				case 4: 
-					A4 = a.get<unsigned short>() - b.get<unsigned short>();
-					X = A4;
-					return X;
-				case 5: 
-					A5 = a.get<int>() - b.get<int>();
-					X = A5;
-					return X;
-				case 6: 
-					A6 = a.get<unsigned int>() - b.get<unsigned int>();
-					X = A6;
-					return X;
-				case 7: 
-					A7 = a.get<long>() - b.get<long>();
-					X = A7;
-					return X;
-				case 8: 
-					A8 = a.get<unsigned long>() - b.get<unsigned long>();
-					X = A8;
-					return X;
-				case 9: 
-					A9 = a.get<long long>() - b.get<long long>();
-					X = A9;
-					return X;
-				case 10: 
-					A10 = a.get<unsigned long long>() - b.get<unsigned long long>();
-					X = A10;
-					return X;
-				case 11: 
-					A11 = a.get<float>() - b.get<float>();
-					X = A11;
-					return X;
-				case 12: 
-					A12 = a.get<double>() - b.get<double>();
-					X = A12;
-					return X;
-				case 13: 
-					A13 = a.get<long double>() - b.get<long double>();
-					X = A13;
-					return X;
-			}
-		}
-		catch(std::exception& e) {
-			std::terminate();
+
+	BOOST_UBLAS_INLINE
+	df_column operator - (df_column& a, df_column& b) {	
+		df_column X;
+		switch (a.type()) {
+			case 0: 
+				A0 = a.get<bool>() - b.get<bool>();
+				X = A0;
+				return X;
+			case 3: 
+				A3 = a.get<short>() - b.get<short>();
+				X = A3;
+				return X;
+			case 4: 
+				A4 = a.get<unsigned short>() - b.get<unsigned short>();
+				X = A4;
+				return X;
+			case 5: 
+				A5 = a.get<int>() - b.get<int>();
+				X = A5;
+				return X;
+			case 6: 
+				A6 = a.get<unsigned int>() - b.get<unsigned int>();
+				X = A6;
+				return X;
+			case 7: 
+				A7 = a.get<long>() - b.get<long>();
+				X = A7;
+				return X;
+			case 8: 
+				A8 = a.get<unsigned long>() - b.get<unsigned long>();
+				X = A8;
+				return X;
+			case 9: 
+				A9 = a.get<long long>() - b.get<long long>();
+				X = A9;
+				return X;
+			case 10: 
+				A10 = a.get<unsigned long long>() - b.get<unsigned long long>();
+				X = A10;
+				return X;
+			case 11: 
+				A11 = a.get<float>() - b.get<float>();
+				X = A11;
+				return X;
+			case 12: 
+				A12 = a.get<double>() - b.get<double>();
+				X = A12;
+				return X;
+			case 13: 
+				A13 = a.get<long double>() - b.get<long double>();
+				X = A13;
+				return X;
 		}
 	}
+
+	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator + (df_column& a, const T& val) {
-		try {
-			df_column X;
-			for(size_t i = 0; i < a.size(); ++i) {
-				switch (a.type()) {
-					case 0: 
-						if (i == 0) {
-							A0.resize(a.size());
-						}
-						A0(i) = a.get<bool>()(i) + val;
-						if (i == a.size()-1) {
-							X = A0;
-							A0.resize(0);
-							return X;
-						}
-					break;
-					case 3:
-						if (i == 0) {
-							A3.resize(a.size());
-						} 
-						A3(i) = a.get<short>()(i) + val;
-						if (i == a.size()-1) {
-							X = A3;
-							A3.resize(0);
-							return X;
-						}
-					break;
-					case 4: 
-						if (i == 0) {
-							A4.resize(a.size());
-						}
-						A4(i) = a.get<unsigned short>()(i) + val;
-						if (i == a.size()-1) {
-							X = A4;
-							A4.resize(0);
-							return X;
-						}
-					break;
-					case 5: 
-						if (i == 0) {
-							A5.resize(a.size());
-						}
-						A5(i) = a.get<int>()(i) + val;
-						if (i == a.size()-1) {
-							X = A5;
-							A5.resize(0);
-							return X;
-						}
-					break;
-					case 6:
-						if (i == 0) {
-							A6.resize(a.size());
-						} 
-						A6(i) = a.get<unsigned int>()(i) + val;
-						if (i == a.size()-1) {
-							X = A6;
-							A6.resize(0);
-							return X;
-						}
-					break;
-					case 7:
-						if (i == 0) {
-							A7.resize(a.size());
-						} 
-						A7(i) = a.get<long>()(i) + val;
-						if (i == a.size()-1) {
-							X = A7;
-							A7.resize(0);
-							return X;
-						}
-					break;
-					case 8: 
-						if (i == 0) {
-							A8.resize(a.size());
-						}
-						A8(i) = a.get<unsigned long>()(i) + val;
-						if (i == a.size()-1) {
-							X = A8;
-							A8.resize(0);
-							return X;
-						}
-					break;
-					case 9:
-						if (i == 0) {
-							A9.resize(a.size());
-						} 
-						A9(i) = a.get<long long>()(i) + val;
-						if (i == a.size()-1) {
-							X = A9;
-							A9.resize(0);
-							return X;
-						}
-					break;
-					case 10:
-						if (i == 0) {
-							A10.resize(a.size());
-						} 
-						A10(i) = a.get<unsigned long long>()(i) + val;
-						if (i == a.size()-1) {
-							X = A10;
-							A10.resize(0);
-							return X;
-						}
-					break;
-					case 11:
-						if (i == 0) {
-							A11.resize(a.size());
-						} 
-						A11(i) = a.get<float>()(i) + val;
-						if (i == a.size()-1) {
-							X = A11;
-							A11.resize(0);
-							return X;
-						}
-					break;
-					case 12:
-						if (i == 0) {
-							A12.resize(a.size());
-						} 
-						A12(i) = a.get<double>()(i) + val;
-						if (i == a.size()-1) {
-							X = A12;
-							A12.resize(0);
-							return X;
-						}
-					break;
-					case 13:
-						if (i == 0) {
-							A13.resize(a.size());
-						} 
-						A13(i) = a.get<long double>()(i) + val;
-						if (i == a.size()-1) {
-							X = A13;
-							A13.resize(0);
-							return X;
-						}
-					break;
-				}
+		df_column X;
+		for(size_t i = 0; i < a.size(); ++i) {
+			switch (a.type()) {
+				case 0: 
+					if (i == 0) {
+						A0.resize(a.size());
+					}
+					A0(i) = a.get<bool>()(i) + val;
+					if (i == a.size()-1) {
+						X = A0;
+						A0.resize(0);
+						return X;
+					}
+				break;
+				case 3:
+					if (i == 0) {
+						A3.resize(a.size());
+					} 
+					A3(i) = a.get<short>()(i) + val;
+					if (i == a.size()-1) {
+						X = A3;
+						A3.resize(0);
+						return X;
+					}
+				break;
+				case 4: 
+					if (i == 0) {
+						A4.resize(a.size());
+					}
+					A4(i) = a.get<unsigned short>()(i) + val;
+					if (i == a.size()-1) {
+						X = A4;
+						A4.resize(0);
+						return X;
+					}
+				break;
+				case 5: 
+					if (i == 0) {
+						A5.resize(a.size());
+					}
+					A5(i) = a.get<int>()(i) + val;
+					if (i == a.size()-1) {
+						X = A5;
+						A5.resize(0);
+						return X;
+					}
+				break;
+				case 6:
+					if (i == 0) {
+						A6.resize(a.size());
+					} 
+					A6(i) = a.get<unsigned int>()(i) + val;
+					if (i == a.size()-1) {
+						X = A6;
+						A6.resize(0);
+						return X;
+					}
+				break;
+				case 7:
+					if (i == 0) {
+						A7.resize(a.size());
+					} 
+					A7(i) = a.get<long>()(i) + val;
+					if (i == a.size()-1) {
+						X = A7;
+						A7.resize(0);
+						return X;
+					}
+				break;
+				case 8: 
+					if (i == 0) {
+						A8.resize(a.size());
+					}
+					A8(i) = a.get<unsigned long>()(i) + val;
+					if (i == a.size()-1) {
+						X = A8;
+						A8.resize(0);
+						return X;
+					}
+				break;
+				case 9:
+					if (i == 0) {
+						A9.resize(a.size());
+					} 
+					A9(i) = a.get<long long>()(i) + val;
+					if (i == a.size()-1) {
+						X = A9;
+						A9.resize(0);
+						return X;
+					}
+				break;
+				case 10:
+					if (i == 0) {
+						A10.resize(a.size());
+					} 
+					A10(i) = a.get<unsigned long long>()(i) + val;
+					if (i == a.size()-1) {
+						X = A10;
+						A10.resize(0);
+						return X;
+					}
+				break;
+				case 11:
+					if (i == 0) {
+						A11.resize(a.size());
+					} 
+					A11(i) = a.get<float>()(i) + val;
+					if (i == a.size()-1) {
+						X = A11;
+						A11.resize(0);
+						return X;
+					}
+				break;
+				case 12:
+					if (i == 0) {
+						A12.resize(a.size());
+					} 
+					A12(i) = a.get<double>()(i) + val;
+					if (i == a.size()-1) {
+						X = A12;
+						A12.resize(0);
+						return X;
+					}
+				break;
+				case 13:
+					if (i == 0) {
+						A13.resize(a.size());
+					} 
+					A13(i) = a.get<long double>()(i) + val;
+					if (i == a.size()-1) {
+						X = A13;
+						A13.resize(0);
+						return X;
+					}
+				break;
 			}
 		}
-		catch(std::exception& e) {
-			std::terminate();
-		}
 	}
+
+	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator + (const T& val, df_column& a) {
 		return a + val;
 	}
+
+	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator - (df_column& a, const T& val) {
 		return a + (-val);
 	}
+
+	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator * (df_column& a, const T& val) {
-		try {
-			df_column X;
-			switch (a.type()) {
-				case 0: 
-					A0 = a.get<bool>() * val;
-					X = A0;
-					return X;
-				case 3: 
-					A3 = a.get<short>() * val;
-					X = A3;
-					return X;
-				case 4: 
-					A4 = a.get<unsigned short>() * val;
-					X = A4;
-					return X;
-				case 5: 
-					A5 = a.get<int>() * val;
-					X = A5;
-					return X;
-				case 6: 
-					A6 = a.get<unsigned int>() * val;
-					X = A6;
-					return X;
-				case 7: 
-					A7 = a.get<long>() * val;
-					X = A7;
-					return X;
-				case 8: 
-					A8 = a.get<unsigned long>() * val;
-					X = A8;
-					return X;
-				case 9: 
-					A9 = a.get<long long>() * val;
-					X = A9;
-					return X;
-				case 10: 
-					A10 = a.get<unsigned long long>() * val;
-					X = A10;
-					return X;
-				case 11: 
-					A11 = a.get<float>() * val;
-					X = A11;
-					return X;
-				case 12: 
-					A12 = a.get<double>() * val;
-					X = A12;
-					return X;
-				case 13: 
-					A13 = a.get<long double>() * val;
-					X = A13;
-					return X;
-			}
-		}
-		catch(std::exception& e) {
-			std::terminate();
+		df_column X;
+		switch (a.type()) {
+			case 0: 
+				A0 = a.get<bool>() * val;
+				X = A0;
+				return X;
+			case 3: 
+				A3 = a.get<short>() * val;
+				X = A3;
+				return X;
+			case 4: 
+				A4 = a.get<unsigned short>() * val;
+				X = A4;
+				return X;
+			case 5: 
+				A5 = a.get<int>() * val;
+				X = A5;
+				return X;
+			case 6: 
+				A6 = a.get<unsigned int>() * val;
+				X = A6;
+				return X;
+			case 7: 
+				A7 = a.get<long>() * val;
+				X = A7;
+				return X;
+			case 8: 
+				A8 = a.get<unsigned long>() * val;
+				X = A8;
+				return X;
+			case 9: 
+				A9 = a.get<long long>() * val;
+				X = A9;
+				return X;
+			case 10: 
+				A10 = a.get<unsigned long long>() * val;
+				X = A10;
+				return X;
+			case 11: 
+				A11 = a.get<float>() * val;
+				X = A11;
+				return X;
+			case 12: 
+				A12 = a.get<double>() * val;
+				X = A12;
+				return X;
+			case 13: 
+				A13 = a.get<long double>() * val;
+				X = A13;
+				return X;
 		}
 	}
 
+	BOOST_UBLAS_INLINE
 	template < class T > 
 	df_column operator * (const T& val, df_column& a) {
 		return a * val;
 	}
+
+	BOOST_UBLAS_INLINE
 	bool operator == (df_column& y, df_column& x) {
 		if (y.type() != x.type()) {
 			return false;
@@ -840,6 +845,8 @@ namespace boost { namespace numeric { namespace ublas {
 		}
 		return true;
 	}
+
+	BOOST_UBLAS_INLINE
 	bool operator != (df_column& y, df_column& x) {
 		return !(x == y);
 	}
@@ -980,7 +987,15 @@ namespace boost { namespace numeric { namespace ublas {
 		template < class T > 
 		BOOST_UBLAS_INLINE
 		vector<T>& column (const std::string& header) {
-			return data_[header].get<T>();
+			try {
+				if (data_.find(header) == data_.end()) {
+					throw undefined_column_header();
+				}
+				return data_[header].get<T>();
+			}
+			catch(std::exception& e) {
+				std::terminate();
+			}
 		}
 
 		/*! \brief Access operator of data_frame. 
@@ -994,7 +1009,66 @@ namespace boost { namespace numeric { namespace ublas {
 			return data_[column_headers_ (i)].get<T>();
 		}
 
-		/* Add row accessors */ 
+		// ------------- 
+		// row accessors 
+		// ------------- 
+
+		vector < boost::variant < COLUMN_DATA_TYPES > > operator () (const size_t row) {
+			vector < boost::variant < COLUMN_DATA_TYPES > > ret(ncol_);
+			for(size_t i = 0; i < ncol_; ++i) {
+				switch((*this)[i].type()) {
+					case 0: 	
+						ret(i) = (*this)[i].eval<bool>(row);
+						break;
+					case 1: 
+						ret(i) = (*this)[i].eval<char>(row);
+						break;
+					case 2: 
+						ret(i) = (*this)[i].eval<unsigned char>(row);
+						break;
+					case 3: 
+						ret(i) = (*this)[i].eval<short>(row);
+						break;
+					case 4: 
+						ret(i) = (*this)[i].eval<unsigned short>(row);
+						break;
+					case 5: 
+						ret(i) = (*this)[i].eval<int>(row);
+						break;
+					case 6: 
+						ret(i) = (*this)[i].eval<unsigned int>(row);
+						break;
+					case 7: 
+						ret(i) = (*this)[i].eval<long>(row);
+						break;
+					case 8: 
+						ret(i) = (*this)[i].eval<unsigned long>(row);
+						break;
+					case 9: 
+						ret(i) = (*this)[i].eval<long long>(row);
+						break;
+					case 10: 
+						ret(i) = (*this)[i].eval<unsigned long long>(row);
+						break;
+					case 11: 
+						ret(i) = (*this)[i].eval<float>(row);
+						break;
+					case 12: 
+						ret(i) = (*this)[i].eval<double>(row);
+						break;
+					case 13: 
+						ret(i) = (*this)[i].eval<long double>(row);
+						break;
+					case 14: 
+						ret(i) = (*this)[i].eval<std::string>(row);
+						break;
+					case 15: 
+						ret(i) = (*this)[i].eval<std::string*>(row);
+						break;
+				} 
+			}
+			return ret;
+		} 
 
 		// ------------ 
 		// erase column 
@@ -1008,7 +1082,7 @@ namespace boost { namespace numeric { namespace ublas {
 		void erase_column(const size_t i) {
 			try {
 				if ( (i >= column_headers_.size()) || (i < 0)) {
-					throw undefined_index();
+					throw bad_index();
 				}
 				/// \i is valid so delete the column[$i]
 				data_.erase(column_headers_[i]);
@@ -1028,7 +1102,7 @@ namespace boost { namespace numeric { namespace ublas {
 		void erase_column(const std::string& header) {
 			try {
 				if (data_.find(header) == data_.end()) {
-					throw undefined_column_name();
+					throw undefined_column_header();
 				}
 				/// \name is valid so delete the column[$name]
 				data_.erase(header);
@@ -1059,36 +1133,13 @@ namespace boost { namespace numeric { namespace ublas {
 			try {
 				for(size_t i = 0; i < ncol_; ++i) {
 					if (column_headers_(i) == header) {
-						// throw something 
+						same_header(); 
 					}
 				}
 				column_headers_.resize(ncol_ + 1);
 				column_headers_ (ncol_) = header;
 				++ncol_;
 				data_ [header] = col;
-				return *this;
-			}
-			catch (std::exception& e) {
-				std::terminate();
-			}
-		}
-
-		/* THIS IS AMBIGUOS: SHOULD I REMOVE THIS??*/ 
-		/*! \brief add_column operator of data_frame.
-		 *  adds column at the end of the data_frame columns.  
-		 *  \param column header
-		 *  \param const lvalue reference to the column data in the form of df_column. 
-		 */ 		
-		BOOST_UBLAS_INLINE
-		data_frame& add_column(const size_t i, const df_column& col) {
-			try {
-				if (i != ncol_) {
-					// throw something
-				}
-				column_headers_.resize(ncol_ + 1);
-				column_headers_ (ncol_) = default_name(i);
-				++ncol_;
-				data_ [default_name(i)] = col;
 				return *this;
 			}
 			catch (std::exception& e) {
@@ -1239,16 +1290,16 @@ namespace boost { namespace numeric { namespace ublas {
 	data_frame operator + (data_frame& a, data_frame& b) {
 		try {
 			if (a.ncol() != b.ncol()) {
-				// throw something
+				throw unequal_columns();
 			}
 			else if (a.nrow() != b.nrow()) {
-				// throw something
+				throw unequal_rows();
 			}
 			vector<std::string> header(a.ncol());
 			vector<df_column> col(a.ncol());
 			for(size_t i = 0; i < a.ncol(); ++i) {
 				if (a.colname(i) != b.colname(i)) {
-					// throw something
+					throw column_header_mismatch();
 				}
 				header(i) = a.colname(i);
 				col(i) = a[i] + b[i];
@@ -1263,16 +1314,16 @@ namespace boost { namespace numeric { namespace ublas {
 	data_frame operator - (data_frame& a, data_frame& b) {
 		try {
 			if (a.ncol() != b.ncol()) {
-				// throw something
+				throw unequal_columns();
 			}
 			else if (a.nrow() != b.nrow()) {
-				// throw something
+				throw unequal_rows();
 			}
 			vector<std::string> header(a.ncol());
 			vector<df_column> col(a.ncol());
 			for(size_t i = 0; i < a.ncol(); ++i) {
 				if (a.colname(i) != b.colname(i)) {
-					// throw something
+					throw column_header_mismatch();
 				}
 				header(i) = a.colname(i);
 				col(i) = a[i] - b[i];
@@ -1286,18 +1337,13 @@ namespace boost { namespace numeric { namespace ublas {
 
 	template < class T >
 	data_frame operator + (data_frame& a, const T& val) {
-		try {
-			vector<std::string> header(a.ncol());
-			vector<df_column> col(a.ncol());
-			for(size_t i = 0; i < a.ncol(); ++i) {
-				header(i) = a.colname(i);
-				col(i) = a[i] + val;
-			}
-			return data_frame(header, col);
+		vector<std::string> header(a.ncol());
+		vector<df_column> col(a.ncol());
+		for(size_t i = 0; i < a.ncol(); ++i) {
+			header(i) = a.colname(i);
+			col(i) = a[i] + val;
 		}
-		catch (std::exception& e) {
-			std::terminate();
-		}
+		return data_frame(header, col);
 	}
 
 	template < class T > 
@@ -1312,18 +1358,13 @@ namespace boost { namespace numeric { namespace ublas {
 
 	template < class T >
 	data_frame operator * (data_frame& a, const T& val) {
-		try {
-			vector<std::string> header(a.ncol());
-			vector<df_column> col(a.ncol());
-			for(size_t i = 0; i < a.ncol(); ++i) {
-				header(i) = a.colname(i);
-				col(i) = a[i] * val;
-			}
-			return data_frame(header, col);
+		vector<std::string> header(a.ncol());
+		vector<df_column> col(a.ncol());
+		for(size_t i = 0; i < a.ncol(); ++i) {
+			header(i) = a.colname(i);
+			col(i) = a[i] * val;
 		}
-		catch (std::exception& e) {
-			std::terminate();
-		}
+		return data_frame(header, col);
 	}
 
 	template < class T > 
@@ -1368,8 +1409,8 @@ namespace boost { namespace numeric { namespace ublas {
 		typedef basic_range<size_type, difference_type> range_type;
 
 		//! \brief: default constructor of data_frame_range.
-		BOOST_UBLAS_INLINE
-		data_frame_range();
+		// BOOST_UBLAS_INLINE
+		// data_frame_range();
 
 		/*! \brief constructor of data_frame_range.
 		 *	\param pointer to base data_frame (over which the proxy needs to be built).
@@ -1380,6 +1421,9 @@ namespace boost { namespace numeric { namespace ublas {
 			column_headers_(df->headers(), range) {
 				df_ = df;
 		}
+
+		//! \brief: destructor of data_frame_range.
+		~data_frame_range() {}
 
 		//! \brief Returns a new data_frame containing copy of columns referenced by the given vector_range.
 		BOOST_UBLAS_INLINE
@@ -1394,21 +1438,53 @@ namespace boost { namespace numeric { namespace ublas {
 		} 
 
 		/*! \brief Access operator of data_frame_range.
-		 * 	\param column header to be accessed.
-		 *  Returns reference to the column in the base data_frame.
-		 */  
-		BOOST_UBLAS_INLINE
-		df_column& operator [] (const std::string& header) {
-			return (*df_)[header];
-		}
-
-		/*! \brief Access operator of data_frame_range.
 		 * 	\param column index to be accessed.
 		 *  Returns reference to the column in the base data_frame.
 		 */
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
 			return (*df_)[column_headers_[i]];
+		}
+
+		BOOST_UBLAS_INLINE
+		const size_t size() const {
+			return column_headers_.size();
+		}
+
+		BOOST_UBLAS_INLINE
+		void print() {
+			for(auto header: column_headers_) {
+				std::cout << "[" << header << "]: ";
+				(*df_)[header].print();
+			}
+			return;
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_range operator += (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] += val;
+			}
+			return (*this);
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_range operator -= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] -= val;
+			}
+			return (*this);		
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_range operator *= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] *= val;
+			}
+			return (*this);			
 		}
 
 	private:
@@ -1440,6 +1516,10 @@ namespace boost { namespace numeric { namespace ublas {
 				df_ = df;
 		}
 
+
+		//! \brief: destructor of data_frame_slice.
+		~data_frame_slice() {}
+
 		//! \brief Returns a new data_frame containing copy of columns referenced by the given vector_slcie.
 		BOOST_UBLAS_INLINE
 		data_frame DataFrame () {
@@ -1453,15 +1533,6 @@ namespace boost { namespace numeric { namespace ublas {
 		} 
 
 		/*! \brief Access operator of data_frame_slice.
-		 * 	\param column header to be accessed.
-		 *  Returns reference to the column in the base data_frame.
-		 */  
-		BOOST_UBLAS_INLINE
-		df_column& operator [] (const std::string& header) {
-			return (*df_)[header];
-		}
-
-		/*! \brief Access operator of data_frame_slice.
 		 * 	\param column index to be accessed.
 		 *  Returns reference to the column in the base data_frame.
 		 */
@@ -1470,6 +1541,46 @@ namespace boost { namespace numeric { namespace ublas {
 			return (*df_)[column_headers_[i]];
 		}
 
+		BOOST_UBLAS_INLINE
+		const size_t size() const {
+			return column_headers_.size();
+		}
+
+		BOOST_UBLAS_INLINE
+		void print() {
+			for(auto header: column_headers_) {
+				std::cout << "[" << header << "]: ";
+				(*df_)[header].print();
+			}
+			return;
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_slice operator += (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] += val;
+			}
+			return (*this);
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_slice operator -= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] -= val;
+			}
+			return (*this);
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_slice operator *= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] *= val;
+			}
+			return (*this);
+		}
 	private:
 		data_frame *df_;
 		vector_slice < vector <std::string> > column_headers_;
@@ -1509,14 +1620,8 @@ namespace boost { namespace numeric { namespace ublas {
 		} 
 
 
-		/*! \brief Access operator of data_frame_slice.
-		 * 	\param column header to be accessed.
-		 *  Returns reference to the column in the base data_frame.
-		 */  
-		BOOST_UBLAS_INLINE
-		df_column& operator [] (const std::string& header) {
-			return (*df_)[header];
-		}
+		//! \brief: destructor of data_frame_indirect.
+		~data_frame_indirect() {}
 
 		/*! \brief Access operator of data_frame_slice.
 		 * 	\param column index to be accessed.
@@ -1525,6 +1630,47 @@ namespace boost { namespace numeric { namespace ublas {
 		BOOST_UBLAS_INLINE
 		df_column& operator [] (const size_t& i) {
 			return (*df_)[column_headers_[i]];
+		}
+
+		BOOST_UBLAS_INLINE
+		const size_t size() const {
+			return column_headers_.size();
+		}
+
+		BOOST_UBLAS_INLINE
+		void print() {
+			for(auto header: column_headers_) {
+				std::cout << "[" << header << "]: ";
+				(*df_)[header].print();
+			}
+			return;
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_indirect operator += (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] += val;
+			}
+			return (*this);
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_indirect operator -= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] -= val;
+			}
+			return (*this);			
+		}
+
+		template < class T >
+		BOOST_UBLAS_INLINE
+		data_frame_indirect operator *= (const T& val) {
+			for(auto header: column_headers_) {
+				(*df_)[header] *= val;
+			}
+			return (*this);
 		}
 
 	private: 
