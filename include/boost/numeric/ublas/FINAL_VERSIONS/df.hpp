@@ -1265,7 +1265,34 @@ namespace boost { namespace numeric { namespace ublas {
 		data_frame operator *= (const T& val) {
 			return (*this) = (*this) * val;
 		}
-		
+			
+		BOOST_UBLAS_INLINE 
+		void set_col_header(const std::string& a, const std::string& b) {
+			try {
+				if (data_.find(a) == data_.end()) {
+					throw column_header_mismatch();
+				}
+				for(size_t i = 0; i < column_headers_.size(); ++i) {
+					if (column_headers_ (i) == a) {
+						column_headers_(i) = b;
+						break;
+					}
+				}
+				data_[b] = data_[a];
+				data_.erase(a);
+			}
+			catch (std::exception& e) {
+				std::terminate();
+			}
+		}
+
+		BOOST_UBLAS_INLINE 
+		void set_col_header(const size_t col, const std::string& b) {
+			data_[b] = data_[column_headers_(col)];
+			data_.erase(column_headers_(col));
+			column_headers_(col) = b;
+		}
+
 	private:
 		//! \brief Stores data.
 		std::map < std::string, df_column > data_;
