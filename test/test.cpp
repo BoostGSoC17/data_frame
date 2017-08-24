@@ -1,6 +1,10 @@
-/// \Tests for the constructors of data_frame.
-/// \To compile, use boost with the flag -lboost_unit_test_framework.
-/// \To run use ./a.out --log_level=all to see the entire error report.
+//          Copyright(C) Rishabh Arora 2017.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE_1_0.txt or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
+
+// To compile, use boost with the flag -lboost_unit_test_framework.
+// To run use ./a.out --log_level=all to see the entire error report.
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE  DATA_FRAME
