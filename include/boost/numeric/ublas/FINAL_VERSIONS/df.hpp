@@ -3,6 +3,18 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
+/** \mainpage BOOST uBLAS Dataframe
+ * 
+ *
+ * \section main_classes Main classes
+ * 
+ * - \link #boost::numeric::ublas::data_frame                    data_frame \endlink
+ * - \link #boost::numeric::ublas::df_column            df_column \endlink
+ * - \link #boost::numeric::ublas::data_frame_range                data_frame_range \endlink
+ * - \link #boost::numeric::ublas::data_frame_slice               data_frame_slice \endlink
+ * - \link #boost::numeric::ublas::data_frame_indirect            data_frame_indirect \endlink
+ */
+
 #ifndef _BOOST_UBLAS_DATA_FRAME_
 #define _BOOST_UBLAS_DATA_FRAME_	
 
@@ -1458,7 +1470,7 @@ namespace boost { namespace numeric { namespace ublas {
 		return true;
 	}
 
-	//! \brief Returns \c false if (for all columns of a and b)\c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c true
+	//! \brief Returns \c false if (for all columns of a and b) \c y.size() == \c x.size() and \c y.get<T> == \c x.get<T>() else \c true
 	bool operator != (data_frame& a, data_frame& b) {
 		return !(a == b);
 	}
