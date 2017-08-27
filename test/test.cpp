@@ -6,7 +6,8 @@
 // To compile, use boost with the flag -lboost_unit_test_framework.
 // To run use ./a.out --log_level=all to see the entire error report.
 
-#define BOOST_TEST_DYN_LINK
+
+#define BOOST_DYN_LINK
 #define BOOST_TEST_MODULE  DATA_FRAME
 
 #include <boost/test/unit_test.hpp>
