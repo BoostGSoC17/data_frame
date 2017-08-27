@@ -671,24 +671,3 @@ BOOST_AUTO_TEST_CASE (data_frame_proxies) {
 	}
 }	
 
-BOOST_AUTO_TEST_CASE(a) {
-	vector < int > a(3);
-	vector < std::string > b(3); 
-	vector < bool > c(3);
-	vector < long long > d(3); 
-	vector < char > e(3);
-
-	vector < std::string > headers(5);
-	
-	headers(0) = "a", headers(1) = "b", headers(2) = "c", headers(3) = "d", headers(4) = "e";
-	a(0) = 1, a(1) = 2, a(2) = 3;
-	b(0) = "R", b(1) = "RArora", b(2) = "Arora";
-	c(0) = 0, c(1) = 1, c(2) = 0;
-	d(0) = (long long)1e10, d(1) = (long long)1e10 + 100, d(2) = (long long)1e10 - 100;
-	e(0) = 'a', e(1) = 'b', e(2) = 'c';
-	
-	vector < df_column > col(5);
-	col(0) = a, col(1) = b, col(2) = c, col(3) = d, col(4) = e;
-	data_frame df(headers, col);
-	df_column x = df["a"];
-}
