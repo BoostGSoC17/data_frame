@@ -597,7 +597,7 @@ BOOST_AUTO_TEST_CASE (data_frame_proxies) {
 		BOOST_CHECK(dfs1[2].get<char>()(i) == e(i));	
 	}
 
-	indirect_array ia(3);
+	indirect_array<> ia(3);
 	ia[0] = 0, ia[1] = 1, ia[2] = 4;
 	data_frame_indirect dfi1(&df, ia);
 	// dfi1.print();
